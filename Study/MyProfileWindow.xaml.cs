@@ -21,6 +21,7 @@ namespace Study
     {
         public MyProfileWindow()
         {
+
             InitializeComponent();
         }
 
