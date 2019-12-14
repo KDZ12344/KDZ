@@ -7,11 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Study", "Study.csproj", "{B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5DE2D676-7E7F-41B0-AEB7-00F3E2A04581}"
 	ProjectSection(SolutionItems) = preProject
+		AuthorizationQuery.sql = AuthorizationQuery.sql
 		Client.cs = Client.cs
 		Server.cs = Server.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Study.Core", "Study.Core\Study.Core.csproj", "{A3E02FB8-249A-407C-8D4B-EB0CB60FEDCD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "..\Core\Core.csproj", "{6761D021-63E3-41B6-9545-8EF42C772DB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +24,10 @@ Global
 		{B65F49C8-1D3F-4520-8BB2-05704AB0220E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B65F49C8-1D3F-4520-8BB2-05704AB0220E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B65F49C8-1D3F-4520-8BB2-05704AB0220E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3E02FB8-249A-407C-8D4B-EB0CB60FEDCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3E02FB8-249A-407C-8D4B-EB0CB60FEDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3E02FB8-249A-407C-8D4B-EB0CB60FEDCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3E02FB8-249A-407C-8D4B-EB0CB60FEDCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6761D021-63E3-41B6-9545-8EF42C772DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6761D021-63E3-41B6-9545-8EF42C772DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6761D021-63E3-41B6-9545-8EF42C772DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6761D021-63E3-41B6-9545-8EF42C772DB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

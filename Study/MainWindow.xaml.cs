@@ -13,15 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using Core;
 namespace Study
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        
-    
         public MainWindow()
         {
             InitializeComponent();
@@ -29,25 +25,34 @@ namespace Study
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+           
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
                 string queryString = "SELECT login FROM Users WHERE Login=\'" + LoginTextBox.Text + "\' and Password=\'" + PasswordTextBox.Password + "\';";
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
+                
                 SqlDataReader reader = command.ExecuteReader();
-                while (reader == "")
+                string t = reader.Read().ToString();
+                
+                if (t == "False")
                 {
-                    MessageBox.Show("Oops! There's no user with such login&password.");
-                    queryString = "SELECT * FROM Users WHERE Login=\'" + LoginTextBox.Text + "\' and Password=\'" + PasswordTextBox.Password + "\';";
-                    command = new SqlCommand(queryString, connection);
-                    connection.Open();
-                    reader = command.ExecuteReader();
+                    MessageBox.Show("Oops! There's no user with such login&password.");               
                 }
-                reader.Close();
+                else
+                {
+
+                    User user = new User();                    
+                    user.Login = reader.GetValue(0).ToString();
+                    //user.VKTG = reader.GetValue(2).ToString();
+                    //user.Name = reader.GetString(5);
+                    //user.Password = reader.GetString(6);
+                    var myprofile = new MyProfileWindow(user);
+                    myprofile.ShowDialog();
+                   
+                }
 
             }
-            var choic = new ChoiceWindow();
-            choic.ShowDialog();
 
         }
     }

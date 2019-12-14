@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Core;
 
 namespace Study
 {
@@ -19,10 +20,11 @@ namespace Study
     /// </summary>
     public partial class MyProfileWindow : Window
     {
-        public MyProfileWindow()
+        public MyProfileWindow(User user)
         {
-
             InitializeComponent();
+            NameTextBlock.Text = user.Login;
+            VKTGTextBlock.Text = user.VKTG;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

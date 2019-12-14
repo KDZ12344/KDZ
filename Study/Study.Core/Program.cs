@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Study.Core
+namespace StudyCore
 {
     class Program
     {

@@ -16,13 +16,13 @@
         <Button Background="Indigo" Margin="289,50.4,53,53.4" Grid.Row="2" Foreground="White" FontSize="10" Click="Button_Click">Редактировать</Button>
         <Image Source="avatar.jpg" Margin="28,37,249,83.6" Grid.RowSpan="2"></Image>
         <TextBlock Foreground="White" Margin="227,37,174,62.8">Имя:</TextBlock>
-        <TextBlock Foreground="White" Margin="274,37,83,62.8"><Run Text="Вася Пупкин"/></TextBlock>
+        <TextBlock Foreground="White" Margin="274,37,83,62.8" x:Name ="NameTextBlock"></TextBlock>
         <TextBlock Foreground="White" Margin="227,63,172,36.8"><Run Text="VK:"/></TextBlock>
-        <TextBlock Foreground="White" Margin="274,63,82,36.8"><Run Text="id48977700"/></TextBlock>
+        <TextBlock x:Name ="VKTGTextBlock" Foreground="White" Margin="274,63,82,36.8"></TextBlock>
         <TextBlock Foreground="White" Margin="227,89,118,10.8"><Run Text="Can help with:"/></TextBlock>
-        <ListBox Margin="227,110,53,64.6" Grid.RowSpan="2"></ListBox>
+        <ListBox Margin="227,110,53,64.6" Grid.RowSpan="2" x:Name="ListCanHelpWith"></ListBox>
         <TextBlock Foreground="White" Margin="227,62.2,117,37.6" Grid.Row="1"><Run Text="Need help with:"/></TextBlock>
-        <ListBox Margin="227,83.2,53,91.4" Grid.RowSpan="2" Grid.Row="1"/>
+        <ListBox x:Name="ListNeedHelpWith" Margin="227,83.2,53,91.4" Grid.RowSpan="2" Grid.Row="1"/>
         <TextBlock Foreground="White" Margin="28,37.2,315,62.6" Grid.Row="1"><Run Text="Achievments:"/></TextBlock>
         
         <TextBlock Foreground="White" Margin="29,8.4,313,91.4" Grid.Row="2"><Run Text="Friends:"/></TextBlock>

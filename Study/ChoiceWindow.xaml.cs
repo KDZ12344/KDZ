@@ -25,8 +25,7 @@ namespace Study
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var my = new MyProfileWindow();
-            my.ShowDialog();
+            
         }
     }
 }
