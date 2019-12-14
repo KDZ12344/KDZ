@@ -23,8 +23,9 @@ namespace Study
         public MyProfileWindow(User user)
         {
             InitializeComponent();
-            NameTextBlock.Text = user.Login;
+            NameTextBlock.Text = user.Name;
             VKTGTextBlock.Text = user.VKTG;
+            LoginTextBlock.Text = user.Login;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

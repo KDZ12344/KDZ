@@ -28,7 +28,7 @@ namespace Study
            
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
-                string queryString = "SELECT login FROM Users WHERE Login=\'" + LoginTextBox.Text + "\' and Password=\'" + PasswordTextBox.Password + "\';";
+                string queryString = "SELECT * FROM Users WHERE Login=\'" + LoginTextBox.Text + "\' and Password=\'" + PasswordTextBox.Password + "\';";
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
                 
@@ -42,11 +42,14 @@ namespace Study
                 else
                 {
 
-                    User user = new User();                    
+                    User user = new User();                                       
+                    Object[] values = new Object[reader.FieldCount];
                     user.Login = reader.GetValue(0).ToString();
-                    //user.VKTG = reader.GetValue(2).ToString();
-                    //user.Name = reader.GetString(5);
-                    //user.Password = reader.GetString(6);
+                    user.VKTG = reader.GetValue(2).ToString();
+                    
+                    user.Name = reader.GetValue(4).ToString();
+                    user.Password = reader.GetValue(5).ToString();
+                    
                     var myprofile = new MyProfileWindow(user);
                     myprofile.ShowDialog();
                    

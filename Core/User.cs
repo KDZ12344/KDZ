@@ -12,6 +12,7 @@ namespace Core
     {
         public string Name { get; set; }
         public string Login { get; set; }
+
         public string Password { get; set; }
         public string VKTG { get; set; }
         public DateTime BirthDate { get; set; }
