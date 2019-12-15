@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
-using Core;
+using Study.Core;
 namespace Study
 {
     public partial class MainWindow : Window
