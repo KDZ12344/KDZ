@@ -19,6 +19,37 @@ namespace Study.Core
         List<User> friends = new List<User>();
         List<Request> requests = new List<Request>();
 
+        public void GetUsers()
+        {
+            
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
+
+                string queryString = "SELECT * FROM Users";
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    User user = new User
+                    {
+                        Name = reader.GetValue(4).ToString(),
+                        Login = reader.GetValue(0).ToString(),
+                        UserId = int.Parse(reader.GetValue(8).ToString()),
+                        Password = reader.GetValue(5).ToString(),
+                        BirthDate = DateTime.Parse(reader.GetValue(6).ToString()),
+                        DateAdded = DateTime.Parse(reader.GetValue(7).ToString()),
+                        VKID = reader.GetValue(3).ToString(),
+                        TelegramID = reader.GetValue(2).ToString()
+
+
+                    };
+                    users.Add(user);
+                }
+            }
+        }
+
         public void SavingToDatabase(string login, string telegram, string vk, string name, string password, DateTime birthDate, DateTime dateAdded)
         {
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
