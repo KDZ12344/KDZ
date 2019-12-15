@@ -18,7 +18,7 @@ namespace Study.Core
         public string TelegramID { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime DateAdded { get; set; }        
-        public int IndexOfAvatarImage { get; set; }
+        public string AvatarAdress { get; set; }
         public List<Interest> NeedSubjects { get; set; }
         public List<Interest> CanHelpWithSubjects { get; set; }
 

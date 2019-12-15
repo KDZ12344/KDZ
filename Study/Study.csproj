@@ -133,12 +133,6 @@
     <Resource Include="fr2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{6761d021-63e3-41b6-9545-8ef42c772db9}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="avatarICON.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +155,12 @@
     <Resource Include="Avatars\Avatar5.png" />
     <Resource Include="Avatars\Avatar8.png" />
     <Resource Include="Avatars\Avatar9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Study.Core.csproj">
+      <Project>{6761d021-63e3-41b6-9545-8ef42c772db9}</Project>
+      <Name>Study.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

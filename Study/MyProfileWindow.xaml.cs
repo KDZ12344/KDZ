@@ -25,13 +25,9 @@ namespace Study
         public MyProfileWindow(User user)
         {
             InitializeComponent();
-
-            var stream = new MemoryStream(user.AvatarByte); // открываем аватарку
-            var image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = stream;
-            image.EndInit();
-            AvatarImage.Source = image;
+            var uriImageSource = new Uri(@"/Study/"+user.AvatarAdress, UriKind.RelativeOrAbsolute);
+            AvatarImage.Source = new BitmapImage(uriImageSource);
+            
             NameTextBlock.Text = user.Name;
             VKTextBlock.Text = user.VKID;
             TGTextBlock.Text = user.TelegramID;

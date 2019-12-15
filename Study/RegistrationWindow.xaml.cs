@@ -41,10 +41,11 @@ namespace Study
             }           
             if (LoginTextBox.Text.Length > 6 && PasswordTextBox.Password == PasswordTextBox_Copy1.Password && NameTextBox.Text.Length > 0 && k == 0)
             {
-             
+                
                 User user = rep.Registration(NameTextBox.Text, LoginTextBox.Text, PasswordTextBox.Password, DateTime.Parse(BirthDateTextBox.Text), VkIdTextBox.Text, TgIdTextBox.Text);
-                var myprofile = new MyProfileWindow(user);
-                myprofile.Show();
+                var chooseAvatar = new ChooseAvatar(user);
+                chooseAvatar.Show();
+                
             }
             else
             {
@@ -64,10 +65,5 @@ namespace Study
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var chooseAvatarWin = new ChooseAvatar();
-            chooseAvatarWin.Show();
-        }
     }
 }

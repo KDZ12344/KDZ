@@ -47,11 +47,7 @@ namespace Study
                     User user = new User();                                       
                     Object[] values = new Object[reader.FieldCount];
                     user.UserId = int.Parse(reader.GetValue(8).ToString());
-                    var stream = new MemoryStream(user.AvatarByte); // открываем аватарку
-                    var image = new BitmapImage();
-                    image.BeginInit();
-                    image.StreamSource = stream;
-                    image.EndInit();
+                    
                     user.Login = reader.GetValue(0).ToString();
                     user.TelegramID = reader.GetValue(2).ToString();
                     user.VKID = reader.GetValue(3).ToString();

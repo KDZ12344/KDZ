@@ -20,20 +20,14 @@
         <TextBlock Foreground="White" Margin="20,92,328.2,4.4" Text="Enter your login:"/>
         <TextBox Margin="20,42.6,200.2,54.8" Grid.Row="1" x:Name="NameTextBox"/>
         <TextBlock Foreground="White" Margin="20,22.6,310.2,83.8" Grid.Row="1" Text="What's your name?"/>
-        <TextBlock Foreground="White" Margin="280,3.6,24.2,97" Text="Download profile pic:" Grid.Row="1"/>
         <PasswordBox Margin="20,97.6,200.2,125.4" Grid.Row="1" x:Name="PasswordTextBox" Grid.RowSpan="2"/>
         <TextBlock Foreground="White" Margin="20,76.6,310.2,18.8" Grid.Row="1" Text="Enter password:"/>
         <PasswordBox Margin="20,30.2,200.2,68.4" Grid.Row="2" x:Name="PasswordTextBox_Copy1"/>
         <TextBlock Foreground="White" Margin="20,10.2,310.2,100.4" Grid.Row="2" Text="Repeat password:"/>
         <TextBlock Foreground="White" Margin="20,67.2,265.2,34.4" Grid.Row="2" Text="Enter VK id:"/>
-        <Button Margin="280,30.6,24.2,94.4" Grid.RowSpan="2" Grid.Row="1" Click="Button_Click_1">
-            <Button.Background>
-                <ImageBrush ImageSource="avataricon.jpg" ></ImageBrush>
-            </Button.Background>
-        </Button>
         <TextBlock Foreground="White" Margin="20,121.2,200.2,106" Grid.Row="2" Text="Enter Telegram id:" Grid.RowSpan="2"/>
-        <TextBlock Margin="281,49,24.2,43.4" Grid.Row="2" Foreground="White" Text="Enter your birthdate in format 2000-1-1" TextWrapping="Wrap"/>
-        <TextBox Margin="280,88,25.2,14.4" Grid.Row="2" x:Name="BirthDateTextBox" />
+        <TextBlock Margin="284,63.6,21.2,28" Grid.Row="1" Foreground="White" Text="Enter your birthdate in format 2000-1-1" TextWrapping="Wrap"/>
+        <TextBox Margin="283,102.6,22.2,125.4" Grid.Row="1" x:Name="BirthDateTextBox" Grid.RowSpan="2" />
         <TextBox Margin="20,19.6,200.2,82" Grid.Row="3" x:Name="TgIdTextBox"/>
         <TextBox Margin="20,91,200.2,11.4" Grid.Row="2" x:Name="VkIdTextBox"/>
 

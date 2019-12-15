@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Data.SqlClient;
-
+using Study;
 namespace Study.Core
 {
     public class Repository
@@ -46,7 +46,7 @@ namespace Study.Core
             }
         }
 
-        public User Registration(string name, string login, string password, DateTime birthDate, string vk, string telegram, int avatarIndex)
+        public User Registration(string name, string login, string password, DateTime birthDate, string vk, string telegram)
         {
             int id = users.Count + 1;
             User user = new User
@@ -58,11 +58,12 @@ namespace Study.Core
                 BirthDate = birthDate,
                 DateAdded = DateTime.Now,
                 VKID = vk,
-                TelegramID = telegram,
-                IndexOfAvatarImage = avatarIndex
+                TelegramID = telegram
+                
                 
             };
             users.Add(user);
+            SavingToDatabase(login, telegram, vk, name, password, birthDate, DateTime.Now);
             return user;
 
         }
