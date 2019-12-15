@@ -25,7 +25,8 @@ namespace Study
         {
             InitializeComponent();
             NameTextBlock.Text = user.Name;
-            VKTGTextBlock.Text = user.VKTG;
+            VKTextBlock.Text = user.VKID;
+            TGTextBlock.Text = user.TelegramID;
             LoginTextBlock.Text = user.Login;
             List<Interest> interestsNeedHelp = new List<Interest>();
             List<Interest> interestsCanHelp = new List<Interest>();
