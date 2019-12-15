@@ -31,7 +31,7 @@ namespace Study
         {
             MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
             string avName = "Avatars/Avatar1.png";
-            user1.AvatarAdress = avName;
+            user1.AvatarAdress = avName; // ошибка, у юзера1 аватар запоминаем, а у самого юзера - нет
             
             var myprofile = new MyProfileWindow(user1);
             myprofile.Show();
