@@ -22,6 +22,8 @@ namespace Study
     {
         public MainWindow()
         {
+            Repository rep = new Repository();
+            rep.GetUsers();
             InitializeComponent();
             
         }
