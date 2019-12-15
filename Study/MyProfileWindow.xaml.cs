@@ -27,7 +27,10 @@ namespace Study
             NameTextBlock.Text = user.Name;
             VKTGTextBlock.Text = user.VKTG;
             LoginTextBlock.Text = user.Login;
-            List<Interest> interests = new List<Interest>();
+            List<Interest> interestsNeedHelp = new List<Interest>();
+            List<Interest> interestsCanHelp = new List<Interest>();
+            List<string> NeedHelp = new List<string>();
+            List<string> CanHelp = new List<string>();
             List<int> interestsIDNeedHelp = new List<int>();
             List<int> interestsIDCanHelp = new List<int>();
             List<User> friends = new List<User>();
@@ -68,7 +71,7 @@ namespace Study
                         inter.InterestId = int.Parse(reader.GetValue(2).ToString());
                         inter.InterestName = reader.GetValue(1).ToString();
                         inter.SubjectName = reader.GetValue(0).ToString();
-                        interests.Add(inter);
+                        interestsCanHelp.Add(inter);
                     }
                     reader.Close();
                     connection.Close();
@@ -87,17 +90,23 @@ namespace Study
                         inter.InterestId = int.Parse(reader.GetValue(2).ToString());
                         inter.InterestName = reader.GetValue(1).ToString();
                         inter.SubjectName = reader.GetValue(0).ToString();
-                        interests.Add(inter);
+                        interestsNeedHelp.Add(inter);
                     }
                     reader.Close();
                     connection.Close();
                 }
+                foreach (var item in interestsCanHelp)
+                {
+                    CanHelp.Add(item.InterestName.Trim() + " " + item.SubjectName);
+                }
+                foreach (var item in interestsNeedHelp)
+                {
+                    NeedHelp.Add(item.InterestName.Trim() + " " + item.SubjectName);
+                }
+                ListCanHelpWith.ItemsSource = CanHelp;
+                ListNeedHelpWith.ItemsSource = NeedHelp;
             }
-            //foreach (var item in interestsIDCanHelp)
-            //{
-            //    ListCanHelpWith.ItemsSource;
-            //}
-            //ListCanHelpWith.ItemsSource = interestsCanHelp;
+         
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
