@@ -13,38 +13,26 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Background="Indigo" Margin="394,22,1.133,82.333" Grid.Row="2" Foreground="White" FontSize="10" Click="AddNeedHelpItem">Добавить</Button>
-        <Button Background="Indigo" Margin="394,0,1.133,104.333" Grid.Row="2" Foreground="White" FontSize="10" Click="DeleteNeedHelpItem" Height="17" VerticalAlignment="Bottom">Удалить</Button>
-        <Button Background="Indigo" Margin="393,46.333,2.133,58" Grid.Row="1" Foreground="White" FontSize="10" Click="AddCanHelpItem">Добавить</Button>
-        <Button Background="Indigo" Margin="393,24.333,2.133,80" Grid.Row="1" Foreground="White" FontSize="10" Click="DeleteCanHelpItem">Удалить</Button>
-        <Button Background="Indigo" Margin="289,80,53.133,24.333" Grid.Row="2" Foreground="White" FontSize="10" Click="Button_Click">Сохранить изменения</Button>
-        <Image x:Name="AvatarImage" Margin="28,37,249,83.6" Grid.RowSpan="2"></Image>
-        <TextBlock Foreground="White" Margin="226,5,172.133,94.333" RenderTransformOrigin="0.422,-0.354">Имя:</TextBlock>
-        <TextBox Foreground="White" Margin="270,5,2.133,94.333" x:Name ="NameTextBlock" TextChanged="NameTextBlock_TextChanged"></TextBox>
-        <TextBlock Foreground="White" Margin="226,60,172.133,39.333"><Run Text="VK:"/></TextBlock>
-        <TextBox x:Name ="VKTextBlock" Foreground="White" Margin="270,56,0.133,43.333"></TextBox>
-        <TextBlock Foreground="White" Margin="225,106,119.133,114" RenderTransformOrigin="0.466,0.755" Grid.RowSpan="2"><Run Text="Can help with:"/></TextBlock>
-        <ListBox Margin="225,10.667,55.133,43" x:Name="ListCanHelpWith" Grid.Row="1"/>
-        <TextBlock Foreground="White" Margin="225,77.667,118.133,22" Grid.Row="1"><Run Text="Need help with:"/></TextBlock>
-        <ListBox x:Name="ListNeedHelpWith" Margin="225,103.667,55.133,71.333" Grid.RowSpan="2" Grid.Row="1"/>
-        <TextBlock Foreground="White" Margin="28,37.2,315,62.6" Grid.Row="1"><Run Text="Achievments:"/></TextBlock>
-
-        <TextBlock Foreground="White" Margin="29,8.4,313,91.4" Grid.Row="2"><Run Text="Friends:"/></TextBlock>
-        <Image Source="fr1.jpg" Margin="18,34.4,366,34.4" Grid.Row="2" RenderTransformOrigin="4.076,0.738"/>
-        <Image Source="Fr3.jpg" Margin="145,34.4,239,34.4" Grid.Row="2" RenderTransformOrigin="4.076,0.738"/>
-        <Image Source="Fr2.jpg" Margin="93,35.4,300,34.4" Grid.Row="2" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="1.108"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-0.454"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <TextBlock Foreground="White" Margin="220,32,177.133,67.333" RenderTransformOrigin="0.422,-0.354" Text="Логин:"/>
-        <TextBox Foreground="White" Margin="270,29,1.133,70.333" x:Name ="LoginTextBlock"/>
-        <TextBlock Foreground="White" Margin="225,82,171.133,17.333"><Run Text="TG:"/></TextBlock>
-        <TextBox x:Name ="TGTextBlock" Foreground="White" Margin="270,82,1.133,20.333"/>
+        <Button Background="Indigo" Margin="395,94.2,0,9.6" Grid.Row="1" Foreground="White" FontSize="10" Click="AddNeedHelpItem">Добавить</Button>
+        <Button Background="Indigo" Margin="395,0,0,31.6" Grid.Row="1" Foreground="White" FontSize="10" Click="DeleteNeedHelpItem" Height="17" VerticalAlignment="Bottom">Удалить</Button>
+        <Button Background="Indigo" Margin="395,66.4,0,38.4" Grid.Row="2" Foreground="White" FontSize="10" Click="AddCanHelpItem">Добавить</Button>
+        <Button Background="Indigo" Margin="395,44.4,0,60.4" Grid.Row="2" Foreground="White" FontSize="10" Click="DeleteCanHelpItem">Удалить</Button>
+        <Button Background="Indigo" Margin="149,41.6,172,53.2" Grid.Row="3" Foreground="White" FontSize="10" Click="Button_Click">Сохранить изменения</Button>
+        <Image x:Name="AvatarImage" Margin="22,27.2,255,93.4" Grid.RowSpan="2" Grid.Row="1"></Image>
+        <TextBlock Foreground="White" Margin="225,44,172,54.8" RenderTransformOrigin="0.422,-0.354">Имя:</TextBlock>
+        <TextBox Foreground="White" Margin="269,44,2,54.8" x:Name ="NameTextBlock" ></TextBox>
+        <TextBlock Foreground="White" Margin="224,95,193,4.8"><Run Text="VK:"/></TextBlock>
+        <TextBox x:Name ="VKTextBlock" Foreground="White" Margin="269,95,0,3.8"></TextBox>
+        <TextBlock Foreground="White" Margin="227,7.4,115,91.4" RenderTransformOrigin="0.466,0.755" Grid.Row="2"><Run Text="Can help with:"/></TextBlock>
+        <ListBox Margin="227,29.4,53,24.4" x:Name="ListCanHelpWith" Grid.Row="2"/>
+        <TextBlock Foreground="White" Margin="226,34.2,115,64.6" Grid.Row="1"><Run Text="Need help with:"/></TextBlock>
+        <ListBox x:Name="ListNeedHelpWith" Margin="226,55.2,54,119.4" Grid.RowSpan="2" Grid.Row="1"/>
+        <TextBlock Foreground="White" Margin="217,67,179,31.8" RenderTransformOrigin="0.422,-0.354" Text="Логин:"/>
+        <TextBox Foreground="White" Margin="269,68,1,30.8" x:Name ="LoginTextBlock"/>
+        <TextBlock Foreground="White" Margin="225,118,191,102.6" Grid.RowSpan="2"><Run Text="TG:"/></TextBlock>
+        <TextBox x:Name ="TGTextBlock" Foreground="White" Margin="269,0.2,1,101.6" Grid.Row="1"/>
+        <Button Background="Indigo" Margin="30,32.4,268,72.4" Grid.Row="2" Foreground="White" FontSize="10" Click="AddCanHelpItem" Content="Change profile pic"/>
+        <TextBlock Foreground="White" Margin="10,44,375,54.8" RenderTransformOrigin="0.422,-0.354"><Run Text="BirthDate:"/></TextBlock>
+        <TextBox Foreground="White" Margin="68,44,231,54.8" x:Name ="NameTextBlock_Copy"/>
     </Grid>
 </Window>

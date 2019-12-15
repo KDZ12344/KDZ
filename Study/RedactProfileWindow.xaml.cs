@@ -20,9 +20,12 @@ namespace Study
     /// </summary>
     public partial class RedactProfileWindow : Window
     {
-        public RedactProfileWindow()
+        public RedactProfileWindow(User user)
         {
             InitializeComponent();
+            var uriSource = new Uri(@"/Study;component/" + user.AvatarAdress, UriKind.Relative);
+            AvatarImage.Source = new BitmapImage(uriSource);
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

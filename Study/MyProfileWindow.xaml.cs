@@ -22,7 +22,7 @@ namespace Study
     /// </summary>
     public partial class MyProfileWindow : Window
     {
-        
+        User user1 = new User();
 
         public MyProfileWindow(User user)
         {
@@ -30,7 +30,7 @@ namespace Study
             
             var uriSource = new Uri(@"/Study;component/"+ user.AvatarAdress, UriKind.Relative);
             AvatarImage.Source = new BitmapImage(uriSource);
-
+            
             NameTextBlock.Text = user.Name;
             VKTextBlock.Text = user.VKID;
             TGTextBlock.Text = user.TelegramID;
@@ -113,13 +113,16 @@ namespace Study
                 }
                 ListCanHelpWith.ItemsSource = CanHelp;
                 ListNeedHelpWith.ItemsSource = NeedHelp;
+                
             }
-         
+            user1 = user;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var redactionWindow = new RedactProfileWindow();
+            
+            var redactionWindow = new RedactProfileWindow(user1);
             redactionWindow.ShowDialog();
         }
     }
