@@ -44,9 +44,9 @@ namespace Study
 
                     User user = new User();                                       
                     Object[] values = new Object[reader.FieldCount];
+                    user.UserId = int.Parse(reader.GetValue(7).ToString());
                     user.Login = reader.GetValue(0).ToString();
-                    user.VKTG = reader.GetValue(2).ToString();
-                    
+                    user.VKTG = reader.GetValue(2).ToString();                   
                     user.Name = reader.GetValue(4).ToString();
                     user.Password = reader.GetValue(5).ToString();
                     

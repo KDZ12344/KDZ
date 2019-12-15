@@ -8,10 +8,12 @@ namespace Core
 {
     public class Interest
     {
-       public string Name { get; set; }
+       public string InterestName { get; set; }
+       public int InterestId { get; set; }
+       public string SubjectName { get; set; }
 
-        public Interest()
-        {
-        }
+       public Interest()
+       {
+       }
     }
 }
