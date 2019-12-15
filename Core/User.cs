@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core
+namespace Study.Core
 { 
 
    
@@ -14,7 +14,8 @@ namespace Core
         public string Login { get; set; }
         public int UserId { get; set; }
         public string Password { get; set; }
-        public string VKTG { get; set; }
+        public string VKID { get; set; }
+        public string TelegramID { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime DateAdded { get; set; }
         public List<Interest> NeedSubjects { get; set; }
