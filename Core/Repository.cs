@@ -17,7 +17,7 @@ namespace Study.Core
 
         List<User> users = new List<User>();
 
-        public void Registration(string name, string login, string password, DateTime birthDate, string vk, string telegram)
+        public User Registration(string name, string login, string password, DateTime birthDate, string vk, string telegram)
         {
             int id = users.Count + 1;
             User user = new User
@@ -55,7 +55,9 @@ namespace Study.Core
                 connection.Open();
                 cmd.ExecuteNonQuery();
                 connection.Close();
-           }
+            }
+            return user;
+
         }
     }
 }

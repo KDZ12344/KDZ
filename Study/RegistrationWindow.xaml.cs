@@ -32,7 +32,7 @@ namespace Study
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var user = new User();
+            
             Repository rep = new Repository();
             int k = 1;
             if (DateTime.TryParse(BirthDateTextBox.Text, out DateTime birthdate))
@@ -41,7 +41,10 @@ namespace Study
             }           
             if (LoginTextBox.Text.Length > 6 && PasswordTextBox.Password == PasswordTextBox_Copy1.Password && NameTextBox.Text.Length > 0 && k == 0)
             {
-                rep.Registration(NameTextBox.Text, LoginTextBox.Text, PasswordTextBox.Password, DateTime.Parse(BirthDateTextBox.Text), VkIdTextBox.Text, TgIdTextBox.Text);
+             
+                User user = rep.Registration(NameTextBox.Text, LoginTextBox.Text, PasswordTextBox.Password, DateTime.Parse(BirthDateTextBox.Text), VkIdTextBox.Text, TgIdTextBox.Text);
+                var myprofile = new MyProfileWindow(user);
+                myprofile.Show();
             }
             else
             {
@@ -54,6 +57,7 @@ namespace Study
                 if (!DateTime.TryParse(BirthDateTextBox.Text, out DateTime birthdate1))          
                     MessageBox.Show("Birthdate should be in format 2000-1-1");                
             }
+            
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

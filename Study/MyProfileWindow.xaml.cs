@@ -23,7 +23,8 @@ namespace Study
     {
         public MyProfileWindow(User user)
         {
-            InitializeComponent();
+            InitializeComponent();                       
+            
             NameTextBlock.Text = user.Name;
             VKTextBlock.Text = user.VKID;
             TGTextBlock.Text = user.TelegramID;
