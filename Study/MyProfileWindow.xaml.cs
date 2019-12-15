@@ -119,7 +119,8 @@ namespace Study
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            var redactionWindow = new RedactProfileWindow();
+            redactionWindow.ShowDialog();
         }
     }
 }
