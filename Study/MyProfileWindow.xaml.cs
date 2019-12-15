@@ -93,11 +93,11 @@ namespace Study
                     connection.Close();
                 }
             }
-            foreach (var item in interestsIDCanHelp)
-            {
-                ListCanHelpWith.ItemsSource
-            }
-            ListCanHelpWith.ItemsSource = interestsIDCanHelp;
+            //foreach (var item in interestsIDCanHelp)
+            //{
+            //    ListCanHelpWith.ItemsSource;
+            //}
+            //ListCanHelpWith.ItemsSource = interestsCanHelp;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
