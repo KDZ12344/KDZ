@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using Study.Core;
 using System.IO;
-
+using System.Resources;
 namespace Study
 {
     /// <summary>
@@ -22,12 +22,23 @@ namespace Study
     /// </summary>
     public partial class MyProfileWindow : Window
     {
+        //public static BitmapImage GetImageFromPath(FrameworkElement parent, string path)
+        //{
+
+           // var uri = new Uri(parent.Parent.ToString(), path);
+            //var result = new BitmapImage { UriSource = uri };
+            //return result;
+ //       }
+
+
+
         public MyProfileWindow(User user)
         {
             InitializeComponent();
-            var uriImageSource = new Uri(@"/Study/"+user.AvatarAdress, UriKind.RelativeOrAbsolute);
-            AvatarImage.Source = new BitmapImage(uriImageSource);
             
+            var uriSource = new Uri(@"/Study;component/"+ user.AvatarAdress, UriKind.Relative);
+            AvatarImage.Source = new BitmapImage(uriSource);
+
             NameTextBlock.Text = user.Name;
             VKTextBlock.Text = user.VKID;
             TGTextBlock.Text = user.TelegramID;
