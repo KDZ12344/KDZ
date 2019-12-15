@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +14,8 @@ namespace Study.Core
         public string Login { get; set; }
         public int UserId { get; set; }
         public string Password { get; set; }
-        public string VKID { get; set; }
-        public string TelegramID { get; set; }
+        public string? VKID { get; set; }
+        public string? TelegramID { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime DateAdded { get; set; }
         public List<Interest> NeedSubjects { get; set; }
@@ -23,9 +23,18 @@ namespace Study.Core
 
         public List<User> Friends { get; set; }
 
-        public User()
-        {
-        }
+        //public User(string name, string login, int id, string password, DateTime birthDate, DateTime dateAdded, string? vk, string? telegram)
+        //{
+            
+        //    Login = login;
+        //    UserId = id;
+        //    Password = password;
+        //    BirthDate = birthDate;
+        //    DateAdded = dateAdded;
+        //    VKID = vk;
+        //    TelegramID = telegram;
+        //    Name = name;
+        //}
         
     }
 }
