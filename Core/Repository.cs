@@ -48,12 +48,23 @@ namespace Study.Core
 
         public User Registration(string name, string login, string password, DateTime birthDate, string vk, string telegram)
         {
-            int id = users.Count + 1;
+            int id = 0;
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
+                
+                string queryString = "SELECT * FROM Users";
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                id  = int.Parse(reader.GetValue(0).ToString()) + 1;
+            }
+            
             User user = new User
             {
                 Name = name,
                 Login = login,
-                UserId = id + 1,
+                UserId = id,
                 Password = password,
                 BirthDate = birthDate,
                 DateAdded = DateTime.Now,

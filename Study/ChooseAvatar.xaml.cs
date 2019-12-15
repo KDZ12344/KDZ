@@ -40,7 +40,7 @@ namespace Study
         private void Avatar5CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar1.png";
+            string avName = "Avatars/Avatar2.png";
             user1.AvatarAdress = avName;
 
             var myprofile = new MyProfileWindow(user1);
@@ -50,7 +50,7 @@ namespace Study
         private void Avatar4CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar1.png";
+            string avName = "Avatars/Avatar7.png";
             user1.AvatarAdress = avName;
 
             var myprofile = new MyProfileWindow(user1);
@@ -60,7 +60,7 @@ namespace Study
         private void Avatar6CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar1.png";
+            string avName = "Avatars/Avatar6.png";
             user1.AvatarAdress = avName;
 
             var myprofile = new MyProfileWindow(user1);
@@ -70,7 +70,7 @@ namespace Study
         private void Avatar3CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar1.png";
+            string avName = "Avatars/Avatar4.png";
             user1.AvatarAdress = avName;
 
             var myprofile = new MyProfileWindow(user1);
@@ -80,7 +80,7 @@ namespace Study
         private void Avatar8CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar1.png";
+            string avName = "Avatars/Avatar3.png";
             user1.AvatarAdress = avName;
 
             var myprofile = new MyProfileWindow(user1);
@@ -90,7 +90,7 @@ namespace Study
         private void Avatar2CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar1.png";
+            string avName = "Avatars/Avatar9.png";
             user1.AvatarAdress = avName;
 
             var myprofile = new MyProfileWindow(user1);
@@ -100,7 +100,7 @@ namespace Study
         private void Avatar9CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar1.png";
+            string avName = "Avatars/Avatar8.png";
             user1.AvatarAdress = avName;
 
             var myprofile = new MyProfileWindow(user1);
@@ -110,7 +110,7 @@ namespace Study
         private void Avatar7CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar1.png";
+            string avName = "Avatars/Avatar5.png";
             user1.AvatarAdress = avName;
 
             var myprofile = new MyProfileWindow(user1);

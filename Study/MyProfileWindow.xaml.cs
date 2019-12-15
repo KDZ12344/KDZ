@@ -22,15 +22,7 @@ namespace Study
     /// </summary>
     public partial class MyProfileWindow : Window
     {
-        //public static BitmapImage GetImageFromPath(FrameworkElement parent, string path)
-        //{
-
-           // var uri = new Uri(parent.Parent.ToString(), path);
-            //var result = new BitmapImage { UriSource = uri };
-            //return result;
- //       }
-
-
+        
 
         public MyProfileWindow(User user)
         {
