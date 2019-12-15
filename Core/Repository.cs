@@ -19,7 +19,7 @@ namespace Study.Core
 
         public void Registration(string name, string login, string password, DateTime birthDate, string? vk, string? telegram)
         {
-            int id = users.Count;
+            int id = users.Count + 1;
             User user = new User
             {
                 Name = name,

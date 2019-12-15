@@ -44,12 +44,15 @@ namespace Study
 
                     User user = new User();                                       
                     Object[] values = new Object[reader.FieldCount];
-                    user.UserId = int.Parse(reader.GetValue(7).ToString());
+                    user.UserId = int.Parse(reader.GetValue(8).ToString());
                     user.Login = reader.GetValue(0).ToString();
-                    user.VKTG = reader.GetValue(2).ToString();                   
+                    user.TelegramID = reader.GetValue(2).ToString();
+                    user.VKID = reader.GetValue(3).ToString();
                     user.Name = reader.GetValue(4).ToString();
                     user.Password = reader.GetValue(5).ToString();
-                    
+                    user.BirthDate = DateTime.Parse(reader.GetValue(6).ToString());
+                    user.DateAdded = DateTime.Parse(reader.GetValue(7).ToString());
+
                     var myprofile = new MyProfileWindow(user);
                     myprofile.ShowDialog();
                    
