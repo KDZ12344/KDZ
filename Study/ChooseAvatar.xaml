@@ -1,0 +1,41 @@
+﻿<Window x:Class="Study.ChooseAvatar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Study"
+        mc:Ignorable="d"
+        Title="ChooseAvatar" Height="362.842" Width="585.895" Background="Black">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Foreground="White" FontSize="50" Margin="110,10,73.2,0" Grid.ColumnSpan="3">CHOOSE AVATAR</TextBlock>
+        <Image Source="Avatars/Avatar4.png" Grid.Column="2" Margin="0.6,82.8,-1.8,-0.4" Grid.Row="2" Grid.RowSpan="2"></Image>
+        <Image Source="Avatars/Avatar6.png" Grid.Column="1" Margin="192.4,0.8,-0.8,81.6" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2"></Image>
+        <Image Source="Avatars/Avatar7.png" Grid.ColumnSpan="2" Grid.Column="1" Margin="192.4,0,0.2,82.4" Grid.Row="1" Grid.RowSpan="2"></Image>
+        <Image Source="Avatars/Avatar3.png" Grid.ColumnSpan="2" Margin="193,82,0.4,0.4" Grid.Row="1" Grid.RowSpan="2"></Image>
+        <Image Source="Avatars/Avatar2.png" Grid.ColumnSpan="2" Grid.Column="1" Margin="0.4,0,191.2,82.4" Grid.Row="1" Grid.RowSpan="2"></Image>
+        <Image Source="Avatars/Avatar1.png" Grid.ColumnSpan="2" Margin="0,0,192.4,82.4" Grid.Row="1" Grid.RowSpan="2"></Image>
+        <Image Source="Avatars/Avatar5.png" Grid.ColumnSpan="2" Grid.Column="1" Margin="0.4,82.8,191.2,-0.4" Grid.Row="2" Grid.RowSpan="2"></Image>
+        <Image Source="Avatars/Avatar8.png" Margin="-1,82.8,0.6,-0.4" Grid.Row="2" Grid.RowSpan="2"></Image>
+        <Image Source="Avatars/Avatar9.png" Margin="-1,82,0.6,0.4" Grid.Row="1" Grid.RowSpan="2"></Image>
+        <CheckBox Margin="0,69,176.6,82.4" Grid.Row="1" Grid.RowSpan="2" x:Name="Avatar1CheckBox" Checked="Avatar1CheckBox_Checked"/>
+        <CheckBox Margin="0,67.8,176.6,0.4" Grid.Row="2" x:Name="Avatar2CheckBox"/>
+        <CheckBox Margin="1.6,68.6,174.2,-0.4" Grid.Row="3" Grid.Column="2" x:Name="Avatar3CheckBox" Checked="Avatar3CheckBox_Checked"/>
+        <CheckBox Margin="1.6,67,174.2,1.2" Grid.Row="1" Grid.Column="2" x:Name="Avatar4CheckBox" Checked="Avatar4CheckBox_Checked"/>
+        <CheckBox Margin="4.4,67,171.4,1.2" Grid.Row="1" Grid.Column="1" x:Name="Avatar5CheckBox" Checked="Avatar5CheckBox_Checked"/>
+        <CheckBox Margin="4.4,68.6,171.4,-0.4" Grid.Row="3" Grid.Column="1" x:Name="Avatar7CheckBox"/>
+        <CheckBox Margin="4.4,64.8,167.4,81.6" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" x:Name="Avatar8CheckBox" RenderTransformOrigin="0.506,0.5" Checked="Avatar8CheckBox_Checked"/>
+        <CheckBox Margin="0,68.6,176.6,-0.4" Grid.Row="3" x:Name="Avatar9CheckBox" RenderTransformOrigin="0.506,0.5"/>
+        <CheckBox Margin="1.6,67.8,174.2,0.4" Grid.Row="2" Grid.Column="2" x:Name="Avatar6CheckBox" Checked="Avatar6CheckBox_Checked"/>
+    </Grid>
+</Window>

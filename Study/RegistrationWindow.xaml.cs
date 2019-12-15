@@ -64,6 +64,10 @@ namespace Study
 
         }
 
-        
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var chooseAvatarWin = new ChooseAvatar();
+            chooseAvatarWin.Show();
+        }
     }
 }

@@ -14,7 +14,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Button Background="Indigo" Margin="289,50.4,53,53.4" Grid.Row="2" Foreground="White" FontSize="10" Click="Button_Click">Редактировать</Button>
-        <Image Source="avatar.jpg" Margin="28,37,249,83.6" Grid.RowSpan="2"></Image>
+        <Image x:Name="AvatarImage" Margin="28,37,249,83.6" Grid.RowSpan="2"></Image>
         <TextBlock Foreground="White" Margin="226,11,173,88.8" RenderTransformOrigin="0.422,-0.354">Имя:</TextBlock>
         <TextBlock Foreground="White" Margin="271,11,2,88.8" x:Name ="NameTextBlock"></TextBlock>
         <TextBlock Foreground="White" Margin="226,50,173,49.8"><Run Text="VK:"/></TextBlock>

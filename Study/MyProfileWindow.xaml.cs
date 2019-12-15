@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using Study.Core;
+using System.IO;
 
 namespace Study
 {
@@ -23,8 +24,14 @@ namespace Study
     {
         public MyProfileWindow(User user)
         {
-            InitializeComponent();                       
-            
+            InitializeComponent();
+
+            var stream = new MemoryStream(user.AvatarByte); // открываем аватарку
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = stream;
+            image.EndInit();
+            AvatarImage.Source = image;
             NameTextBlock.Text = user.Name;
             VKTextBlock.Text = user.VKID;
             TGTextBlock.Text = user.TelegramID;

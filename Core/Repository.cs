@@ -46,7 +46,7 @@ namespace Study.Core
             }
         }
 
-        public void Registration(string name, string login, string password, DateTime birthDate, string vk, string telegram)
+        public User Registration(string name, string login, string password, DateTime birthDate, string vk, string telegram, int avatarIndex)
         {
             int id = users.Count + 1;
             User user = new User
@@ -58,9 +58,12 @@ namespace Study.Core
                 BirthDate = birthDate,
                 DateAdded = DateTime.Now,
                 VKID = vk,
-                TelegramID = telegram
+                TelegramID = telegram,
+                IndexOfAvatarImage = avatarIndex
+                
             };
             users.Add(user);
+            return user;
 
         }
 

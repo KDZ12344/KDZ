@@ -14,10 +14,11 @@ namespace Study.Core
         public string Login { get; set; }
         public int UserId { get; set; }
         public string Password { get; set; }
-        public string? VKID { get; set; }
-        public string? TelegramID { get; set; }
+        public string VKID { get; set; }
+        public string TelegramID { get; set; }
         public DateTime BirthDate { get; set; }
-        public DateTime DateAdded { get; set; }
+        public DateTime DateAdded { get; set; }        
+        public int IndexOfAvatarImage { get; set; }
         public List<Interest> NeedSubjects { get; set; }
         public List<Interest> CanHelpWithSubjects { get; set; }
 
