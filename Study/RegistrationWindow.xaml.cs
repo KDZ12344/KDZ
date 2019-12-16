@@ -21,8 +21,8 @@ namespace Study
     public partial class RegistrationWindow : Window
     {
         public RegistrationWindow()
-        {            
-            InitializeComponent();            
+        {
+            InitializeComponent();
         }
 
         private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Study.Core;
 using System.Data.SqlClient;
+using System.Resources;
 namespace Study
 {
     /// <summary>
@@ -20,101 +21,78 @@ namespace Study
     /// </summary>
     public partial class ChooseAvatar : Window
     {
-        User user1 = new User();
+        public User User { get; set; }
+        
         public ChooseAvatar(User user)
         {
             InitializeComponent();
-            user1 = user;
+            
+            User = user;
+        }
+        List<string> avNames = new List<string>
+        {
+            "Avatars/Avatar1.png",
+            "Avatars/Avatar2.png",
+            "Avatars/Avatar3.png",
+            "Avatars/Avatar4.png",
+            "Avatars/Avatar5.png",
+            "Avatars/Avatar6.png",
+            "Avatars/Avatar7.png",
+            "Avatars/Avatar8.png",
+            "Avatars/Avatar9.png"
+        };
+        private void SelectingAvatar(List<string> avNames, int number)
+        {
+            MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
+            User.AvatarAdress = avNames[number - 1];
+            var myprofile = new MyProfileWindow(User);
+            myprofile.Show();
         }
 
         private void Avatar1CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar1.png";
-            user1.AvatarAdress = avName; // ошибка, у юзера1 аватар запоминаем, а у самого юзера - нет
-            
-            var myprofile = new MyProfileWindow(user1);
-            myprofile.Show();
+            SelectingAvatar(avNames, 1);
         }
 
         private void Avatar5CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar2.png";
-            user1.AvatarAdress = avName;
-
-            var myprofile = new MyProfileWindow(user1);
-            myprofile.Show();
+            SelectingAvatar(avNames, 5);
         }
 
         private void Avatar4CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar7.png";
-            user1.AvatarAdress = avName;
-
-            var myprofile = new MyProfileWindow(user1);
-            myprofile.Show();
+            SelectingAvatar(avNames, 4);
         }
 
         private void Avatar6CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar6.png";
-            user1.AvatarAdress = avName;
-
-            var myprofile = new MyProfileWindow(user1);
-            myprofile.Show();
+            SelectingAvatar(avNames, 6);
         }
 
         private void Avatar3CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar4.png";
-            user1.AvatarAdress = avName;
-
-            var myprofile = new MyProfileWindow(user1);
-            myprofile.Show();
+            SelectingAvatar(avNames, 3);
         }
 
         private void Avatar8CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar3.png";
-            user1.AvatarAdress = avName;
-
-            var myprofile = new MyProfileWindow(user1);
-            myprofile.Show();
+            SelectingAvatar(avNames, 8);
         }
 
         private void Avatar2CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar9.png";
-            user1.AvatarAdress = avName;
-
-            var myprofile = new MyProfileWindow(user1);
-            myprofile.Show();
+            SelectingAvatar(avNames, 2);
         }
+
 
         private void Avatar9CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar8.png";
-            user1.AvatarAdress = avName;
-
-            var myprofile = new MyProfileWindow(user1);
-            myprofile.Show();
+            SelectingAvatar(avNames, 9);
         }
 
         private void Avatar7CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            string avName = "Avatars/Avatar5.png";
-            user1.AvatarAdress = avName;
-
-            var myprofile = new MyProfileWindow(user1);
-            myprofile.Show();
+            SelectingAvatar(avNames, 7);
         }
     }
 }

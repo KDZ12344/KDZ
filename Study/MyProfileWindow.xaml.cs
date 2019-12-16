@@ -22,19 +22,19 @@ namespace Study
     /// </summary>
     public partial class MyProfileWindow : Window
     {
-        User user1 = new User();
+        public User User { get; set; }
 
         public MyProfileWindow(User user)
         {
             InitializeComponent();
-            
+            User = user;
             var uriSource = new Uri(@"/Study;component/"+ user.AvatarAdress, UriKind.Relative);
             AvatarImage.Source = new BitmapImage(uriSource);
             
-            NameTextBlock.Text = user.Name;
-            VKTextBlock.Text = user.VKID;
-            TGTextBlock.Text = user.TelegramID;
-            LoginTextBlock.Text = user.Login;
+            NameTextBlock.Text =User.Name;
+            VKTextBlock.Text = User.VKID;
+            TGTextBlock.Text = User.TelegramID;
+            LoginTextBlock.Text = User.Login;
             List<Interest> interestsNeedHelp = new List<Interest>();
             List<Interest> interestsCanHelp = new List<Interest>();
             List<string> NeedHelp = new List<string>();
@@ -45,7 +45,7 @@ namespace Study
 
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
-                string query = "SELECT * FROM Interests WHERE UserId=\'" + user.UserId + "\';";
+                string query = "SELECT * FROM Interests WHERE UserId=\'" + User.UserId + "\';";
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -115,14 +115,14 @@ namespace Study
                 ListNeedHelpWith.ItemsSource = NeedHelp;
                 
             }
-            user1 = user;
+            
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
-            var redactionWindow = new RedactProfileWindow(user1);
+            var redactionWindow = new RedactProfileWindow(User);
             redactionWindow.ShowDialog();
         }
     }

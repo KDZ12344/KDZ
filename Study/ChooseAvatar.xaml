@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:Study"
         mc:Ignorable="d"
         Title="ChooseAvatar" Height="362.842" Width="585.895" Background="Black">
+    
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -29,13 +31,14 @@
         <Image Source="Avatars/Avatar8.png" Margin="-1,82.8,0.6,-0.4" Grid.Row="2" Grid.RowSpan="2"></Image>
         <Image Source="Avatars/Avatar9.png" Margin="-1,82,0.6,0.4" Grid.Row="1" Grid.RowSpan="2"></Image>
         <CheckBox Margin="0,69,176.6,82.4" Grid.Row="1" Grid.RowSpan="2" x:Name="Avatar1CheckBox" Checked="Avatar1CheckBox_Checked"/>
-        <CheckBox Margin="10,67.8,166.6,0.4" Grid.Row="2" x:Name="Avatar2CheckBox" RenderTransformOrigin="1.3,0.436" Checked="Avatar2CheckBox_Checked"/>
+        <CheckBox Margin="0,67.8,176.6,0.4" Grid.Row="2" x:Name="Avatar2CheckBox" RenderTransformOrigin="1.3,0.436" Checked="Avatar2CheckBox_Checked"/>
         <CheckBox Margin="1.6,68.6,174.2,-0.4" Grid.Row="3" Grid.Column="2" x:Name="Avatar3CheckBox" Checked="Avatar3CheckBox_Checked" RenderTransformOrigin="0.506,0.5"/>
         <CheckBox Margin="1.6,67,174.2,1.2" Grid.Row="1" Grid.Column="2" x:Name="Avatar4CheckBox" Checked="Avatar4CheckBox_Checked"/>
         <CheckBox Margin="4.4,67,171.4,1.2" Grid.Row="1" Grid.Column="1" x:Name="Avatar5CheckBox" Checked="Avatar5CheckBox_Checked"/>
         <CheckBox Margin="4.4,68.6,171.4,-0.4" Grid.Row="3" Grid.Column="1" x:Name="Avatar7CheckBox" RenderTransformOrigin="0.506,0.5" Checked="Avatar7CheckBox_Checked"/>
-        <CheckBox Margin="10.4,67.8,161.4,78.6" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" x:Name="Avatar8CheckBox" RenderTransformOrigin="0.506,0.5" Checked="Avatar8CheckBox_Checked"/>
+        <CheckBox Margin="4.4,67.8,167.4,78.6" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" x:Name="Avatar8CheckBox" RenderTransformOrigin="0.506,0.5" Checked="Avatar8CheckBox_Checked"/>
         <CheckBox Margin="0,68.6,176.6,-0.4" Grid.Row="3" x:Name="Avatar9CheckBox" RenderTransformOrigin="0.506,0.5" Checked="Avatar9CheckBox_Checked"/>
         <CheckBox Margin="1.6,67.8,174.2,0.4" Grid.Row="2" Grid.Column="2" x:Name="Avatar6CheckBox" Checked="Avatar6CheckBox_Checked" RenderTransformOrigin="0.506,0.5"/>
     </Grid>
+    
 </Window>
