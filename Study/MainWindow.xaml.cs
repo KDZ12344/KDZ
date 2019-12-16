@@ -20,56 +20,32 @@ namespace Study
 {
     public partial class MainWindow : Window
     {
+        public Repository repository { get; set; }
+        public User user { get; set; }
+        public List<User> buddies { get; set; }
         public MainWindow()
-        {
-            Repository rep = new Repository();
-            rep.GetUsers();
+        {           
+            repository = new Repository();
+
+            repository.GetUsers();
+            repository.GetSubjects();
+            repository.GetSubSubjects();
+            
             InitializeComponent();
             
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
-            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
-            {
-                string queryString = "SELECT * FROM Users WHERE Login=\'" + LoginTextBox.Text + "\' and Password=\'" + PasswordTextBox.Password + "\';";
-                SqlCommand command = new SqlCommand(queryString, connection);
-                connection.Open();
-                
-                SqlDataReader reader = command.ExecuteReader();
-                string t = reader.Read().ToString();
-                
-                if (t == "False")
-                {
-                    MessageBox.Show("Oops! There's no user with such login&password.");               
-                }
-                else
-                {
-
-                    User user = new User();                                       
-                    Object[] values = new Object[reader.FieldCount];
-                    user.UserId = int.Parse(reader.GetValue(8).ToString());
-                    
-                    user.Login = reader.GetValue(0).ToString();
-                    user.TelegramID = reader.GetValue(2).ToString();
-                    user.VKID = reader.GetValue(3).ToString();
-                    user.Name = reader.GetValue(4).ToString();
-                    user.Password = reader.GetValue(5).ToString();
-                    user.BirthDate = DateTime.Parse(reader.GetValue(6).ToString());
-                    user.DateAdded = DateTime.Parse(reader.GetValue(7).ToString());
-
-                    var myprofile = new MyProfileWindow(user);
-                    myprofile.ShowDialog();
-                   
-                }
-
-            }
-
+            user = repository.Authorization(LoginTextBox.Text, PasswordTextBox.Password);
+            
+            var choice = new ChoiceWindow(user, repository);
+            choice.Show();
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var reg = new RegistrationWindow();
+            var reg = new RegistrationWindow(user, repository);
             reg.Show();
             
         }

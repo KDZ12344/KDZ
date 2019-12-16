@@ -20,13 +20,24 @@ namespace Study
     /// </summary>
     public partial class ChoiceWindow : Window
     {
-        public ChoiceWindow()
+        public User meUser { get; set; }
+        public List<User> buddies { get; set; }
+        //public Repository repos0 { get; set; }
+        public ChoiceWindow(User me, Repository repos)
         {
+            meUser = me;
+            buddies = repos.GetSuitableBuddies(me);
+            LoginTextBlock.Text = buddies[0].Login;
+            AgeTextBlock.Text = ((DateTime.Now - buddies[0].BirthDate).TotalDays / 365).ToString();
+            CanHelpWithListBox.ItemsSource = buddies[0].CanHelpWithSubjects;
             InitializeComponent();
+            
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            var myProfile = new MyProfileWindow(meUser);
+            myProfile.Show();
+
         }
     }
 }

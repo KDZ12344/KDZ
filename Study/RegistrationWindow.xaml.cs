@@ -20,9 +20,13 @@ namespace Study
     /// </summary>
     public partial class RegistrationWindow : Window
     {
-        public RegistrationWindow()
+        public User user1 { get; set; }
+        public Repository rep { get; set; }
+        public RegistrationWindow(User user0, Repository repos0)
         {
             InitializeComponent();
+            user1 = user0;
+            rep = repos0;
         }
 
         private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -33,7 +37,7 @@ namespace Study
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
-            Repository rep = new Repository();
+            
             int k = 1;
             if (DateTime.TryParse(BirthDateTextBox.Text, out DateTime birthdate))
             {
@@ -42,8 +46,8 @@ namespace Study
             if (LoginTextBox.Text.Length > 6 && PasswordTextBox.Password == PasswordTextBox_Copy1.Password && NameTextBox.Text.Length > 0 && k == 0)
             {
                 
-                User user = rep.Registration(NameTextBox.Text, LoginTextBox.Text, PasswordTextBox.Password, DateTime.Parse(BirthDateTextBox.Text), VkIdTextBox.Text, TgIdTextBox.Text);
-                var chooseAvatar = new ChooseAvatar(user);
+                user1 = rep.Registration(NameTextBox.Text, LoginTextBox.Text, PasswordTextBox.Password, DateTime.Parse(BirthDateTextBox.Text), VkIdTextBox.Text, TgIdTextBox.Text);
+                var chooseAvatar = new ChooseAvatar(user1);
                 chooseAvatar.Show();
                 
             }

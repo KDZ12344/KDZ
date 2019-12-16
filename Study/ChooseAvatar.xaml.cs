@@ -21,13 +21,13 @@ namespace Study
     /// </summary>
     public partial class ChooseAvatar : Window
     {
-        public User User { get; set; }
+        public User user2 { get; set; }
         
         public ChooseAvatar(User user)
         {
             InitializeComponent();
             
-            User = user;
+            user2 = user;
         }
         List<string> avNames = new List<string>
         {
@@ -44,8 +44,8 @@ namespace Study
         private void SelectingAvatar(List<string> avNames, int number)
         {
             MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
-            User.AvatarAdress = avNames[number - 1];
-            var myprofile = new MyProfileWindow(User);
+            user2.AvatarAdress = avNames[number - 1];
+            var myprofile = new MyProfileWindow(user2);
             myprofile.Show();
         }
 
