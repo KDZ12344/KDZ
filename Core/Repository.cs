@@ -283,7 +283,7 @@ namespace Study.Core
         public List<User> GetSuitableBuddies(User user) // выбрать всех людей из базы данных, подходящих по предметам, ранжировать по количеству подходящих предметов
         {
             user.NeedSubjects = GetNeededSubjectsForUser(user);
-
+            suitablebuddies = new List<User>();
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
 

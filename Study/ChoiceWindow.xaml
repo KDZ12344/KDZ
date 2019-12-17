@@ -13,7 +13,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Margin="33,46,40.2,103.4" Grid.RowSpan="3" RenderTransformOrigin="0.5,0.5">
+        <Image Margin="70,25,53.2,21.6" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" x:Name="AvatarImage">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -23,17 +23,17 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <TextBlock Foreground="White" Margin="142,35.4,239.2,66.4" Grid.Row="2" x:Name="AgeTextBlock">age</TextBlock>
-        <TextBlock Foreground="Wheat" Margin="225,35.4,122.2,66.4" Grid.Row="2" x:Name="LoginTextBlock">login</TextBlock>
-        <TextBlock Foreground="Wheat" Margin="10,35.4,340.2,62.4" Grid.Row="2"><Run Text="Can help with:"/></TextBlock>
-        <ListBox x:Name="CanHelpWithListBox" Margin="0,63.4,0.2,32.4" Grid.Row="2">
+        <TextBlock Foreground="White" Margin="260,113.2,121.2,109.4" Grid.Row="1" x:Name="AgeTextBlock" Grid.RowSpan="2">age</TextBlock>
+        <TextBlock Foreground="Wheat" Margin="159,113.2,188.2,109.4" Grid.Row="1" x:Name="LoginTextBlock" Grid.RowSpan="2">login</TextBlock>
+        <TextBlock Foreground="Wheat" Margin="10,10.4,340.2,87.4" Grid.Row="2"><Run Text="Can help with:"/></TextBlock>
+        <ListBox x:Name="CanHelpWithListBox" Margin="0,33.4,0.2,10.4" Grid.Row="2" SelectionChanged="CanHelpWithListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Interest.Name}"/>
+                    <TextBlock Text="{Binding Interest}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Background ="Indigo" Margin="249,9.6,36.2,63.2" Grid.Row="3" Foreground="White" FontSize="30" Click="Button_Next">NEXT</Button>
+        <Button Background ="Indigo" Margin="249,9.6,36.2,63.2" Grid.Row="3" Foreground="White" FontSize="30" x:Name="Button_Next" Click="Button_Next_Click">NEXT</Button>
         <Button Background ="Indigo" Margin="33,9.6,252.2,63.2" Grid.Row="3" Foreground="White" FontSize="30" x:Name="Button_Text" Click="Button_Text_Click">TEXT</Button>
         <Button Background ="Indigo" Margin="366,98.6,0.2,0.2" Grid.Row="3" Foreground="White" FontSize="10" Click="Button_Click">My profile</Button>
 
