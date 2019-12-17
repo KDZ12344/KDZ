@@ -34,7 +34,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Background ="Indigo" Margin="249,9.6,36.2,63.2" Grid.Row="3" Foreground="White" FontSize="30" Click="Button_Next">NEXT</Button>
-        <Button Background ="Indigo" Margin="33,9.6,252.2,63.2" Grid.Row="3" Foreground="White" FontSize="30" x:Name="Button_Text">TEXT</Button>
+        <Button Background ="Indigo" Margin="33,9.6,252.2,63.2" Grid.Row="3" Foreground="White" FontSize="30" x:Name="Button_Text" Click="Button_Text_Click">TEXT</Button>
         <Button Background ="Indigo" Margin="366,98.6,0.2,0.2" Grid.Row="3" Foreground="White" FontSize="10" Click="Button_Click">My profile</Button>
 
     </Grid>

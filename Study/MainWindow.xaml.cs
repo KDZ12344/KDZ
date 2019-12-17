@@ -29,7 +29,7 @@ namespace Study
 
             repository.GetUsers();
             repository.GetSubjects();
-            repository.GetSubSubjects();
+            repository.GetInterests();
             
             InitializeComponent();
             

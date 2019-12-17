@@ -33,6 +33,6 @@
         <TextBox x:Name ="TGTextBlock" Foreground="White" Margin="269,0.2,1,101.6" Grid.Row="1"/>
         <Button Background="Indigo" Margin="30,32.4,268,72.4" Grid.Row="2" Foreground="White" FontSize="10" Click="AddCanHelpItem" Content="Change profile pic"/>
         <TextBlock Foreground="White" Margin="10,44,375,54.8" RenderTransformOrigin="0.422,-0.354"><Run Text="BirthDate:"/></TextBlock>
-        <TextBox Foreground="White" Margin="68,44,231,54.8" x:Name ="NameTextBlock_Copy"/>
+        <TextBox Foreground="White" Margin="68,44,231,54.8" x:Name ="BirthDateTextBox"/>
     </Grid>
 </Window>

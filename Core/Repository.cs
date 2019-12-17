@@ -11,28 +11,31 @@ namespace Study.Core
     public class Repository
     {
         public List<User> Users { get; set; }
+        public User user00 { get; set; }
         public List<Interest> Interests { get; set; }
         public List<Subject> Subjects { get; set; }
         public List<Request> Requests { get; set; }
 
         List<User> users = new List<User>();
+        List<Subject> subjects = new List<Subject>();
+        List<Interest> interests = new List<Interest>();
         List<User> suitablebuddies = new List<User>();
         List<User> friends = new List<User>();
         List<Request> requests = new List<Request>();
 
-        public void GetUsers() // аналогично нужно написать методы для выгрузки предметов (subjects, subsubjects) , и 
-        { // сделать, чтобы для каждого юзера подгружался список его интересов.
-            
+        public void GetUsers() 
+        {
+
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
-
+                int Id = 0;
                 string queryString = "SELECT * FROM Users";
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                   
                     User user = new User
                     {
                         Name = reader.GetValue(4).ToString(),
@@ -43,41 +46,102 @@ namespace Study.Core
                         DateAdded = DateTime.Parse(reader.GetValue(7).ToString()),
                         VKID = reader.GetValue(3).ToString(),
                         TelegramID = reader.GetValue(2).ToString()
-
-
                     };
-                    users.Add(user);
+                    user00 = user;
+                    Id = user.UserId;
+                }
+                reader.Close();
+
+                string queryString1 = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + Id + "\';";
+                SqlCommand command1 = new SqlCommand(queryString1, connection);
+                SqlDataReader reader1 = command1.ExecuteReader();
+                while (reader1.Read())
+                {
+                    foreach (var subsubject in Interests)
+                    {
+                        if (subsubject.InterestId == int.Parse(reader.GetValue(0).ToString()) && reader.GetValue(2).ToString() == "1")
+                        {
+                            user00.CanHelpWithSubjects.Add(subsubject);
+                        }
+                        if (subsubject.InterestId == int.Parse(reader.GetValue(0).ToString()) && reader.GetValue(2).ToString() == "0")
+                        {
+                            user00.NeedSubjects.Add(subsubject);
+                        }
+                    }
+                
                 }
             }
         }
-
+        // написать метод для вывода списка с canHelpwith
         public void GetSubjects() // здесь надо сделать массив всех существующих предметов
         {
-
-        }
-        public void GetSubSubjects() // здесь надо сделать массив всех существующих подпредметов
-        {
-
-        }
-        public List<Interest> GetNeededSubjectsForUser(User user1)
-        { // сделать, чтобы для каждого юзера подгружался список его интересов. НЕ ДОДЕЛАНО!
-
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
-               
-                string queryString = "SELECT * FROM Interests where UserId=\'" + user1.UserId + "\'";
+                string queryString = "SELECT * FROM MainSubjects";
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    if (reader.GetValue(2).ToString() == "1")
+                    Subject sub = new Subject
                     {
-                        
-                    }
+                        Name = reader.GetValue(0).ToString()
+                    };
+                    subjects.Add(sub);
                 }
             }
-            return user1.NeedSubjects;
+        }
+        public void GetInterests() // здесь надо сделать массив всех существующих подпредметов
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
+                string queryString = "SELECT * FROM SubSubjects";
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Interest interest = new Interest
+                    {
+                        InterestId = int.Parse(reader.GetValue(2).ToString()),
+                        InterestName = reader.GetValue(1).ToString(),                        
+                    };
+                    foreach (var item in subjects)
+                    {
+                        if (item.Name == reader.GetValue(0).ToString())
+                        {
+                            interest.SubjectName = item.Name;
+                        }
+                    }                   
+                    interests.Add(interest);
+                }
+            }
+        }
+
+        public List<Interest> GetNeededSubjectsForUser(User user1)
+        {
+
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
+
+                string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\';";
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    if (interests.Count > 0)
+                    foreach (var subsubject in interests)// interests == null
+                    {
+                        if (subsubject.InterestId == int.Parse(reader.GetValue(0).ToString()) && reader.GetValue(2).ToString() == "0")
+                        {
+                            user1.CanHelpWithSubjects.Add(subsubject);
+                        }
+                    }
+                }
+
+                return user1.NeedSubjects;
+            }
         }
 
 
@@ -229,29 +293,34 @@ namespace Study.Core
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
                 string listsubjectIds = "(";
-                foreach (var item in user.NeedSubjects)
+                if (user.NeedSubjects != null)
                 {
-                    listsubjectIds = listsubjectIds + "SubSubjectId=" + item.InterestId + " or ";
-                }
-                listsubjectIds = listsubjectIds + ")";
-
-                string query = "SELECT Users.UserId, COUNT(*) as NumOfGoodSubjects FROM Interests join Users on Users.UserId = Interests.UserId WHERE Users.UserId !=\'" + user.UserId + " and Relation_Type = 1 and \'" + listsubjectIds + " group by Users.UserId order by NumOfGoodSubjects desc";
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    foreach (var buddy in users)
+                    foreach (var item in user.NeedSubjects)
                     {
-                        if (buddy.UserId == int.Parse(reader.GetValue(0).ToString()))
+                        listsubjectIds = listsubjectIds + "SubSubjectId=" + item.InterestId + " or ";
+                    }
+                    listsubjectIds = listsubjectIds + ")";
+
+                    string query = "SELECT Users.UserId, COUNT(*) as NumOfGoodSubjects FROM Interests join Users on Users.UserId = Interests.UserId WHERE Users.UserId !=\'" + user.UserId + " and Relation_Type = 1 and \'" + listsubjectIds + " group by Users.UserId order by NumOfGoodSubjects desc";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        foreach (var buddy in users)
                         {
-                            suitablebuddies.Add(buddy);
+                            if (buddy.UserId == int.Parse(reader.GetValue(0).ToString()))
+                            {
+                                suitablebuddies.Add(buddy);
+                            }
                         }
-                    }                   
+                    }
                 }
+                
+                return suitablebuddies;
             }
-            return suitablebuddies;
+                
         }
 
         

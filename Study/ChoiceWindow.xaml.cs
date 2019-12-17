@@ -21,22 +21,44 @@ namespace Study
     public partial class ChoiceWindow : Window
     {
         public User meUser { get; set; }
-        public List<User> buddies { get; set; }
+        public List<User> Buddies { get; set; }
         //public Repository repos0 { get; set; }
         public ChoiceWindow(User me, Repository repos)
         {
             meUser = me;
-            buddies = repos.GetSuitableBuddies(me);
-            LoginTextBlock.Text = buddies[0].Login;
-            AgeTextBlock.Text = ((DateTime.Now - buddies[0].BirthDate).TotalDays / 365).ToString();
-            CanHelpWithListBox.ItemsSource = buddies[0].CanHelpWithSubjects;
-            InitializeComponent();
+
+            List<User> buddies = repos.GetSuitableBuddies(me);
+            Buddies = buddies;
+            if (buddies.Count() > 0)
+            {
+                LoginTextBlock.Text = buddies[0].Login;
+                AgeTextBlock.Text = ((DateTime.Now - buddies[0].BirthDate).TotalDays / 365).ToString();
+                CanHelpWithListBox.ItemsSource = buddies[0].CanHelpWithSubjects;
+                InitializeComponent();
+            }
+            else
+            {
+                MessageBox.Show("There are no suitable users for you. Please, change your interests or wait.");
+                var myprof = new MyProfileWindow(me);
+                myprof.Show();
+            }
+            
             
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var myProfile = new MyProfileWindow(meUser);
             myProfile.Show();
+
+        }
+
+        private void Button_Next(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Text_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

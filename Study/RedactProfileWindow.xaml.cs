@@ -27,6 +27,11 @@ namespace Study
             User = user;
             var uriSource = new Uri(@"/Study;component/" + User.AvatarAdress, UriKind.Relative);
             AvatarImage.Source = new BitmapImage(uriSource);
+            LoginTextBlock.Text = User.Login;
+            NameTextBlock.Text = User.Name;
+            VKTextBlock.Text = User.VKID;
+            TGTextBlock.Text = User.TelegramID;
+            BirthDateTextBox.Text = User.BirthDate.ToString();
             
         }
 
@@ -34,20 +39,26 @@ namespace Study
         {
             if ((string.IsNullOrWhiteSpace(NameTextBlock.Text)))
             {
-                MessageBox.Show("У вас должно быть имя!!!");
+                MessageBox.Show("Login's length should be more than 6 symbols.");
             }
-            else if (!(string.IsNullOrWhiteSpace(NameTextBlock.Text)))
-            {
-                
+            else if (NameTextBlock.Text.Length == 0)
+                    MessageBox.Show("Name's length should be more than 0 symbols.");         
+            else if (!DateTime.TryParse(BirthDateTextBox.Text, out DateTime birthdate1))
+                MessageBox.Show("Birthdate should be in format 2000-1-1");            
+            else if (NameTextBlock.Text.Length > 0 && LoginTextBlock.Text.Length > 6)
+            {             
+                User.Login= LoginTextBlock.Text;
+                User.Name = NameTextBlock.Text;
+                User.VKID = VKTextBlock.Text;
+                User.TelegramID = TGTextBlock.Text;
+                User.BirthDate = DateTime.Parse(BirthDateTextBox.Text);
+                if (MessageBox.Show("Do you want to change avarap picture?", "Confirm changes", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    var chooseAvatar = new ChooseAvatar(User);
+                    chooseAvatar.Show();
+                }
             }
-            else if (!(string.IsNullOrWhiteSpace(LoginTextBlock.Text)))
-            {
-
-            }
-            else if (!(string.IsNullOrWhiteSpace(VKTextBlock.Text)))
-            {
-
-            }
+        
         }
         private bool TryDeleteSelectedGrade(out Interest interest, ListBox listBox)
         {
