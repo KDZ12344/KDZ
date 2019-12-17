@@ -36,14 +36,13 @@ namespace Study
             TGTextBlock.Text = User.TelegramID;
             LoginTextBlock.Text = User.Login;
 
-            List<Interest> interestsNeedHelp = new List<Interest>(); 
-            List<Interest> interestsCanHelp = new List<Interest>();
-      
+
             List<User> friends = new List<User>();
 
             var rep = new Repository();
-            rep.GetCanHelpWithSubjectsForUser(user);
-            rep.GetNeededSubjectsForUser(user);
+
+            List<Interest> interestsNeedHelp = rep.GetNeededSubjectsForUser(user);
+            List<Interest> interestsCanHelp = rep.GetCanHelpWithSubjectsForUser(user);
             ListCanHelpWith.ItemsSource = interestsCanHelp;
             ListNeedHelpWith.ItemsSource = interestsNeedHelp;
         }

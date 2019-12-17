@@ -20,7 +20,7 @@
         <TextBlock Foreground="White" Margin="226,50,173,49.8"><Run Text="VK:"/></TextBlock>
         <TextBlock x:Name ="VKTextBlock" Foreground="White" Margin="275,49,-2,50.6"></TextBlock>
         <TextBlock Foreground="White" Margin="227,89,118,10.8"><Run Text="Can help with:"/></TextBlock>
-        <ListBox Margin="227,110,53,64.6" Grid.RowSpan="2" x:Name="ListCanHelpWith" SelectionChanged="ListCanHelpWith_SelectionChanged">
+        <ListBox Margin="227,105,15,59.2" Grid.RowSpan="2" x:Name="ListCanHelpWith" SelectionChanged="ListCanHelpWith_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding InterestName}"/>
@@ -29,7 +29,7 @@
 
         </ListBox>
         <TextBlock Foreground="White" Margin="227,59.4,116,40.2" Grid.Row="1"><Run Text="Need help with:"/></TextBlock>
-        <ListBox x:Name="ListNeedHelpWith" Margin="227,81.4,53,93.8" Grid.RowSpan="2" Grid.Row="1" SelectionChanged="ListNeedHelpWith_SelectionChanged">
+        <ListBox x:Name="ListNeedHelpWith" Margin="227,81.4,15,74.8" Grid.RowSpan="2" Grid.Row="1" SelectionChanged="ListNeedHelpWith_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding InterestName}"/>

@@ -22,6 +22,12 @@ namespace Study.Core
         List<User> suitablebuddies = new List<User>();
         List<User> friends = new List<User>();
         List<Request> requests = new List<Request>();
+        public Repository()
+        {
+            GetUsers();
+            GetSubjects();
+            GetInterests();
+        }
 
         public void GetUsers() 
         {
@@ -49,8 +55,11 @@ namespace Study.Core
                     };
                     user00 = user;
                     Id = user.UserId;
+                    users.Add(user);
+
                 }
                 reader.Close();
+                
 
                 string queryString1 = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + Id + "\';";
                 SqlCommand command1 = new SqlCommand(queryString1, connection);
@@ -70,6 +79,7 @@ namespace Study.Core
                     }
                 
                 }
+                
             }
         }
         // написать метод для вывода списка с canHelpwith
@@ -124,18 +134,17 @@ namespace Study.Core
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
 
-                string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\';";
+                string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\' and Interests.Relation_Type = 0;";
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
-                {
-                    if (interests.Count > 0)
+                {                   
                     foreach (var subsubject in interests)// interests == null
                     {
-                        if (subsubject.InterestId == int.Parse(reader.GetValue(0).ToString()) && reader.GetValue(2).ToString() == "0")
+                        if (subsubject.InterestId == int.Parse(reader.GetValue(9).ToString())) 
                         {
-                            user1.CanHelpWithSubjects.Add(subsubject);
+                            user1.NeedSubjects.Add(subsubject);
                         }
                     }
                 }
@@ -148,47 +157,27 @@ namespace Study.Core
         public List<Interest> GetCanHelpWithSubjectsForUser(User user1)
         { // сделать, чтобы для каждого юзера подгружался список его интересов. НЕ ДОДЕЛАНО!
 
+           
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
 
-                string queryString = "SELECT * FROM Interests where UserId=\'" + user1.UserId + "\'";
+                string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\' and Interests.Relation_Type = 1;";
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    if (reader.GetValue(2).ToString() == "1")
+                    foreach (var subsubject in interests)// interests == null
                     {
-
+                        if (subsubject.InterestId == int.Parse(reader.GetValue(9).ToString()))
+                        {
+                            user1.CanHelpWithSubjects.Add(subsubject);
+                        }
                     }
                 }
+
+                return user1.CanHelpWithSubjects;
             }
-            return user1.CanHelpWithSubjects;
-
-
-
-            //using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
-            //{
-
-            //    string query = "SELECT * FROM Interests WHERE UserId=\'" + User.UserId + "\';";
-            //    SqlCommand command = new SqlCommand(query, connection);
-            //    connection.Open();
-            //    SqlDataReader reader = command.ExecuteReader();
-
-            //    while (reader.Read()) // построчно считываем данные, SubjectsID
-            //    {
-            //        if (reader.GetValue(2).ToString() == "1")
-            //        {
-
-            //            interestsIDCanHelp.Add(int.Parse(reader.GetValue(0).ToString()));
-            //        }
-            //        else
-            //        {
-            //            interestsIDNeedHelp.Add(int.Parse(reader.GetValue(0).ToString()));
-            //        }
-            //    }
-            //    reader.Close();
-            //} это из главного кода, как шаблон
         }
 
 
@@ -231,8 +220,7 @@ namespace Study.Core
                 DateAdded = DateTime.Now,
                 VKID = vk,
                 TelegramID = telegram
-                
-                
+                           
             };
             users.Add(user);
             SavingToDatabase(login, telegram, vk, name, password, birthDate, DateTime.Now);
@@ -269,7 +257,6 @@ namespace Study.Core
                 }
                 else
                 {
-
                     User user = new User();
                     Object[] values = new Object[reader.FieldCount];
                     user.UserId = int.Parse(reader.GetValue(8).ToString());
@@ -289,19 +276,24 @@ namespace Study.Core
         }
 
         public List<User> GetSuitableBuddies(User user) // выбрать всех людей из базы данных, подходящих по предметам, ранжировать по количеству подходящих предметов
-        {            
+        {
+            user.NeedSubjects = GetNeededSubjectsForUser(user);
+
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
+
                 string listsubjectIds = "(";
-                if (user.NeedSubjects != null)
+                if (user.NeedSubjects.Count() > 0)
                 {
                     foreach (var item in user.NeedSubjects)
                     {
                         listsubjectIds = listsubjectIds + "SubSubjectId=" + item.InterestId + " or ";
                     }
+                    
                     listsubjectIds = listsubjectIds + ")";
+                    listsubjectIds = listsubjectIds.Replace(" or )", ")");
 
-                    string query = "SELECT Users.UserId, COUNT(*) as NumOfGoodSubjects FROM Interests join Users on Users.UserId = Interests.UserId WHERE Users.UserId !=\'" + user.UserId + " and Relation_Type = 1 and \'" + listsubjectIds + " group by Users.UserId order by NumOfGoodSubjects desc";
+                    string query = "SELECT Users.UserId, COUNT(*) as NumOfGoodSubjects FROM Interests join Users on Users.UserId = Interests.UserId WHERE Users.UserId != " + user.UserId + " and Relation_Type = 1 and " + listsubjectIds + " group by Users.UserId order by NumOfGoodSubjects desc";
                     SqlCommand command = new SqlCommand(query, connection);
                     connection.Open();
 
@@ -311,7 +303,9 @@ namespace Study.Core
                         foreach (var buddy in users)
                         {
                             if (buddy.UserId == int.Parse(reader.GetValue(0).ToString()))
+
                             {
+                                buddy.CanHelpWithSubjects = GetCanHelpWithSubjectsForUser(user);
                                 suitablebuddies.Add(buddy);
                             }
                         }

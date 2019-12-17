@@ -31,19 +31,22 @@ namespace Study
             Buddies = buddies;
             if (buddies.Count() > 0)
             {
-                LoginTextBlock.Text = buddies[0].Login;
+                 
+                LoginTextBlock.Text = buddies[0].Login.ToString();
                 AgeTextBlock.Text = ((DateTime.Now - buddies[0].BirthDate).TotalDays / 365).ToString();
                 CanHelpWithListBox.ItemsSource = buddies[0].CanHelpWithSubjects;
                 InitializeComponent();
             }
             else
-            {
+            {               
                 MessageBox.Show("There are no suitable users for you. Please, change your interests or wait.");
                 var myprof = new MyProfileWindow(me);
                 myprof.Show();
+                
             }
-            
-            
+           
+
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

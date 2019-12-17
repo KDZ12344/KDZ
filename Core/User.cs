@@ -19,11 +19,27 @@ namespace Study.Core
         public DateTime BirthDate { get; set; }
         public DateTime? DateAdded { get; set; }        
         public string AvatarAdress { get; set; }
+
+        private List<Interest> needSubjects;
+
         public List<Interest> NeedSubjects { get; set; }
+      
+
+
         public List<Interest> CanHelpWithSubjects { get; set; }
+        
+
+
 
         public List<User> Friends { get; set; }
 
+        public User()
+        {
+            List<Interest> canHelpWithSubjects = new List<Interest>();
+            List<Interest> needSubjects = new List<Interest>();
+            NeedSubjects = needSubjects;
+            CanHelpWithSubjects = canHelpWithSubjects;
+        }
         //public User(string name, string login, int id, string password, DateTime birthDate, DateTime dateAdded, string? vk, string? telegram)
         //{
             
