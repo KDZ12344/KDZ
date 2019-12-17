@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using StudentGrades.Classes;
 using Study.Core;
 
 namespace Study
@@ -22,8 +23,9 @@ namespace Study
     {
         public User meUser { get; set; }
         public List<User> Buddies { get; set; }
+        Repository repos = Factory.Instance.GetRepository();
         //public Repository repos0 { get; set; }
-        public ChoiceWindow(User me, Repository repos)
+        public ChoiceWindow(User me)
         {
             meUser = me;
 

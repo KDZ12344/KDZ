@@ -15,12 +15,13 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using Study.Core;
 using System.IO;
+using StudentGrades.Classes;
 
 namespace Study
 {
     public partial class MainWindow : Window
     {
-        public Repository repository { get; set; }
+        Repository repository = Factory.Instance.GetRepository();
         public User user { get; set; }
         public List<User> buddies { get; set; }
         public MainWindow()
@@ -33,10 +34,10 @@ namespace Study
             //int k = 0;
             InitializeComponent();
             
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            repository = new Repository();
+        {            
             user = repository.Authorization(LoginTextBox.Text, PasswordTextBox.Password);
             
             var choice = new ChoiceWindow(user, repository);
@@ -46,7 +47,7 @@ namespace Study
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var reg = new RegistrationWindow(user, repository);
+            var reg = new RegistrationWindow(user);
             reg.Show();
             
         }

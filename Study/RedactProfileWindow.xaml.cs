@@ -1,4 +1,5 @@
-﻿using Study.Core;
+﻿using StudentGrades.Classes;
+using Study.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace Study
     public partial class RedactProfileWindow : Window
     {
         public User User { get; set; }
+        public User userPrev;
+        Repository repository = Factory.Instance.GetRepository();
         public RedactProfileWindow(User user)
         {
             InitializeComponent();
@@ -35,19 +38,27 @@ namespace Study
             
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SaveChanges(object sender, RoutedEventArgs e)
         {
             if ((string.IsNullOrWhiteSpace(NameTextBlock.Text)))
             {
                 MessageBox.Show("Login's length should be more than 6 symbols.");
+                return;
             }
             else if (NameTextBlock.Text.Length == 0)
-                    MessageBox.Show("Name's length should be more than 0 symbols.");         
+            {
+                MessageBox.Show("Name's length should be more than 0 symbols.");
+                return;
+            }
             else if (!DateTime.TryParse(BirthDateTextBox.Text, out DateTime birthdate1))
-                MessageBox.Show("Birthdate should be in format 2000-1-1");            
+            {
+                MessageBox.Show("Birthdate should be in format 2000-1-1");
+                return;
+            }
             else if (NameTextBlock.Text.Length > 0 && LoginTextBlock.Text.Length > 6)
-            {             
-                User.Login= LoginTextBlock.Text;
+            {
+                userPrev = User;
+                User.Login = LoginTextBlock.Text;
                 User.Name = NameTextBlock.Text;
                 User.VKID = VKTextBlock.Text;
                 User.TelegramID = TGTextBlock.Text;
@@ -57,6 +68,9 @@ namespace Study
                     var chooseAvatar = new ChooseAvatar(User);
                     chooseAvatar.Show();
                 }
+                repository.ChangeUserProfile(userPrev, User);
+                repository.GetUsers();
+
             }
         
         }

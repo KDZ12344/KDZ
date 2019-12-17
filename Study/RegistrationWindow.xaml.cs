@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using StudentGrades.Classes;
 using Study.Core;
 
 namespace Study
@@ -21,12 +22,11 @@ namespace Study
     public partial class RegistrationWindow : Window
     {
         public User user1 { get; set; }
-        public Repository rep { get; set; }
-        public RegistrationWindow(User user0, Repository repos0)
+        Repository rep = Factory.Instance.GetRepository();
+        public RegistrationWindow(User user0)
         {
             InitializeComponent();
             user1 = user0;
-            rep = repos0;
         }
 
         private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)

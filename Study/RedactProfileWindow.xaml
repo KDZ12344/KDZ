@@ -17,7 +17,7 @@
         <Button Background="Indigo" Margin="395,0,0,31.6" Grid.Row="1" Foreground="White" FontSize="10" Click="DeleteNeedHelpItem" Height="17" VerticalAlignment="Bottom">Удалить</Button>
         <Button Background="Indigo" Margin="395,66.4,0,38.4" Grid.Row="2" Foreground="White" FontSize="10" Click="AddCanHelpItem">Добавить</Button>
         <Button Background="Indigo" Margin="395,44.4,0,60.4" Grid.Row="2" Foreground="White" FontSize="10" Click="DeleteCanHelpItem">Удалить</Button>
-        <Button Background="Indigo" Margin="149,41.6,172,53.2" Grid.Row="3" Foreground="White" FontSize="10" Click="Button_Click">Сохранить изменения</Button>
+        <Button Background="Indigo" Margin="149,41.6,172,53.2" Grid.Row="3" Foreground="White" FontSize="10" Click="SaveChanges">Сохранить изменения</Button>
         <Image x:Name="AvatarImage" Margin="20,10.2,256,110.4" Grid.RowSpan="2" Grid.Row="1"></Image>
         <TextBlock Foreground="White" Margin="225,44,172,54.8" RenderTransformOrigin="0.422,-0.354">Имя:</TextBlock>
         <TextBox Foreground="White" Margin="269,44,2,54.8" x:Name ="NameTextBlock" TextChanged="NameTextBlock_TextChanged" ></TextBox>

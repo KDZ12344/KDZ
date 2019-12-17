@@ -15,6 +15,8 @@ using System.Data.SqlClient;
 using Study.Core;
 using System.IO;
 using System.Resources;
+using StudentGrades.Classes;
+
 namespace Study
 {
     /// <summary>
@@ -23,7 +25,7 @@ namespace Study
     public partial class MyProfileWindow : Window
     {
         public User User { get; set; }
-
+        Repository rep = Factory.Instance.GetRepository();
         public MyProfileWindow(User user)
         {
             InitializeComponent();
@@ -39,7 +41,7 @@ namespace Study
 
             List<User> friends = new List<User>();
 
-            var rep = new Repository();
+            
 
             List<Interest> interestsNeedHelp = rep.GetNeededSubjectsForUser(user);
             List<Interest> interestsCanHelp = rep.GetCanHelpWithSubjectsForUser(user);

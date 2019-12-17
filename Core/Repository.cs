@@ -34,6 +34,7 @@ namespace Study.Core
 
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
+                users.Clear();
                 int Id = 0;
                 string queryString = "SELECT * FROM Users";
                 SqlCommand command = new SqlCommand(queryString, connection);
@@ -315,6 +316,15 @@ namespace Study.Core
                 return suitablebuddies;
             }
                 
+        }
+        public bool ChangeUserProfile(User previousPrfile, User newProfile)
+        {
+            var flac = false;
+            // найти в базе данных юзера с ай ди , равным previousProfile.Id
+            // заменить у этого юзера все поля кроме id на поля юзера newProfie
+            MessageBox.Show("нужно дополнить метод UserChangedProfile в классе repository");
+            flac = true;
+            return flac
         }
 
         
