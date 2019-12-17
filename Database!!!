@@ -1,0 +1,258 @@
+USE [master]
+GO
+
+/****** Object:  Database [UsersDatabaseKDZ]    Script Date: 17.12.2019 20:31:33 ******/
+CREATE DATABASE [UsersDatabaseKDZ]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'UsersDatabaseKDZ', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\UsersDatabaseKDZ.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'UsersDatabaseKDZ_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\UsersDatabaseKDZ_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [UsersDatabaseKDZ].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET AUTO_CLOSE ON 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET  ENABLE_BROKER 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET QUERY_STORE = OFF
+GO
+
+ALTER DATABASE [UsersDatabaseKDZ] SET  READ_WRITE 
+GO
+
+USE [UsersDatabaseKDZ]
+GO
+
+/****** Object:  Table [dbo].[Friends]    Script Date: 17.12.2019 20:32:29 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Friends](
+	[UserId] [int] NOT NULL,
+	[FriendId] [int] NOT NULL,
+	[Relation_Type] [int] NOT NULL,
+ CONSTRAINT [PK_Friends] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[FriendId] ASC,
+	[Relation_Type] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Friends]  WITH CHECK ADD  CONSTRAINT [FK_Friends_Users] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Users] ([UserId])
+GO
+
+ALTER TABLE [dbo].[Friends] CHECK CONSTRAINT [FK_Friends_Users]
+GO
+
+ALTER TABLE [dbo].[Friends]  WITH CHECK ADD  CONSTRAINT [FK_Friends_Users1] FOREIGN KEY([FriendId])
+REFERENCES [dbo].[Users] ([UserId])
+GO
+
+ALTER TABLE [dbo].[Friends] CHECK CONSTRAINT [FK_Friends_Users1]
+GO
+
+ALTER TABLE [dbo].[Friends]  WITH CHECK ADD  CONSTRAINT [CK_Friends] CHECK  (([Relation_Type]<=(1)))
+GO
+
+ALTER TABLE [dbo].[Friends] CHECK CONSTRAINT [CK_Friends]
+GO
+
+ALTER TABLE [dbo].[Friends]  WITH CHECK ADD  CONSTRAINT [CK_Friends_1] CHECK  (([Relation_Type]>=(-1)))
+GO
+
+ALTER TABLE [dbo].[Friends] CHECK CONSTRAINT [CK_Friends_1]
+GO
+
+USE [UsersDatabaseKDZ]
+GO
+
+/****** Object:  Table [dbo].[Interests]    Script Date: 17.12.2019 20:32:55 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Interests](
+	[SubSubjectId] [int] NOT NULL,
+	[UserId] [int] NOT NULL,
+	[Relation_Type] [bit] NOT NULL,
+ CONSTRAINT [PK_Interests] PRIMARY KEY CLUSTERED 
+(
+	[SubSubjectId] ASC,
+	[UserId] ASC,
+	[Relation_Type] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+USE [UsersDatabaseKDZ]
+GO
+
+/****** Object:  Table [dbo].[MainSubjects]    Script Date: 17.12.2019 20:33:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[MainSubjects](
+	[SubjectName] [nchar](40) NOT NULL,
+ CONSTRAINT [PK_MainSubjects] PRIMARY KEY CLUSTERED 
+(
+	[SubjectName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+USE [UsersDatabaseKDZ]
+GO
+
+/****** Object:  Table [dbo].[SubSubjects]    Script Date: 17.12.2019 20:33:24 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[SubSubjects](
+	[MainSubjectName] [nchar](40) NOT NULL,
+	[NameSubject] [nchar](40) NOT NULL,
+	[IdSubSubject] [int] NOT NULL,
+ CONSTRAINT [PK_SubSubjects] PRIMARY KEY CLUSTERED 
+(
+	[IdSubSubject] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[SubSubjects]  WITH CHECK ADD  CONSTRAINT [FK_SubSubjects_MainSubjects] FOREIGN KEY([MainSubjectName])
+REFERENCES [dbo].[MainSubjects] ([SubjectName])
+GO
+
+ALTER TABLE [dbo].[SubSubjects] CHECK CONSTRAINT [FK_SubSubjects_MainSubjects]
+GO
+
+USE [UsersDatabaseKDZ]
+GO
+
+/****** Object:  Table [dbo].[Users]    Script Date: 17.12.2019 20:33:35 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Users](
+	[Login] [nchar](30) NOT NULL,
+	[Avatar] [image] NULL,
+	[TelegramID] [nchar](50) NULL,
+	[VKID] [nchar](50) NOT NULL,
+	[Name] [nchar](30) NULL,
+	[Password] [nchar](35) NULL,
+	[BirthDate] [datetime] NULL,
+	[DateWhenAdded] [datetime] NULL,
+	[UserId] [int] IDENTITY(1,1) NOT NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
