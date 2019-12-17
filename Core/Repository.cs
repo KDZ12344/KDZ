@@ -86,6 +86,7 @@ namespace Study.Core
         // написать метод для вывода списка с canHelpwith
         public void GetSubjects() // здесь надо сделать массив всех существующих предметов
         {
+            subjects.Clear();
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
                 string queryString = "SELECT * FROM MainSubjects";
@@ -102,6 +103,9 @@ namespace Study.Core
                 }
             }
         }
+
+        
+
         public void GetInterests() // здесь надо сделать массив всех существующих подпредметов
         {
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
@@ -317,17 +321,26 @@ namespace Study.Core
             }
                 
         }
-        public bool ChangeUserProfile(User previousPrfile, User newProfile)
-        {
+        public bool ChangeUserProfile(User user)
+        { // сначала меняю данные юзера в репозитории
+            var user1 = users.FirstOrDefault(useritem => useritem.UserId == user.UserId);
+            if (user1 != null)
+            {
+                var index = users.IndexOf(user1);
+                users[index] = user;
+            }
+            else
+                MessageBox.Show("Данный юзер не найден");
             var flac = false;
-            // найти в базе данных юзера с ай ди , равным previousProfile.Id
-            // заменить у этого юзера все поля кроме id на поля юзера newProfie
+            // Доделать:
+            // найти в базе данных юзера с ай ди , равным user.Id
+            // заменить все поля найденного юзера на поля user, не изменяя id
             MessageBox.Show("нужно дополнить метод UserChangedProfile в классе repository");
             flac = true;
-            return flac
+            return flac;
         }
 
-        
+
         private Exception NotImplementedException()
         {
             throw new NotImplementedException();

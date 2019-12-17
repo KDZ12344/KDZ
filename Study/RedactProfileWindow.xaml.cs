@@ -22,7 +22,6 @@ namespace Study
     public partial class RedactProfileWindow : Window
     {
         public User User { get; set; }
-        public User userPrev;
         Repository repository = Factory.Instance.GetRepository();
         public RedactProfileWindow(User user)
         {
@@ -35,6 +34,8 @@ namespace Study
             VKTextBlock.Text = User.VKID;
             TGTextBlock.Text = User.TelegramID;
             BirthDateTextBox.Text = User.BirthDate.ToString();
+            ListNeedHelpWith.ItemsSource = repository.GetNeededSubjectsForUser(user);
+            ListCanHelpWith.ItemsSource = repository.GetCanHelpWithSubjectsForUser(user);
             
         }
 
@@ -57,7 +58,6 @@ namespace Study
             }
             else if (NameTextBlock.Text.Length > 0 && LoginTextBlock.Text.Length > 6)
             {
-                userPrev = User;
                 User.Login = LoginTextBlock.Text;
                 User.Name = NameTextBlock.Text;
                 User.VKID = VKTextBlock.Text;
@@ -68,35 +68,38 @@ namespace Study
                     var chooseAvatar = new ChooseAvatar(User);
                     chooseAvatar.Show();
                 }
-                repository.ChangeUserProfile(userPrev, User);
-                repository.GetUsers();
+                repository.ChangeUserProfile(User);
+                
 
             }
         
         }
-        private bool TryDeleteSelectedGrade(out Interest interest, ListBox listBox)
-        {
-            interest = listBox.SelectedItem as Interest;
-            if (interest == null)
-            {
-                MessageBox.Show("Select an item from the table");
-                return false;
-            }
-            return true;
-        }
-
         private void DeleteCanHelpItem(object sender, RoutedEventArgs e)
         {
-            if (!TryDeleteSelectedGrade(out var interest, ListCanHelpWith)) return;
-
-            ListCanHelpWith.Items.Remove(interest);
+            var selectedCanSubject = ListCanHelpWith.SelectedItem as Interest;
+            if (selectedCanSubject == null)
+            {
+                MessageBox.Show("Select a CanHelpSubject from the list");
+                return;
+            }
+            User.NeedSubjects.Remove(selectedCanSubject);
+            repository.ChangeUserProfile(User);
         }
 
         private void DeleteNeedHelpItem(object sender, RoutedEventArgs e)
-        {
-            if (!TryDeleteSelectedGrade(out var interest, ListNeedHelpWith)) return;
-
-            ListNeedHelpWith.Items.Remove(interest);
+        { 
+            var selectedNeedSubject = ListNeedHelpWith.SelectedItem as Interest;
+            if (selectedNeedSubject == null)
+            {
+                MessageBox.Show("Select a NeedSubject from the list");
+                return;
+            }
+            User.NeedSubjects.Remove(selectedNeedSubject);
+            repository.ChangeUserProfile(User);
+            
+            
+            
+            
 
         }
 
