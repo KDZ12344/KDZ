@@ -43,6 +43,7 @@ namespace Study
             else if (NameTextBlock.Text.Length == 0)
             {
                 MessageBox.Show("Name's length should be more than 0 symbols.");
+
                 return;
             }
             else if (!DateTime.TryParse(BirthDateTextBox.Text, out DateTime birthdate1))
