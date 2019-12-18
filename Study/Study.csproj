@@ -70,6 +70,9 @@
     <Compile Include="UserMenue.xaml.cs">
       <DependentUpon>UserMenue.xaml</DependentUpon>
     </Compile>
+    <Compile Include="СhooseNewInterestWindow.xaml.cs">
+      <DependentUpon>СhooseNewInterestWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="ChoiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserMenue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="СhooseNewInterestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
