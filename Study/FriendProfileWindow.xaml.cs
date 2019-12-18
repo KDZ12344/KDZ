@@ -17,40 +17,32 @@ using System.Windows.Shapes;
 namespace Study
 {
     /// <summary>
-    /// Логика взаимодействия для FriendsWindow.xaml
+    /// Логика взаимодействия для FriendProfileWindow.xaml
     /// </summary>
-    public partial class FriendsWindow : Window
+    public partial class FriendProfileWindow : Window
     {
         private Repository repository = Factory.Instance.GetRepository();
         public User User { get; set; }
-        public FriendsWindow(User user)
+        public FriendProfileWindow(User user)
         {
-            InitializeComponent();
             User = user;
+            InitializeComponent();
             UpdateWindow();
         }
         private void UpdateWindow()
         {
-            FriendsBox.ItemsSource = User.Friends;
+            var uriSource = new Uri(@"/Study;component/" + User.AvatarAdress, UriKind.Relative);
+            AvatarImage.Source = new BitmapImage(uriSource);
+
+            NameTextBlock.Text = User.Name;
+            VKTextBlock.Text = User.VKID;
+            TGTextBlock.Text = User.TelegramID;
+            ListCanHelpWith.ItemsSource = User.CanHelpWithSubjects;
+            ListNeedHelpWith.ItemsSource = User.NeedSubjects;
         }
-
-
-        private void ShowFriend_Click(object sender, RoutedEventArgs e)
-        {
-            if (FriendsBox.SelectedItem == null) {
-                MessageBox.Show("Select friend!!!");
-                return;
-                    }
-            var cf = new FriendProfileWindow(User);
-            if (cf.ShowDialog() == true)
-                UpdateWindow();
-
-        }
-
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
-            return;
+            return; // chek whether it works
         }
     }
 }
