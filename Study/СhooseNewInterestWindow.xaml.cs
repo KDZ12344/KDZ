@@ -57,8 +57,9 @@ namespace Study
                 User.NeedSubjects.Add(subject);
             else if (Flag == 4)
                 User.CanHelpWithSubjects.Add(subject);
-            
-            repository.ChangeUserProfile(User);
+
+            repository.Users[User.UserId] = User;
+            repository.UpdateDatabase(User);
             DialogResult = true;
         }
 
