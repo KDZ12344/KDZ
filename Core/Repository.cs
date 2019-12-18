@@ -134,57 +134,57 @@ namespace Study.Core
             }
         }
 
-        //public List<Interest> GetNeededSubjectsForUser(User user1)
-        //{
+        public List<Interest> GetNeededSubjectsForUser(User user1)
+        {
 
-        //    using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
-        //    {
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
 
-        //        string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\' and Interests.Relation_Type = 0;";
-        //        SqlCommand command = new SqlCommand(queryString, connection);
-        //        connection.Open();
-        //        SqlDataReader reader = command.ExecuteReader();
-        //        while (reader.Read())
-        //        {                   
-        //            foreach (var subsubject in interests)// interests == null
-        //            {
-        //                if (subsubject.InterestId == int.Parse(reader.GetValue(9).ToString())) 
-        //                {
-        //                    user1.NeedSubjects.Add(subsubject);
-        //                }
-        //            }
-        //        }
+                string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\' and Interests.Relation_Type = 0;";
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    foreach (var subsubject in interests)// interests == null
+                    {
+                        if (subsubject.InterestId == int.Parse(reader.GetValue(9).ToString()))
+                        {
+                            user1.NeedSubjects.Add(subsubject);
+                        }
+                    }
+                }
 
-        //        return user1.NeedSubjects;
-        //    }
-        //}
+                return user1.NeedSubjects;
+            }
+        }
 
 
-        //public List<Interest> GetCanHelpWithSubjectsForUser(User user1)
-        //{ // сделать, чтобы для каждого юзера подгружался список его интересов. НЕ ДОДЕЛАНО!
+        public List<Interest> GetCanHelpWithSubjectsForUser(User user1)
+        { // сделать, чтобы для каждого юзера подгружался список его интересов. НЕ ДОДЕЛАНО!
 
-           
-        //    using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
-        //    {
 
-        //        string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\' and Interests.Relation_Type = 1;";
-        //        SqlCommand command = new SqlCommand(queryString, connection);
-        //        connection.Open();
-        //        SqlDataReader reader = command.ExecuteReader();
-        //        while (reader.Read())
-        //        {
-        //            foreach (var subsubject in interests)// interests == null
-        //            {
-        //                if (subsubject.InterestId == int.Parse(reader.GetValue(9).ToString()))
-        //                {
-        //                    user1.CanHelpWithSubjects.Add(subsubject);
-        //                }
-        //            }
-        //        }
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
 
-        //        return user1.CanHelpWithSubjects;
-        //    }
-        //}
+                string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\' and Interests.Relation_Type = 1;";
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    foreach (var subsubject in interests)// interests == null
+                    {
+                        if (subsubject.InterestId == int.Parse(reader.GetValue(9).ToString()))
+                        {
+                            user1.CanHelpWithSubjects.Add(subsubject);
+                        }
+                    }
+                }
+
+                return user1.CanHelpWithSubjects;
+            }
+        }
 
 
 
@@ -245,7 +245,7 @@ namespace Study.Core
         } 
         
 
-        public User? Authorization(string logtb, string passtb)
+        public User Authorization(string logtb, string passtb)
         {
             foreach (var user in users)
             {

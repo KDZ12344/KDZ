@@ -27,6 +27,12 @@ namespace Study
         {
             InitializeComponent();
             User = user;
+            UpdateWindow();
+
+        }
+        private void UpdateWindow()
+        {
+            
             var uriSource = new Uri(@"/Study;component/" + User.AvatarAdress, UriKind.Relative);
             AvatarImage.Source = new BitmapImage(uriSource);
             LoginTextBlock.Text = User.Login;
@@ -34,11 +40,9 @@ namespace Study
             VKTextBlock.Text = User.VKID;
             TGTextBlock.Text = User.TelegramID;
             BirthDateTextBox.Text = User.BirthDate.ToString();
-            ListNeedHelpWith.ItemsSource = user.NeedSubjects;
-            ListCanHelpWith.ItemsSource = user.CanHelpWithSubjects;
-            
+            ListNeedHelpWith.ItemsSource = repository.GetNeededSubjectsForUser(User);
+            ListCanHelpWith.ItemsSource = repository.GetCanHelpWithSubjectsForUser(User);
         }
-
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
             if ((string.IsNullOrWhiteSpace(NameTextBlock.Text)))
@@ -74,46 +78,38 @@ namespace Study
         }
         private void DeleteCanHelpItem(object sender, RoutedEventArgs e)
         {
-            var selectedCanSubject = ListCanHelpWith.SelectedItem as Interest;
-            if (selectedCanSubject == null)
-            {
-                MessageBox.Show("Select a CanHelpSubject from the list");
-                return;
-            }
-            User.NeedSubjects.Remove(selectedCanSubject);
-            repository.ChangeUserProfile(User);
+            var s7 = new СhooseNewInterestWindow(User, 2);
+            if (s7.ShowDialog() == true)
+                UpdateWindow();
         }
 
         private void DeleteNeedHelpItem(object sender, RoutedEventArgs e)
-        { 
-            var selectedNeedSubject = ListNeedHelpWith.SelectedItem as Interest;
-            if (selectedNeedSubject == null)
-            {
-                MessageBox.Show("Select a NeedSubject from the list");
-                return;
-            }
-            User.NeedSubjects.Remove(selectedNeedSubject);
-            repository.ChangeUserProfile(User);
-            
-            
-            
-            
+        {
+            var s6 = new СhooseNewInterestWindow(User, 1);
+            if (s6.ShowDialog() == true)
+                UpdateWindow();
+
+
+
+
 
         }
 
         private void AddCanHelpItem(object sender, RoutedEventArgs e)
         {
+            var s4 = new СhooseNewInterestWindow(User, 4);
+            if (s4.ShowDialog() == true)
+                UpdateWindow();
 
         }
 
         private void AddNeedHelpItem(object sender, RoutedEventArgs e)
         {
-
+            var s5 = new СhooseNewInterestWindow(User, 3);
+            if (s5.ShowDialog() == true)
+                UpdateWindow();
         }
 
-        private void NameTextBlock_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
