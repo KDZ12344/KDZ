@@ -63,14 +63,12 @@ namespace Study
                 User.VKID = VKTextBlock.Text;
                 User.TelegramID = TGTextBlock.Text;
                 User.BirthDate = DateTime.Parse(BirthDateTextBox.Text);
-                if (MessageBox.Show("Do you want to change avarap picture?", "Confirm changes", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Do you want to change avatar picture?", "Confirm changes", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     var chooseAvatar = new ChooseAvatar(User);
                     chooseAvatar.Show();
                 }
                 repository.ChangeUserProfile(User);
-                
-
             }
         
         }

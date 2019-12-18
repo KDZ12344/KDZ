@@ -24,9 +24,10 @@ namespace Study.Core
         List<Request> requests = new List<Request>();
         public Repository()
         {
-            GetUsers();
+            
             GetSubjects();
             GetInterests();
+            GetUsers();
         }
 
         public void GetUsers() 
