@@ -1,6 +1,4 @@
-﻿using Study.Core;
-
-namespace StudentGrades.Classes
+﻿namespace Study.Core
 {
     public class Factory
     {
