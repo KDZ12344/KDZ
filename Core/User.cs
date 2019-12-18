@@ -24,13 +24,8 @@ namespace Study.Core
 
         public List<Interest> NeedSubjects { get; set; }
       
-
-
         public List<Interest> CanHelpWithSubjects { get; set; }
         
-
-
-
         public List<User> Friends { get; set; }
 
         public User()
