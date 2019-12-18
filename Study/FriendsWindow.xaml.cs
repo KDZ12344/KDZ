@@ -52,5 +52,20 @@ namespace Study
             DialogResult = false;
             return;
         }
+
+        private void deleteFriend_Click(object sender, RoutedEventArgs e)
+        {
+            if (FriendsBox.SelectedItem == null)
+            {
+                MessageBox.Show("select friend");
+                return;
+            }
+            var friend = FriendsBox.SelectedItem as User;
+            User.Friends.Remove(friend);
+            repository.Users[User.UserId] = User;
+            repository.UpdateDatabase(User);
+            UpdateWindow();
+
+        }
     }
 }
