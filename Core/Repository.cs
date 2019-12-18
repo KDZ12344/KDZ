@@ -126,7 +126,7 @@ namespace Study.Core
                     {
                         if (item.Name == reader.GetValue(0).ToString())
                         {
-                            interest.SubjectName = item.Name;
+                            interest.Subject = item;
                         }
                     }                   
                     interests.Add(interest);
@@ -134,57 +134,57 @@ namespace Study.Core
             }
         }
 
-        public List<Interest> GetNeededSubjectsForUser(User user1)
-        {
+        //public List<Interest> GetNeededSubjectsForUser(User user1)
+        //{
 
-            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
-            {
+        //    using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+        //    {
 
-                string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\' and Interests.Relation_Type = 0;";
-                SqlCommand command = new SqlCommand(queryString, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {                   
-                    foreach (var subsubject in interests)// interests == null
-                    {
-                        if (subsubject.InterestId == int.Parse(reader.GetValue(9).ToString())) 
-                        {
-                            user1.NeedSubjects.Add(subsubject);
-                        }
-                    }
-                }
+        //        string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\' and Interests.Relation_Type = 0;";
+        //        SqlCommand command = new SqlCommand(queryString, connection);
+        //        connection.Open();
+        //        SqlDataReader reader = command.ExecuteReader();
+        //        while (reader.Read())
+        //        {                   
+        //            foreach (var subsubject in interests)// interests == null
+        //            {
+        //                if (subsubject.InterestId == int.Parse(reader.GetValue(9).ToString())) 
+        //                {
+        //                    user1.NeedSubjects.Add(subsubject);
+        //                }
+        //            }
+        //        }
 
-                return user1.NeedSubjects;
-            }
-        }
+        //        return user1.NeedSubjects;
+        //    }
+        //}
 
 
-        public List<Interest> GetCanHelpWithSubjectsForUser(User user1)
-        { // сделать, чтобы для каждого юзера подгружался список его интересов. НЕ ДОДЕЛАНО!
+        //public List<Interest> GetCanHelpWithSubjectsForUser(User user1)
+        //{ // сделать, чтобы для каждого юзера подгружался список его интересов. НЕ ДОДЕЛАНО!
 
            
-            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
-            {
+        //    using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+        //    {
 
-                string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\' and Interests.Relation_Type = 1;";
-                SqlCommand command = new SqlCommand(queryString, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    foreach (var subsubject in interests)// interests == null
-                    {
-                        if (subsubject.InterestId == int.Parse(reader.GetValue(9).ToString()))
-                        {
-                            user1.CanHelpWithSubjects.Add(subsubject);
-                        }
-                    }
-                }
+        //        string queryString = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + user1.UserId + "\' and Interests.Relation_Type = 1;";
+        //        SqlCommand command = new SqlCommand(queryString, connection);
+        //        connection.Open();
+        //        SqlDataReader reader = command.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            foreach (var subsubject in interests)// interests == null
+        //            {
+        //                if (subsubject.InterestId == int.Parse(reader.GetValue(9).ToString()))
+        //                {
+        //                    user1.CanHelpWithSubjects.Add(subsubject);
+        //                }
+        //            }
+        //        }
 
-                return user1.CanHelpWithSubjects;
-            }
-        }
+        //        return user1.CanHelpWithSubjects;
+        //    }
+        //}
 
 
 
@@ -245,45 +245,52 @@ namespace Study.Core
         } 
         
 
-        public User Authorization(string logtb, string passtb)
+        public User? Authorization(string logtb, string passtb)
         {
-            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            foreach (var user in users)
             {
-                string queryString = "SELECT * FROM Users WHERE Login=\'" + logtb + "\' and Password=\'" + passtb + "\';";
-                SqlCommand command = new SqlCommand(queryString, connection);
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-                string t = reader.Read().ToString();
-
-                if (t == "False")
+                if (user.Login == logtb & user.Password == passtb)
                 {
-                    MessageBox.Show("Oops! There's no user with such login&password.");
-                    throw NotImplementedException();
-                }
-                else
-                {
-                    User user = new User();
-                    Object[] values = new Object[reader.FieldCount];
-                    user.UserId = int.Parse(reader.GetValue(8).ToString());
-
-                    user.Login = reader.GetValue(0).ToString();
-                    user.TelegramID = reader.GetValue(2).ToString();
-                    user.VKID = reader.GetValue(3).ToString();
-                    user.Name = reader.GetValue(4).ToString();
-                    user.Password = reader.GetValue(5).ToString();
-                    user.BirthDate = DateTime.Parse(reader.GetValue(6).ToString());
-                    user.DateAdded = DateTime.Parse(reader.GetValue(7).ToString());
                     return user;
                 }
-                
-
             }
+            MessageBox.Show("Oops! There's no user with such login & password.");
+            return null;
+            //using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            //{
+            //    string queryString = "SELECT * FROM Users WHERE Login=\'" + logtb + "\' and Password=\'" + passtb + "\';";
+            //    SqlCommand command = new SqlCommand(queryString, connection);
+            //    connection.Open();
+
+            //    SqlDataReader reader = command.ExecuteReader();
+            //    string t = reader.Read().ToString();
+
+            //    if (t == "False")
+            //    {
+            //        MessageBox.Show("Oops! There's no user with such login&password.");
+            //        throw NotImplementedException();
+            //    }
+            //    else
+            //    {
+            //        User user = new User();
+            //        Object[] values = new Object[reader.FieldCount];
+            //        user.UserId = int.Parse(reader.GetValue(8).ToString());
+
+            //        user.Login = reader.GetValue(0).ToString();
+            //        user.TelegramID = reader.GetValue(2).ToString();
+            //        user.VKID = reader.GetValue(3).ToString();
+            //        user.Name = reader.GetValue(4).ToString();
+            //        user.Password = reader.GetValue(5).ToString();
+            //        user.BirthDate = DateTime.Parse(reader.GetValue(6).ToString());
+            //        user.DateAdded = DateTime.Parse(reader.GetValue(7).ToString());
+            //        return user;
+            //    }
+            //}
         }
 
         public List<User> GetSuitableBuddies(User user) // выбрать всех людей из базы данных, подходящих по предметам, ранжировать по количеству подходящих предметов
         {
-            user.NeedSubjects = GetNeededSubjectsForUser(user);
+            //user.NeedSubjects = GetNeededSubjectsForUser(user);
             suitablebuddies = new List<User>();
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
@@ -295,7 +302,7 @@ namespace Study.Core
                     {
                         listsubjectIds = listsubjectIds + "SubSubjectId=" + item.InterestId + " or ";
                     }
-                    
+
                     listsubjectIds = listsubjectIds + ")";
                     listsubjectIds = listsubjectIds.Replace(" or )", ")");
 
@@ -311,19 +318,19 @@ namespace Study.Core
                             if (buddy.UserId == int.Parse(reader.GetValue(0).ToString()))
 
                             {
-                                buddy.CanHelpWithSubjects = GetCanHelpWithSubjectsForUser(user);
+                                //buddy.CanHelpWithSubjects = GetCanHelpWithSubjectsForUser(user);
                                 suitablebuddies.Add(buddy);
                             }
                         }
                     }
                 }
-                
+
                 return suitablebuddies;
             }
-                
+
         }
         public bool ChangeUserProfile(User user)
-        { // сначала меняю данные юзера в репозитории
+        { // ??????? ????? ?????? ????? ? ???????????
             var user1 = users.FirstOrDefault(useritem => useritem.UserId == user.UserId);
             if (user1 != null)
             {
@@ -332,13 +339,13 @@ namespace Study.Core
             }
             else
                 MessageBox.Show("Данный юзер не найден");
-            var flac = false;
-            // Доделать:
-            // найти в базе данных юзера с ай ди , равным user.Id
-            // заменить все поля найденного юзера на поля user, не изменяя id
+            var flag = false;
+            // ????????:
+            // ????? ? ???? ?????? ????? ? user.Id
+            // ???????? ??? ???? ?????????? ?????, ?? ??????? id
             MessageBox.Show("нужно дополнить метод UserChangedProfile в классе repository");
-            flac = true;
-            return flac;
+            flag = true;
+            return flag;
         }
 
 
