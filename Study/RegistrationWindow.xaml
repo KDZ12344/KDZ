@@ -19,7 +19,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Image Name="avatarImage" Grid.Row="2" Grid.Column="1"></Image>
-        <Button Grid.Row="3" Grid.Column="1" Background="Indigo" Margin="51,20,45,82" Foreground="White" RenderTransformOrigin="0.975,-0.633" Click="Button_Click_1" >Choose a profile pic</Button>
+        <Button Grid.Row="3" Grid.Column="1" Background="Indigo" Margin="51,20,45,82"  Foreground="White" RenderTransformOrigin="0.975,-0.633" Click="Button_Click_1" >Choose a profile pic</Button>
         <Button Background="Indigo" Grid.ColumnSpan="2" Margin="170,61,170,32" Grid.Row="3" Foreground="White" FontSize="20" Click="Button_Click">ENTER</Button>
         <TextBox Grid.Row="0" Margin="20,119,0,109" x:Name="LoginTextBox" Grid.RowSpan="2" TextChanged="LoginTextBox_TextChanged"/>
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2"  FontSize="50"  FontWeight="ExtraBlack" Foreground="White" Text="Registration" Margin="76,10,45,40"/>

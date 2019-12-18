@@ -16,7 +16,7 @@
         <Button Background="Indigo" Margin="250,72.667,10.333,10" Grid.Row="3" Foreground="White" FontSize="20" Click="ShowFriends_Click">Back to Menue</Button>
         <Button Background="Indigo" Margin="0,44.667,260.333,38" Grid.Row="3" Foreground="White" FontSize="20" Click="ShowFriend_Click">Show Friend</Button>
         <Button Margin="0,87.667,296.333,0" Grid.Row="3" Foreground="White" Background="Black" Click="deleteFriend_Click">delete friend</Button>
-        <TextBlock FontSize="50"  FontWeight="ExtraBlack" Foreground="White" Text="Hello, User!!!" Margin="75,26,10.2,23.8"/>
+        <TextBlock FontSize="50"  FontWeight="ExtraBlack" x:Name="HelloBox" Foreground="White" Margin="57,10,64.2,39.8"/>
         <ListBox Margin="75,103,86.333,94" x:Name="FriendsBox" Grid.RowSpan="4"/>
         <TextBlock Foreground="White" Margin="23,9.667,357.333,85.667" Grid.Row="1" RenderTransformOrigin="0.479,0.467"><Run Text="Friends"/></TextBlock>
     </Grid>

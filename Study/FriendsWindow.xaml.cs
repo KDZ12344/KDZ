@@ -1,5 +1,4 @@
-﻿using StudentGrades.Classes;
-using Study.Core;
+﻿using Study.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +31,7 @@ namespace Study
         private void UpdateWindow()
         {
             FriendsBox.ItemsSource = User.Friends;
+            HelloBox.Text = "Hello, " + User.Name;
         }
 
 
