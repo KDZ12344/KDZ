@@ -1,18 +1,8 @@
 ﻿using StudentGrades.Classes;
 using Study.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Study
 {
@@ -27,21 +17,21 @@ namespace Study
         {
             InitializeComponent();
             User = user;
-            UpdateWindow();
+            UpdateWindow(user);
 
         }
-        private void UpdateWindow()
+        private void UpdateWindow(User user)
         {
-            
+      
             var uriSource = new Uri(@"/Study;component/" + User.AvatarAdress, UriKind.Relative);
             AvatarImage.Source = new BitmapImage(uriSource);
-            LoginTextBlock.Text = User.Login;
-            NameTextBlock.Text = User.Name;
-            VKTextBlock.Text = User.VKID;
-            TGTextBlock.Text = User.TelegramID;
-            BirthDateTextBox.Text = User.BirthDate.ToString();
-            ListNeedHelpWith.ItemsSource = repository.GetNeededSubjectsForUser(User);
-            ListCanHelpWith.ItemsSource = repository.GetCanHelpWithSubjectsForUser(User);
+            LoginTextBlock.Text = user.Login;
+            NameTextBlock.Text = user.Name;
+            VKTextBlock.Text = user.VKID;
+            TGTextBlock.Text = user.TelegramID;
+            BirthDateTextBox.Text = user.BirthDate.ToString();
+            ListNeedHelpWith.ItemsSource = user.NeedSubjects;
+            ListCanHelpWith.ItemsSource = user.CanHelpWithSubjects;
         }
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
@@ -72,7 +62,8 @@ namespace Study
                     var chooseAvatar = new ChooseAvatar(User);
                     chooseAvatar.Show();
                 }
-                repository.ChangeUserProfile(User);
+                repository.Users[User.UserId] = User;
+                repository.UpdateDatabase(User);
             }
         
         }
@@ -80,34 +71,49 @@ namespace Study
         {
             var s7 = new СhooseNewInterestWindow(User, 2);
             if (s7.ShowDialog() == true)
-                UpdateWindow();
+                UpdateWindow(User);
         }
 
         private void DeleteNeedHelpItem(object sender, RoutedEventArgs e)
         {
             var s6 = new СhooseNewInterestWindow(User, 1);
             if (s6.ShowDialog() == true)
-                UpdateWindow();
+                UpdateWindow(User);
 
 
 
 
 
         }
+        public bool ChangeUserProfile(User user)
+        { // 
+            int Id = user.UserId;
+            user.Login = LoginTextBlock.Text;
+            user.Name = NameTextBlock.Text;
+            //user.NeedSubjects = ListNeedHelpWith.ItemsSource;
+           
+            var flag = false;
+            // 
 
+            MessageBox.Show("нужно дополнить метод UserChangedProfile в классе repository");
+            flag = true;
+            return flag;
+        }
         private void AddCanHelpItem(object sender, RoutedEventArgs e)
         {
             var s4 = new СhooseNewInterestWindow(User, 4);
+            s4.Show();
             if (s4.ShowDialog() == true)
-                UpdateWindow();
+                UpdateWindow(User);
 
         }
 
         private void AddNeedHelpItem(object sender, RoutedEventArgs e)
         {
             var s5 = new СhooseNewInterestWindow(User, 3);
+            s5.Show();
             if (s5.ShowDialog() == true)
-                UpdateWindow();
+                UpdateWindow(User);
         }
 
         

@@ -66,5 +66,10 @@ namespace Study
         {
             DialogResult = false;
         }
+
+        private void comboBoxCourses_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

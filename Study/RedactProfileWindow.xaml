@@ -20,19 +20,19 @@
         <Button Background="Indigo" Margin="149,41.6,172,53.2" Grid.Row="3" Foreground="White" FontSize="10" Click="SaveChanges">Сохранить изменения</Button>
         <Image x:Name="AvatarImage" Margin="20,10.2,256,110.4" Grid.RowSpan="2" Grid.Row="1"></Image>
         <TextBlock Foreground="White" Margin="225,44,172,54.8" RenderTransformOrigin="0.422,-0.354">Имя:</TextBlock>
-        <TextBox Margin="269,44,2,54.8" x:Name ="NameTextBlock" TextChanged="NameTextBlock_TextChanged" ></TextBox>
+        <TextBox Margin="269,44,2,54.8" x:Name ="NameTextBlock" TextChanged="NameTextBlock_TextChanged" Foreground="Black" ></TextBox>
         <TextBlock Foreground="White" Margin="224,95,193,4.8"><Run Text="VK:"/></TextBlock>
-        <TextBox x:Name ="VKTextBlock"  Margin="269,95,0,3.8"></TextBox>
+        <TextBox x:Name ="VKTextBlock" Foreground="Black" Margin="269,95,0,3.8"></TextBox>
         <TextBlock Foreground="White" Margin="227,7.4,115,91.4" RenderTransformOrigin="0.466,0.755" Grid.Row="2"><Run Text="Can help with:"/></TextBlock>
-        <ListBox Margin="227,29.4,53,24.4" x:Name="ListCanHelpWith" Grid.Row="2"/>
+        <ListBox Foreground="Black" Margin="227,29.4,53,24.4" x:Name="ListCanHelpWith" Grid.Row="2"/>
         <TextBlock Foreground="White" Margin="226,34.2,115,64.6" Grid.Row="1"><Run Text="Need help with:"/></TextBlock>
-        <ListBox x:Name="ListNeedHelpWith" Margin="226,55.2,54,119.4" Grid.RowSpan="2" Grid.Row="1"/>
+        <ListBox Foreground="Black" x:Name="ListNeedHelpWith" Margin="226,55.2,54,119.4" Grid.RowSpan="2" Grid.Row="1"/>
         <TextBlock Foreground="White" Margin="217,67,191,31.8" RenderTransformOrigin="0.422,-0.354" Text="Логин:"/>
-        <TextBox  Margin="269,68,1,30.8" x:Name ="LoginTextBlock"/>
+        <TextBox Foreground="Black" Margin="269,68,1,30.8" x:Name ="LoginTextBlock"/>
         <TextBlock Foreground="White" Margin="225,118,191,102.6" Grid.RowSpan="2"><Run Text="TG:"/></TextBlock>
-        <TextBox x:Name ="TGTextBlock" Margin="269,0.2,1,101.6" Grid.Row="1"/>
+        <TextBox Foreground="Black" x:Name ="TGTextBlock" Margin="269,0.2,1,101.6" Grid.Row="1"/>
         <Button Background="Indigo" Margin="30,32.4,268,72.4" Grid.Row="2" Foreground="White" FontSize="10" Click="AddCanHelpItem" Content="Change profile pic"/>
         <TextBlock Foreground="White" Margin="10,44,375,54.8" RenderTransformOrigin="0.422,-0.354"><Run Text="BirthDate:"/></TextBlock>
-        <TextBox  Margin="68,44,231,54.8" x:Name ="BirthDateTextBox"/>
+        <TextBox  Foreground="Black" Margin="68,44,231,54.8" x:Name ="BirthDateTextBox"/>
     </Grid>
 </Window>
