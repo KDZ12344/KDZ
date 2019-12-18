@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using Study.Core;
 using System.IO;
-using StudentGrades.Classes;
 
 namespace Study
 {

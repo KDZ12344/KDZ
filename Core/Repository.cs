@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Data.SqlClient;
 using Study;
+using System.Windows.Media.Imaging;
+using Microsoft.Win32;
+
 namespace Study.Core
 {
     public class Repository
@@ -251,8 +254,41 @@ namespace Study.Core
             }
 
         }
-        
 
+        public BitmapImage ImageUploading(User user)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            if (open.ShowDialog() == true)
+            {
+                Uri openUri = new Uri(open.FileName);
+                user.AvatarAdress = open.FileName;
+                BitmapImage image = new BitmapImage(openUri);
+                return image;
+            }
+            else
+            {
+                MessageBox.Show("Please, choose an image.");
+                return null;
+            }
+        }
+        public bool ChangeUserProfile(User user)
+        { // ??????? ????? ?????? ????? ? ???????????
+            var user1 = users.FirstOrDefault(useritem => useritem.UserId == user.UserId);
+            if (user1 != null)
+            {
+                var index = users.IndexOf(user1);
+                users[index] = user;
+            }
+            else
+                MessageBox.Show("Данный юзер не найден");
+            var flag = false;
+            // ????????:
+            // ????? ? ???? ?????? ????? ? user.Id
+            // ???????? ??? ???? ?????????? ?????, ?? ??????? id
+            MessageBox.Show("нужно дополнить метод UserChangedProfile в классе repository");
+            flag = true;
+            return flag;
+        }
 
         private Exception NotImplementedException()
         {
