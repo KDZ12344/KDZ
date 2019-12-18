@@ -40,7 +40,7 @@ namespace Study
         {            
             user = repository.Authorization(LoginTextBox.Text, PasswordTextBox.Password);
             
-            var choice = new ChoiceWindow(user);
+            var choice = new UserMenue(user);
             choice.Show();
             
         }

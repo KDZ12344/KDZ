@@ -46,7 +46,7 @@ namespace Study
             //List<Interest> interestsNeedHelp = rep.GetNeededSubjectsForUser(user);
            // List<Interest> interestsCanHelp = rep.GetCanHelpWithSubjectsForUser(user);
             ListCanHelpWith.ItemsSource = user.CanHelpWithSubjects;
-            ListNeedHelpWith.ItemsSource = user.nee;
+            ListNeedHelpWith.ItemsSource = user.NeedSubjects;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
