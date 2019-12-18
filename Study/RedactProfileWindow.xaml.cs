@@ -34,8 +34,8 @@ namespace Study
             VKTextBlock.Text = User.VKID;
             TGTextBlock.Text = User.TelegramID;
             BirthDateTextBox.Text = User.BirthDate.ToString();
-            ListNeedHelpWith.ItemsSource = repository.GetNeededSubjectsForUser(user);
-            ListCanHelpWith.ItemsSource = repository.GetCanHelpWithSubjectsForUser(user);
+            ListNeedHelpWith.ItemsSource = user.NeedSubjects;
+            ListCanHelpWith.ItemsSource = user.CanHelpWithSubjects;
             
         }
 
