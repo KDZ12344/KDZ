@@ -1,5 +1,7 @@
-﻿using Study.Core;
+﻿using Microsoft.Win32;
+using Study.Core;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -108,8 +110,21 @@ namespace Study
        
         private void ChangePicClick(object sender, RoutedEventArgs e)
         {
-            var choosewin = new ChooseAvatar(User);
-            choosewin.Show();
+            //var choosewin = new ChooseAvatar(User);
+            //choosewin.Show();
+            OpenFileDialog open = new OpenFileDialog();
+            if (open.ShowDialog() == true)
+            {
+                Uri openUri = new Uri(open.FileName);
+                var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+                var imagePath = Path.Combine("C:\'" + toSave);
+                User.AvatarAdress = imagePath;
+                avatarImage.Source = new BitmapImage(openUri);
+            }
+            else
+            {
+                MessageBox.Show("Please, choose an image.");
+            }
         }
 
         private void AddCanHelpItem(object sender, RoutedEventArgs e)

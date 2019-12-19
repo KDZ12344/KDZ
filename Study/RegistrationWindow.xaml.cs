@@ -10,9 +10,10 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 using Microsoft.Win32;
 using Study.Core;
+using System.IO;
 
 namespace Study
 {
@@ -66,11 +67,14 @@ namespace Study
             if (open.ShowDialog() == true)
             {
                 Uri openUri = new Uri(open.FileName);
-                //var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
-                //var imagePath = Path.Combine("C:\"" + toSave);
-                user1.AvatarAdress = open.FileName;
+                var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+                var imagePath = Path.Combine("C:\'" + toSave);
+                user1.AvatarAdress = imagePath;
                 avatarImage.Source = new BitmapImage(openUri);
-               
+            }
+            else
+            {
+                MessageBox.Show("Please, choose an image.");
             }
         }
 
