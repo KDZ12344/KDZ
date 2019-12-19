@@ -41,7 +41,7 @@ namespace Study
         {
             if (comboBoxInterests.SelectedItem == null)
             {
-                MessageBox.Show("Choose Subject!!!");
+                MessageBox.Show("Choose a Subject.");
                 return;
             }
             var subject = comboBoxInterests.SelectedItem as Interest;

@@ -51,14 +51,11 @@ namespace Study
             s3.ShowDialog();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
-
+            var main = new MainWindow();
+            main.Show();
+            this.Close();
         }
     }
 }
