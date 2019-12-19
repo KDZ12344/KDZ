@@ -43,5 +43,15 @@ namespace Study
         {
             return; // chek whether it works
         }
+
+        private void ListCanHelpWith_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListNeedHelpWith_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

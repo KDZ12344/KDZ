@@ -38,6 +38,6 @@
         <ListBox Margin="10,119,85,0" x:Name="ListCanHelpWith" Grid.Row="2" RenderTransformOrigin="-1.04,0.493" Grid.Column="1"/>
         <TextBlock Grid.Column="1" Foreground="White" Margin="11,6,96,154" Grid.Row="2" RenderTransformOrigin="-0.807,0.5"><Run Text="Need help with:"/></TextBlock>
         <ListBox x:Name="ListNeedHelpWith" Margin="11,28,85,91" Grid.Row="2" Grid.Column="1"/>
-        <Button Grid.Column="1" Background="Indigo" Margin="60,96,55,0" Foreground="White" FontSize="10" Click="AddCanHelpItem" Content="Change profile pic" RenderTransformOrigin="0.379,4.08" Grid.Row="1"/>
+        <Button Grid.Column="1" Background="Indigo" Margin="60,96,55,0" Foreground="White" FontSize="10" Click="ChangePicClick" Content="Change profile pic" RenderTransformOrigin="0.379,4.08" Grid.Row="1"/>
     </Grid>
 </Window>

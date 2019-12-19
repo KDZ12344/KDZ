@@ -49,14 +49,14 @@ namespace Study.Core
                    
                     User user = new User
                     {
-                        Name = reader.GetValue(4).ToString(),
-                        Login = reader.GetValue(0).ToString(),
+                        Name = reader.GetValue(4).ToString().Trim(),
+                        Login = reader.GetValue(0).ToString().Trim(),
                         UserId = int.Parse(reader.GetValue(8).ToString()),
-                        Password = reader.GetValue(5).ToString(),
+                        Password = reader.GetValue(5).ToString().Trim(),
                         BirthDate = DateTime.Parse(reader.GetValue(6).ToString()),
                         DateAdded = DateTime.Parse(reader.GetValue(7).ToString()),
-                        VKID = reader.GetValue(3).ToString(),
-                        TelegramID = reader.GetValue(2).ToString()
+                        VKID = reader.GetValue(3).ToString().Trim(),
+                        TelegramID = reader.GetValue(2).ToString().Trim()
                     };
                     user00 = user;
                     Id = user.UserId;
@@ -204,7 +204,7 @@ namespace Study.Core
         {
             foreach (var user in users)
             {
-                if (user.Login == logtb & user.Password == passtb)
+                if (user.Login == logtb && user.Password == passtb)
                 {
                     return user;
                 }

@@ -1,26 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Study.Core;
 
 namespace Study
 {
+
     /// <summary>
     /// Логика взаимодействия для RegistrationWindow.xaml
     /// </summary>
+    
     public partial class RegistrationWindow : Window
     {
         public User user1 { get; set; }
+        int flag = 0;
         Repository rep = Factory.Instance.GetRepository();
         public RegistrationWindow(User user0)
         {
@@ -36,8 +29,7 @@ namespace Study
        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            
+    
             int k = 1;
             if (DateTime.TryParse(BirthDateTextBox.Text, out DateTime birthdate))
             {
@@ -45,11 +37,9 @@ namespace Study
             }           
             if (LoginTextBox.Text.Length > 6 && PasswordTextBox.Password == PasswordTextBox_Copy1.Password && NameTextBox.Text.Length > 0 && k == 0)
             {
-                
                 user1 = rep.Registration(NameTextBox.Text, LoginTextBox.Text, PasswordTextBox.Password, DateTime.Parse(BirthDateTextBox.Text), VkIdTextBox.Text, TgIdTextBox.Text);
                 var chooseAvatar = new ChooseAvatar(user1);
                 chooseAvatar.Show();
-                
             }
             else
             {
@@ -69,5 +59,10 @@ namespace Study
 
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //var chooseAvatar = new ChooseAvatar(user1);
+            
+        }
     }
 }

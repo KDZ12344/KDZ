@@ -66,5 +66,15 @@ namespace Study
             UpdateWindow();
 
         }
+
+        private void FriendsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ShowFriends_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

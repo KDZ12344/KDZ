@@ -26,20 +26,21 @@ namespace Study
         public ChooseAvatar(User user)
         {
             InitializeComponent();
-            
-            user2 = user;
+            User user0 = new User();
+            user0 = user;
+            user2 = user0;
         }
-        List<string> avNames = new List<string>
+        List<string> avNames = new List<string>()
         {
-            "Avatars/Avatar1.png",
-            "Avatars/Avatar2.png",
-            "Avatars/Avatar3.png",
-            "Avatars/Avatar4.png",
-            "Avatars/Avatar5.png",
-            "Avatars/Avatar6.png",
-            "Avatars/Avatar7.png",
-            "Avatars/Avatar8.png",
-            "Avatars/Avatar9.png"
+            "Avatar1.png",
+            "Avatar2.png",
+            "Avatar3.png",
+            "Avatar4.png",
+            "Avatar5.png",
+            "Avatar6.png",
+            "Avatar7.png",
+            "Avatar8.png",
+            "Avatar9.png"
         };
         private void SelectingAvatar(List<string> avNames, int number)
         {
