@@ -71,5 +71,10 @@ namespace Study
         {
             avatarImage.Source = rep.ImageUploading(user1);
         }
+
+        private void SaveChanges(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

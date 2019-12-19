@@ -56,7 +56,7 @@ namespace Study
             else
             {               
                 MessageBox.Show("There are no suitable users for you. Please, change your interests or wait.");
-                var myprof = new MyProfileWindow(me);
+                var myprof = new RedactProfileWindow(me);
                 myprof.Show();
                 
             }
@@ -69,7 +69,7 @@ namespace Study
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var myProfile = new MyProfileWindow(meUser);
+            var myProfile = new RedactProfileWindow(meUser);
             myProfile.Show();
 
         }

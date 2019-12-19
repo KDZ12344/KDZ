@@ -30,7 +30,7 @@ namespace Study
 
         private void PersonalSettings_Click(object sender, RoutedEventArgs e)
         {
-            var s1 = new MyProfileWindow(User);
+            var s1 = new RedactProfileWindow(User);
             s1.ShowDialog();
         }
 
@@ -48,6 +48,11 @@ namespace Study
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
         {
 
         }
