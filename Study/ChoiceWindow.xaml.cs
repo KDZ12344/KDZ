@@ -24,10 +24,7 @@ namespace Study
         public User meUser { get; set; }
         public List<User> Buddies { get; set; }
         Repository repos = Factory.Instance.GetRepository();
-        //public Repository repos0 { get; set; }
         public delegate void MethodContainer();
-        public event MethodContainer buttonNextClicked;
-        private static Timer aTimer;
         int i;
         User curBuddy = new User();
         private async void Waiting()

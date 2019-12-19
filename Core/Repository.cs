@@ -64,25 +64,31 @@ namespace Study.Core
 
                 }
                 reader.Close();
-
-                string queryString1 = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId=\'" + Id + "\';";
-                SqlCommand command1 = new SqlCommand(queryString1, connection);
-                SqlDataReader reader1 = command1.ExecuteReader();
-                while (reader1.Read())
+                for (int i = 1; i < users.Count()+1; i++)
                 {
-                    foreach (var subsubject in Interests)
+                    string queryString1 = "SELECT * FROM Users join Interests on Users.Userid = Interests.Userid where Users.UserId="+i;
+                    SqlCommand command1 = new SqlCommand(queryString1, connection);
+                    SqlDataReader reader1 = command1.ExecuteReader();
+                    while (reader1.Read())
                     {
-                        if (subsubject.InterestId == int.Parse(reader.GetValue(0).ToString()) && reader.GetValue(2).ToString() == "1")
+                        foreach (var subsubject in interests)
                         {
-                            user00.CanHelpWithSubjects.Add(subsubject);
+                            int u = int.Parse(reader1.GetValue(11).ToString());
+                            string uu = reader1.GetValue(13).ToString();
+                            if (subsubject.InterestId == int.Parse(reader1.GetValue(11).ToString()) && reader1.GetValue(13).ToString() == "True")
+                            {
+                                users[i-1].CanHelpWithSubjects.Add(subsubject);
+                            }
+                            if (subsubject.InterestId == int.Parse(reader1.GetValue(11).ToString()) && reader1.GetValue(13).ToString() == "False")
+                            {
+                                users[i-1].NeedSubjects.Add(subsubject);
+                            }
                         }
-                        if (subsubject.InterestId == int.Parse(reader.GetValue(0).ToString()) && reader.GetValue(2).ToString() == "0")
-                        {
-                            user00.NeedSubjects.Add(subsubject);
-                        }
+
                     }
-                
+                    reader1.Close();
                 }
+                
                 
             }
         }
