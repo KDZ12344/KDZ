@@ -88,7 +88,13 @@ namespace Study
 
         private void Button_Text_Click(object sender, RoutedEventArgs e)
         {
-
+            var req = new Request
+            {
+                Sender = meUser,
+                Receiver = curBuddy
+            };
+            repos.Requests.Add(req);
+            MessageBox.Show("Your request has been sent!");
         }
     }
 
