@@ -70,8 +70,11 @@
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserMenu.xaml.cs">
-      <DependentUpon>UserMenu.xaml</DependentUpon>
+    <Compile Include="RequestWindow.xaml.cs">
+      <DependentUpon>RequestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserMenue.xaml.cs">
+      <DependentUpon>UserMenue.xaml</DependentUpon>
     </Compile>
     <Compile Include="СhooseNewInterestWindow.xaml.cs">
       <DependentUpon>СhooseNewInterestWindow.xaml</DependentUpon>
@@ -120,7 +123,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserMenu.xaml">
+    <Page Include="RequestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserMenue.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

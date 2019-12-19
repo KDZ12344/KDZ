@@ -67,14 +67,16 @@ namespace Study
 
         }
 
-        private void FriendsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RequestFriend_Click(object sender, RoutedEventArgs e)
         {
-
+            var lena = new RequestWindow(User);
+            lena.ShowDialog();
         }
 
         private void ShowFriends_Click(object sender, RoutedEventArgs e)
         {
-
+            DialogResult = false;
+            return;
         }
     }
 }
