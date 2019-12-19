@@ -103,7 +103,7 @@ namespace Study.Core
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
                 string query = "insert into Users values("+user.Login+","+user.AvatarAdress+","+user.TelegramID+","+
-                user.VKID+","+user.Name+","+user.Password+","+user.BirthDate+","+user.DateAdded+","+user.UserId+","+user.Bio+","+user.Major");";
+                user.VKID+","+user.Name+","+user.Password+","+user.BirthDate+","+user.DateAdded+","+user.UserId+","+user.Bio+","+user.Major+");";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -210,10 +210,20 @@ namespace Study.Core
             var request = new Request
             {
                 Sender = sender,
-                Receiver = receiver
+                Receiver = receiver,
+                Status = true
             };
             requests.Add(request);
-        } 
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
+                string queryString = "insert into Friends values(" + sender.UserId + "," + receiver.UserId + "," + 1;
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+                
         
 
         public User Authorization(string logtb, string passtb)
@@ -290,24 +300,24 @@ namespace Study.Core
                 return null;
             }
         }
-        public bool ChangeUserProfile(User user)
-        { // ??????? ????? ?????? ????? ? ???????????
-            var user1 = users.FirstOrDefault(useritem => useritem.UserId == user.UserId);
-            if (user1 != null)
-            {
-                var index = users.IndexOf(user1);
-                users[index] = user;
-            }
-            else
-                MessageBox.Show("Данный юзер не найден");
-            var flag = false;
-            // ????????:
-            // ????? ? ???? ?????? ????? ? user.Id
-            // ???????? ??? ???? ?????????? ?????, ?? ??????? id
-            MessageBox.Show("нужно дополнить метод UserChangedProfile в классе repository");
-            flag = true;
-            return flag;
-        }
+        //public bool ChangeUserProfile(User user)
+        //{ // ??????? ????? ?????? ????? ? ???????????
+        //    var user1 = users.FirstOrDefault(useritem => useritem.UserId == user.UserId);
+        //    if (user1 != null)
+        //    {
+        //        var index = users.IndexOf(user1);
+        //        users[index] = user;
+        //    }
+        //    else
+        //        MessageBox.Show("Данный юзер не найден");
+        //    var flag = false;
+        //    // ????????:
+        //    // ????? ? ???? ?????? ????? ? user.Id
+        //    // ???????? ??? ???? ?????????? ?????, ?? ??????? id
+        //    MessageBox.Show("нужно дополнить метод UserChangedProfile в классе repository");
+        //    flag = true;
+        //    return flag;
+        //}
 
         private Exception NotImplementedException()
         {
