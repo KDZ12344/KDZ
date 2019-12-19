@@ -273,8 +273,8 @@ namespace Study.Core
             if (open.ShowDialog() == true)
             {
                 Uri openUri = new Uri(open.FileName);
-                //var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
-                //var imagePath = Path.Combine("C:\"" + toSave);
+                var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+                var imagePath = Path.Combine("C:\"" + toSave);
                 user.AvatarAdress = open.FileName;
                 BitmapImage image = new BitmapImage(openUri);
                 return image;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 using Microsoft.Win32;
 using Study.Core;
 
@@ -70,8 +71,8 @@ namespace Study
             {
                 user2 = new User();
                 Uri openUri = new Uri(open.FileName);
-                //var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
-                //var imagePath = Path.Combine("C:\"" + toSave);
+                var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+                var imagePath = Path.Combine("C:\"" + toSave);
                 user2.AvatarAdress = open.FileName;
                 avatarImage.Source = new BitmapImage(openUri);
                

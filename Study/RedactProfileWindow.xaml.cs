@@ -1,4 +1,5 @@
-﻿using Study.Core;
+﻿using Microsoft.Win32;
+using Study.Core;
 using System;
 using System.IO;
 using System.Windows;
@@ -107,7 +108,19 @@ namespace Study
 
         private void ImageChange_Button(object sender, RoutedEventArgs e)
         {
-            avatarImage.Source = repository.ImageUploading(User);
+            //avatarImage.Source = repository.ImageUploading(User);
+            //avatarImage.Source = rep.ImageUploading(user1);
+            OpenFileDialog open = new OpenFileDialog();
+            if (open.ShowDialog() == true)
+            {
+                user2 = new User();
+                Uri openUri = new Uri(open.FileName);
+                var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+                var imagePath = Path.Combine("C:\"" + toSave);
+                user2.AvatarAdress = open.FileName;
+                avatarImage.Source = new BitmapImage(openUri);
+
+            }
         }
 
         private void AddNeedHelpItem(object sender, RoutedEventArgs e)
@@ -123,8 +136,21 @@ namespace Study
        
         private void ChangePicClick(object sender, RoutedEventArgs e)
         {
-            var choosewin = new ChooseAvatar(User);
-            choosewin.Show();
+            //var choosewin = new ChooseAvatar(User);
+            //choosewin.Show();
+            OpenFileDialog open = new OpenFileDialog();
+            if (open.ShowDialog() == true)
+            {
+                Uri openUri = new Uri(open.FileName);
+                var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+                var imagePath = Path.Combine("C:\'" + toSave);
+                User.AvatarAdress = imagePath;
+                avatarImage.Source = new BitmapImage(openUri);
+            }
+            else
+            {
+                MessageBox.Show("Please, choose an image.");
+            }
         }
 
         private void AddCanHelpItem(object sender, RoutedEventArgs e)
