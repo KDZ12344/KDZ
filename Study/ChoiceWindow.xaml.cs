@@ -45,30 +45,21 @@ namespace Study
                 
                 UserControl1(buddies[0]);
                 curBuddy = buddies[0];
-               
                 
-              
     // сделать чтобы по нажатию next показывался след. юзер
             }
             else
             {               
                 MessageBox.Show("There are no suitable users for you. Please, change your interests or wait.");
                 var myprof = new RedactProfileWindow(me);
-                myprof.Show();
-                
+                myprof.Show();   
             }
-           
-
-
         }
-
-       
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var myProfile = new RedactProfileWindow(meUser);
             myProfile.Show();
-
         }
 
         int k = 1;
@@ -91,32 +82,11 @@ namespace Study
             AgeTextBlock.Text = (Math.Round((DateTime.Now - item.BirthDate).TotalDays / 365)).ToString() + " years";
             CanHelpWithListBox.ItemsSource = item.CanHelpWithSubjects;
             var uriSource = new Uri(@"/Study;component/" + item.AvatarAdress, UriKind.Relative);
-            AvatarImage.Source = new BitmapImage(uriSource);
+            avatarImage.Source = new BitmapImage(uriSource);
             curBuddy = item;
         }
 
         private void Button_Text_Click(object sender, RoutedEventArgs e)
-        {
-            if (curBuddy.TelegramID.Trim() != "" && curBuddy.VKID.Trim() != "")
-            {
-                MessageBox.Show("VK: " + curBuddy.VKID.Trim() + " TG: " + curBuddy.TelegramID.Trim(), "Text your buddy!");
-            }
-            else if (curBuddy.TelegramID != "")
-            {
-                MessageBox.Show("TG: " + meUser.TelegramID.Trim());
-            }
-            else if (curBuddy.VKID != "")
-            {
-                MessageBox.Show("VK: " + curBuddy.VKID.Trim());
-            }
-        }
-
-        private void CanHelpWithListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void CanHelpWithListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
         }
