@@ -43,10 +43,10 @@ namespace Study
             {
                 k = 0;
             }           
-            if (LoginTextBox.Text.Length > 6 && PasswordTextBox.Password == PasswordTextBox_Copy1.Password && NameTextBox.Text.Length > 0 && k == 0)
+            if (LoginTextBox.Text.Length > 6 && NameTextBox.Text.Length > 0 && k == 0)
             {
                 
-                user1 = rep.Registration(NameTextBox.Text, LoginTextBox.Text, PasswordTextBox.Password, DateTime.Parse(BirthDateTextBox.Text), VkIdTextBox.Text, TgIdTextBox.Text);
+                user1 = rep.Registration(NameTextBox.Text, LoginTextBox.Text, PasswordBox.Password, DateTime.Parse(BirthDateTextBox.Text), VKTextBox.Text, TGTextBox.Text);
                 var chooseAvatar = new ChooseAvatar(user1);
                 chooseAvatar.Show();
                 
@@ -56,9 +56,7 @@ namespace Study
                 if (LoginTextBox.Text.Length <= 6)              
                     MessageBox.Show("Login's length should be more than 6 symbols.");               
                 if (NameTextBox.Text.Length == 0)
-                    MessageBox.Show("Name's length should be more than 0 symbols.");                
-                if (PasswordTextBox.Password != PasswordTextBox_Copy1.Password)                
-                    MessageBox.Show("Passwords don't match.");              
+                    MessageBox.Show("Name's length should be more than 0 symbols.");                              
                 if (!DateTime.TryParse(BirthDateTextBox.Text, out DateTime birthdate1))          
                     MessageBox.Show("Birthdate should be in format 2000-1-1");                
             }
@@ -69,5 +67,9 @@ namespace Study
 
         }
 
+        private void Upload_Click(object sender, RoutedEventArgs e)
+        {
+            avatarImage.Source = rep.ImageUploading(user1);
+        }
     }
 }
