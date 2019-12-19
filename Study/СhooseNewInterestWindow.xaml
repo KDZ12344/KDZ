@@ -16,7 +16,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <TextBlock Margin="5">Course</TextBlock>
-        <ComboBox Margin="37,26,19.6,9.6" Name="comboBoxInterests" DisplayMemberPath="Name" SelectionChanged="comboBoxCourses_SelectionChanged" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <ComboBox Margin="37,26,19.6,9.6"  ItemsSource="{Binding InterestName}" Name="comboBoxInterests" SelectionChanged="comboBoxCourses_SelectionChanged" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            
+        </ComboBox>
         <TextBlock Margin="5" Grid.Row="1">Grade</TextBlock>
         <StackPanel Grid.Row="2" Orientation="Horizontal"
                     VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1" Margin="42.6,0.4,85.6,0">

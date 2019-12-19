@@ -25,7 +25,7 @@ namespace Study
         private void UpdateWindow()
         {
 
-            if (User.AvatarAdress != null)
+            if (User.AvatarAdress != "System.Byte[]")
             {
                 avatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
             }
@@ -154,6 +154,11 @@ namespace Study
             {
                 UpdateWindow();
             }
+        }
+
+        private void NameTextBlock_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
         }
     }
 }
