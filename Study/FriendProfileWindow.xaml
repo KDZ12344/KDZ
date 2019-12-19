@@ -7,36 +7,38 @@
         mc:Ignorable="d"
         Title="Friender" Height="485.105" Width="450" Background="Black">
     <Grid Margin="0,0,0.2,0.2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="19*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="83*"></RowDefinition>
+            <RowDefinition Height="159*"></RowDefinition>
+            <RowDefinition Height="182*"></RowDefinition>
+            <RowDefinition Height="58*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image x:Name="AvatarImage" Margin="251,22,26.133,99" Grid.RowSpan="2"></Image>
-        <TextBlock Foreground="White" Margin="28,17,369.133,82" RenderTransformOrigin="0.422,-0.354">Имя:</TextBlock>
-        <TextBlock Foreground="White" Margin="75,17,196.133,82" x:Name ="NameTextBlock"></TextBlock>
-        <TextBlock Foreground="White" Margin="28,50,369.133,49"><Run Text="VK:"/></TextBlock>
-        <TextBlock x:Name ="VKTextBlock" Foreground="White" Margin="90,50,181.133,49"></TextBlock>
-        <TextBlock Foreground="White" Margin="71,0,272.133,99" Grid.Row="1"><Run Text="Can help with:"/></TextBlock>
-        <ListBox Margin="10,35,192.133,75" x:Name="ListCanHelpWith" SelectionChanged="ListCanHelpWith_SelectionChanged" Grid.RowSpan="2" Grid.Row="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding InterestName}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-
-        </ListBox>
-        <TextBlock Foreground="White" Margin="68,44,273.133,55" Grid.Row="2"><Run Text="Need help with:"/></TextBlock>
-        <ListBox x:Name="ListNeedHelpWith" Margin="10,78,190.133,40" Grid.RowSpan="2" Grid.Row="2" SelectionChanged="ListNeedHelpWith_SelectionChanged">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding InterestName}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <TextBlock Foreground="White" Margin="28,89,367.133,10"><Run Text="TG:"/></TextBlock>
-        <TextBlock x:Name ="TGTextBlock" Foreground="White" Margin="81,89,182.133,10"/>
-        <Button Margin="258,74,7.133,10" Background="Bisque" Grid.Row="3" Click="Cancel_Click" >Вернуться назад</Button>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0">
+            <TextBlock Width="170" Height="20" Foreground="White" Text="Name" />
+            <TextBlock Foreground="LightSteelBlue" Width="170" Height="20" x:Name ="NameTextBlock"/>
+            <TextBlock Width="170" Height="20" Foreground="White" Text="Login"/>
+            <TextBlock Foreground="LightSteelBlue" Width="170" Height="20"   x:Name="LoginTextBlock"/>
+            <TextBlock Width="170" Height="20" Grid.Column="0" Foreground="White"  Text="VK"/>
+            <TextBlock Foreground="LightSteelBlue" Width="170" Height="20" x:Name="VKTextBlock"/>
+            <TextBlock Width="170" Height="20" Foreground="White"  Text="Telegram"/>
+            <TextBlock Foreground="LightSteelBlue" Width="170" Height="20" x:Name="TGTextBlock"/>
+            <TextBlock Width="170" Height="20" Foreground="White"   Text="Birthdate"/>
+            <TextBlock Foreground="LightSteelBlue" Width="170" Height="20" x:Name ="BirthDateTextBlock"/>
+            <TextBlock Width="170" Height="20" Foreground="White"  Text="Major"/>
+            <TextBlock Foreground="LightSteelBlue" Width="170" Height="20" x:Name="MajorTextBlock"/>
+            <TextBlock Width="170" Height="20" Foreground="White"  Text="Bio"/>
+            <TextBlock Foreground="LightSteelBlue" Width="170" Height="77" x:Name="BioTextBlock" Margin="12,0,13,0"/>
+        </StackPanel>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"  FontSize="50"  FontWeight="ExtraBlack" Foreground="White" Text="About me" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button Grid.ColumnSpan="2" Background="Indigo" Margin="149,10,172,24" Grid.Row="3" Foreground="White" FontSize="10" Click="Cancel_Click" RenderTransformOrigin="0.529,-1.167">Return</Button>
+        <Image x:Name="avatarImage" Margin="70,0,65,36" Grid.Column="1" RenderTransformOrigin="1.293,0.451" Grid.Row="1"/>
+        <TextBlock Grid.Column="1" Foreground="White" Margin="11,96,116,63" RenderTransformOrigin="0.466,0.755" Grid.Row="2"><Run Text="Can help with:"/></TextBlock>
+        <ListBox Margin="10,119,46,0" x:Name="ListCanHelpWith" Grid.Row="2" RenderTransformOrigin="-1.04,0.493" Grid.Column="1"/>
+        <TextBlock Grid.Column="1" Foreground="White" Margin="11,6,96,154" Grid.Row="2" RenderTransformOrigin="-0.807,0.5"><Run Text="Need help with:"/></TextBlock>
+        <ListBox x:Name="ListNeedHelpWith" Margin="11,28,46,91" Grid.Row="2" Grid.Column="1"/>
     </Grid>
 </Window>

@@ -18,10 +18,10 @@ namespace Study
     /// <summary>
     /// Логика взаимодействия для UserMenue.xaml
     /// </summary>
-    public partial class UserMenue : Window
+    public partial class UserMenu : Window
     {
         public User User { get; set; }
-        public UserMenue(User user)
+        public UserMenu(User user)
         {
             InitializeComponent();
             User = user;
@@ -45,6 +45,11 @@ namespace Study
         {
             var s3 = new FriendsWindow(User);
             s3.ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

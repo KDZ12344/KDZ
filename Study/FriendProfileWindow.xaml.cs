@@ -31,17 +31,32 @@ namespace Study
         private void UpdateWindow()
         {
             var uriSource = new Uri(@"/Study;component/" + User.AvatarAdress, UriKind.Relative);
-            AvatarImage.Source = new BitmapImage(uriSource);
+            avatarImage.Source = new BitmapImage(uriSource);
 
             NameTextBlock.Text = User.Name;
             VKTextBlock.Text = User.VKID;
             TGTextBlock.Text = User.TelegramID;
+            LoginTextBlock.Text = User.Login;
+            BirthDateTextBlock.Text = User.BirthDate.ToString();
+            MajorTextBlock.Text = User.Major;
+            BioTextBlock.Text = User.Bio;
+
             ListCanHelpWith.ItemsSource = User.CanHelpWithSubjects;
             ListNeedHelpWith.ItemsSource = User.NeedSubjects;
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             return; // chek whether it works
+        }
+
+        private void ListCanHelpWith_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListNeedHelpWith_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

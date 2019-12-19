@@ -7,38 +7,38 @@
         xmlns:local="clr-namespace:Study"
         mc:Ignorable="d"
         Title="MainWindow" Height="533.947" Width="450" Background="Black">
-    <Grid>
+     <Grid Margin="0,0,0.2,0.2">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="19*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="83*"></RowDefinition>
+            <RowDefinition Height="159*"></RowDefinition>
+            <RowDefinition Height="182*"></RowDefinition>
+            <RowDefinition Height="58*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Name="avatarImage" Grid.Row="2" Grid.Column="1"></Image>
-        <Button Grid.Row="3" Grid.Column="1" Background="Indigo" Margin="51,20,45,82"  Foreground="White" RenderTransformOrigin="0.975,-0.633" Click="Button_Click_1" >Choose a profile pic</Button>
-        <Button Background="Indigo" Grid.ColumnSpan="2" Margin="170,61,170,32" Grid.Row="3" Foreground="White" FontSize="20" Click="Button_Click">ENTER</Button>
-        <TextBox Grid.Row="0" Margin="20,119,0,109" x:Name="LoginTextBox" Grid.RowSpan="2" TextChanged="LoginTextBox_TextChanged"/>
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"  FontSize="50"  FontWeight="ExtraBlack" Foreground="White" Text="Registration" Margin="76,10,45,40"/>
-        <TextBlock Grid.Column="0" Foreground="White" Margin="20,92,10,4" Text="Enter your login:"/>
-        <TextBox Grid.Column="0" Margin="20,43,0,55" Grid.Row="1" x:Name="NameTextBox"/>
-        <TextBlock Grid.Column="0" Foreground="White" Margin="20,23,10,84" Grid.Row="1" Text="What's your name?"/>
-        <PasswordBox Grid.Column="0" Margin="20,98,0,125" Grid.Row="1" x:Name="PasswordTextBox" Grid.RowSpan="2"/>
-        <TextBlock Grid.Column="0" Foreground="White" Margin="20,77,10,19" Grid.Row="1" Text="Enter password:"/>
-        <PasswordBox Grid.Column="0" Margin="20,30,0,68" Grid.Row="2" x:Name="PasswordTextBox_Copy1"/>
-        <TextBlock Grid.Column="0" Foreground="White" Margin="20,10,10,96" Grid.Row="2" Text="Repeat password:"/>
-        <TextBlock Grid.Column="0" Foreground="White" Margin="20,67,10,34" Grid.Row="2" Text="Enter VK id:"/>
-        <TextBlock Grid.Column="0" Foreground="White" Margin="20,121,10,106" Grid.Row="2" Text="Enter Telegram id:" Grid.RowSpan="2"/>
-        <TextBlock Grid.Column="1" Margin="46,0,28,92" Foreground="White" Text="Enter your birthdate in format 2000-1-1" TextWrapping="Wrap" RenderTransformOrigin="0.514,3.868" Grid.Row="1"/>
-        <TextBox Grid.Column="1" Margin="20,43,20,55" x:Name="BirthDateTextBox" RenderTransformOrigin="0.472,2.917" Grid.Row="1" />
-        <TextBox Grid.Column="0" Margin="20,20,0,82" Grid.Row="3" x:Name="TgIdTextBox"/>
-        <TextBox Grid.Column="0" Margin="20,91,0,11" Grid.Row="2" x:Name="VkIdTextBox"/>
-
-
-
-
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0">
+            <TextBlock Width="170" Height="20" Foreground="White" Text="What's your name?" />
+            <TextBox Width="170" Height="20" x:Name ="NameTextBox"/>
+            <TextBlock Width="170" Height="20" Foreground="White" Text="Enter your password" />
+            <PasswordBox Width="170" Height="20" x:Name ="PasswordBox"/>
+            <TextBlock Width="170" Height="20" Foreground="White" Text="Create a login"/>
+            <TextBox Width="170" Height="20"   x:Name="LoginTextBox"/>
+            <TextBlock Width="170" Height="20" Grid.Column="0" Foreground="White"  Text="Enter your VK handle"/>
+            <TextBox Width="170" Height="20" x:Name="VKTextBox"/>
+            <TextBlock Width="170" Height="20" Foreground="White"  Text="Enter your Telegram handle"/>
+            <TextBox Width="170" Height="20" x:Name="TGTextBox"/>
+            <TextBlock Width="170" Height="20" Foreground="White"   Text="Enter your Birthdate (2000-1-1)"/>
+            <TextBox Width="170" Height="20" x:Name ="BirthDateTextBox"/>
+            <TextBlock Width="170" Height="20" Foreground="White"  Text="What's your major?"/>
+            <TextBox Width="170" Height="20" x:Name="MajorTextBox"/>
+            <TextBlock Width="170" Height="20" Foreground="White"  Text="Tell something about yourself"/>
+            <TextBox Width="170" Height="200" x:Name="BioTextBox"/>
+        </StackPanel>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"  FontSize="50"  FontWeight="ExtraBlack" Foreground="White" Text="Your profile" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button Grid.ColumnSpan="2" Background="Indigo" Margin="149,10,172,24" Grid.Row="3" Foreground="White" FontSize="10" Click="SaveChanges" RenderTransformOrigin="0.529,-1.167">Save Changes</Button>
+        <Image x:Name="avatarImage" Margin="70,0,65,36" Grid.Column="1" RenderTransformOrigin="1.293,0.451" Grid.Row="1"/>
+        <Button Grid.Column="1" Background="Indigo" Margin="60,134,55,0" Foreground="White" FontSize="10" Click="Upload_Click" Content="Upload your photo" RenderTransformOrigin="0.379,4.08" Grid.Row="1"/>
     </Grid>
 </Window>

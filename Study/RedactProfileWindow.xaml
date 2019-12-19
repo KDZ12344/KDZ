@@ -12,32 +12,38 @@
             <ColumnDefinition Width="19*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="121*"></RowDefinition>
-            <RowDefinition Height="121*"></RowDefinition>
+            <RowDefinition Height="83*"></RowDefinition>
+            <RowDefinition Height="159*"></RowDefinition>
             <RowDefinition Height="182*"></RowDefinition>
             <RowDefinition Height="58*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox x:Name ="NameTextBox" TextChanged="NameTextBlock_TextChanged" Grid.Row="0" Margin="20,109,0,109" Grid.RowSpan="2" RenderTransformOrigin="0.489,0.462"/>
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"  FontSize="50"  FontWeight="ExtraBlack" Foreground="White" Text="Your profile" Margin="76,10,45,40"/>
-        <TextBlock Grid.Column="0" Foreground="White" Margin="20,86,10,16" Text="Name" RenderTransformOrigin="0.5,0.12"/>
-        <TextBox Grid.Column="0" Margin="20,43,0,55" Grid.Row="1" x:Name="LoginTextBox"/>
-        <TextBlock Grid.Column="0" Foreground="White" Margin="20,23,10,78" Grid.Row="1" Text="Login"/>
-        <TextBox Grid.Column="0" Margin="20,98,0,0" Grid.Row="1" x:Name="VKTextBox"/>
-        <TextBlock Grid.Column="0" Foreground="White" Margin="20,77,10,19" Grid.Row="1" Text="VK"/>
-        <TextBox Grid.Column="0" Margin="20,30,0,130" Grid.Row="2" x:Name="TGTextBox"/>
-        <TextBlock Grid.Column="0" Foreground="White" Margin="20,10,10,152" Grid.Row="2" Text="Telegram" RenderTransformOrigin="1.419,-1.026"/>
-        <TextBlock Grid.Column="0" Foreground="White" Margin="20,67,10,34" Grid.Row="2"  Text="Birthdate"/>
-        <TextBox Grid.Column="0" Margin="20,91,0,68" Grid.Row="2" x:Name ="BirthDateTextBox"/>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0">
+            <TextBlock Width="170" Height="20" Foreground="White" Text="Name" />
+            <TextBox Width="170" Height="20" x:Name ="NameTextBox" TextChanged="NameTextBlock_TextChanged"/>
+            <TextBlock Width="170" Height="20" Foreground="White" Text="Login"/>
+            <TextBox Width="170" Height="20"   x:Name="LoginTextBox"/>
+            <TextBlock Width="170" Height="20" Grid.Column="0" Foreground="White"  Text="VK"/>
+            <TextBox Width="170" Height="20" x:Name="VKTextBox"/>
+            <TextBlock Width="170" Height="20" Foreground="White"  Text="Telegram"/>
+            <TextBox Width="170" Height="20" x:Name="TGTextBox"/>
+            <TextBlock Width="170" Height="20" Foreground="White"   Text="Birthdate"/>
+            <TextBox Width="170" Height="20" x:Name ="BirthDateTextBox"/>
+            <TextBlock Width="170" Height="20" Foreground="White"  Text="Major"/>
+            <TextBox Width="170" Height="20" x:Name="MajorTextBox"/>
+            <TextBlock Width="170" Height="20" Foreground="White"  Text="Bio"/>
+            <TextBox Width="170" Height="200" x:Name="BioTextBox"/>
+        </StackPanel>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"  FontSize="50"  FontWeight="ExtraBlack" Foreground="White" Text="Your profile" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Button Background="Indigo" Margin="174,30,10,130" Grid.Row="2" Foreground="White" FontSize="10" Click="AddNeedHelpItem" Grid.Column="1" RenderTransformOrigin="0.429,1.941">Add</Button>
         <Button Background="Indigo" Margin="174,0,10,95" Grid.Row="2" Foreground="White" FontSize="10" Click="DeleteNeedHelpItem" Height="22" VerticalAlignment="Bottom" Grid.Column="1">Delete</Button>
         <Button Background="Indigo" Margin="174,117,10,43" Grid.Row="2" Foreground="White" FontSize="10" Click="AddCanHelpItem" Grid.Column="1">Add</Button>
         <Button Background="Indigo" Margin="174,150,10,10" Grid.Row="2" Foreground="White" FontSize="10" Click="DeleteCanHelpItem" Grid.Column="1" RenderTransformOrigin="0.413,4">Delete</Button>
         <Button Grid.ColumnSpan="2" Background="Indigo" Margin="149,10,172,24" Grid.Row="3" Foreground="White" FontSize="10" Click="SaveChanges" RenderTransformOrigin="0.529,-1.167">Save Changes</Button>
-        <Image x:Name="avatarImage" Margin="70,86,65,36" Grid.Column="1" RenderTransformOrigin="1.293,0.451" Grid.RowSpan="2"/>
+        <Image x:Name="avatarImage" Margin="70,0,65,36" Grid.Column="1" RenderTransformOrigin="1.293,0.451" Grid.Row="1"/>
         <TextBlock Grid.Column="1" Foreground="White" Margin="11,96,116,63" RenderTransformOrigin="0.466,0.755" Grid.Row="2"><Run Text="Can help with:"/></TextBlock>
         <ListBox Margin="10,119,85,0" x:Name="ListCanHelpWith" Grid.Row="2" RenderTransformOrigin="-1.04,0.493" Grid.Column="1"/>
         <TextBlock Grid.Column="1" Foreground="White" Margin="11,6,96,154" Grid.Row="2" RenderTransformOrigin="-0.807,0.5"><Run Text="Need help with:"/></TextBlock>
         <ListBox x:Name="ListNeedHelpWith" Margin="11,28,85,91" Grid.Row="2" Grid.Column="1"/>
-        <Button Grid.Column="1" Background="Indigo" Margin="60,96,55,0" Foreground="White" FontSize="10" Click="AddCanHelpItem" Content="Change profile pic" RenderTransformOrigin="0.379,4.08" Grid.Row="1"/>
+        <Button Grid.Column="1" Background="Indigo" Margin="60,134,55,0" Foreground="White" FontSize="10" Click="AddCanHelpItem" Content="Change profile pic" RenderTransformOrigin="0.379,4.08" Grid.Row="1"/>
     </Grid>
 </Window>
