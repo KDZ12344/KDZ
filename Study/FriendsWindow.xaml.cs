@@ -36,10 +36,11 @@ namespace Study
 
         private void ShowFriend_Click(object sender, RoutedEventArgs e)
         {
-            if (FriendsBox.SelectedItem == null) {
+            if (FriendsBox.SelectedItem == null)
+            {
                 MessageBox.Show("Select a friend");
                 return;
-                    }
+            }
             var cf = new FriendProfileWindow(User);
             if (cf.ShowDialog() == true)
                 UpdateWindow();
@@ -67,14 +68,16 @@ namespace Study
 
         }
 
-        private void FriendsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RequestFriend_Click(object sender, RoutedEventArgs e)
         {
-
+            var lena = new RequestWindow(User);
+            lena.ShowDialog();
         }
 
         private void ShowFriends_Click(object sender, RoutedEventArgs e)
         {
-
+            DialogResult = false;
+            return;
         }
     }
 }
