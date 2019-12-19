@@ -1,6 +1,7 @@
 ﻿using Study.Core;
 using System;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Study
@@ -16,9 +17,11 @@ namespace Study
         {
             InitializeComponent();
             User = user;
-            var uriSource = new Uri(@"/Study;component/" + User.AvatarAdress, UriKind.Relative);
-            avatarImage.Source = new BitmapImage(uriSource);
-            LoginTextBox.Text = User.Login;
+            if (user.AvatarAdress != null)
+            {//}
+                avatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
+            }
+                LoginTextBox.Text = User.Login;
             NameTextBox.Text = User.Name;
             VKTextBox.Text = User.VKID;
             TGTextBox.Text = User.TelegramID;
@@ -100,6 +103,13 @@ namespace Study
         private void NameTextBlock_TextChanged(object sender, RoutedEventArgs e)
         {
 
+        }
+
+       
+        private void ChangePicClick(object sender, RoutedEventArgs e)
+        {
+            var choosewin = new ChooseAvatar(User);
+            choosewin.Show();
         }
     }
 }

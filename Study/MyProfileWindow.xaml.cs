@@ -31,12 +31,12 @@ namespace Study
             
             InitializeComponent();
             User = user;
-            int f = 0;
-            AvatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
-            f = 1;
-
-            //var uriSource = new Uri(@"/Study;component/"+ user.AvatarAdress, UriKind.Relative);
-            //AvatarImage.Source = new BitmapImage(uriSource);
+            if (user.AvatarAdress != null)
+            {//}
+                AvatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
+                int u = 0;
+            }
+            
 
             NameTextBlock.Text =User.Name;
             VKTextBlock.Text = User.VKID;
@@ -45,18 +45,12 @@ namespace Study
 
 
             List<User> friends = new List<User>();
-
-            
-
-            //List<Interest> interestsNeedHelp = rep.GetNeededSubjectsForUser(user);
-           // List<Interest> interestsCanHelp = rep.GetCanHelpWithSubjectsForUser(user);
             ListCanHelpWith.ItemsSource = user.CanHelpWithSubjects;
             ListNeedHelpWith.ItemsSource = user.NeedSubjects;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
+        {  
             var redactionWindow = new RedactProfileWindow(User);
             redactionWindow.ShowDialog();
         }

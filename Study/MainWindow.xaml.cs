@@ -24,16 +24,8 @@ namespace Study
         public User user { get; set; }
         public List<User> buddies { get; set; }
         public MainWindow()
-        {           
-            //repository = new Repository();
-
-            //repository.GetUsers(); // выводит только последнего юхзера
-            //repository.GetSubjects();
-            //repository.GetInterests();
-            //int k = 0;
+        {  
             InitializeComponent();
-            
-
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {            

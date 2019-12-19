@@ -35,18 +35,7 @@ namespace Study.Core
             NeedSubjects = needSubjects;
             CanHelpWithSubjects = canHelpWithSubjects;
         }
-        //public User(string name, string login, int id, string password, DateTime birthDate, DateTime dateAdded, string? vk, string? telegram)
-        //{
-            
-        //    Login = login;
-        //    UserId = id;
-        //    Password = password;
-        //    BirthDate = birthDate;
-        //    DateAdded = dateAdded;
-        //    VKID = vk;
-        //    TelegramID = telegram;
-        //    Name = name;
-        //}
+       
         
     }
 }
