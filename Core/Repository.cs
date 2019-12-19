@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using Study;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
+using System.IO;
 
 namespace Study.Core
 {
@@ -261,6 +262,8 @@ namespace Study.Core
             if (open.ShowDialog() == true)
             {
                 Uri openUri = new Uri(open.FileName);
+                //var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+                //var imagePath = Path.Combine("C:\"" + toSave);
                 user.AvatarAdress = open.FileName;
                 BitmapImage image = new BitmapImage(openUri);
                 return image;

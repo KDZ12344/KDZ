@@ -25,6 +25,7 @@ namespace Study
         {
             InitializeComponent();
             User = user;
+            HelloTextBlock.Text = $"Hello, {User.Login}!";
         }
 
         private void PersonalSettings_Click(object sender, RoutedEventArgs e)

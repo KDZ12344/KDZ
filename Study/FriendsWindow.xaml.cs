@@ -31,14 +31,13 @@ namespace Study
         private void UpdateWindow()
         {
             FriendsBox.ItemsSource = User.Friends;
-            HelloBox.Text = "Hello, " + User.Name;
         }
 
 
         private void ShowFriend_Click(object sender, RoutedEventArgs e)
         {
             if (FriendsBox.SelectedItem == null) {
-                MessageBox.Show("Select friend!!!");
+                MessageBox.Show("Select a friend");
                 return;
                     }
             var cf = new FriendProfileWindow(User);
@@ -57,7 +56,7 @@ namespace Study
         {
             if (FriendsBox.SelectedItem == null)
             {
-                MessageBox.Show("select friend");
+                MessageBox.Show("select a friend");
                 return;
             }
             var friend = FriendsBox.SelectedItem as User;
