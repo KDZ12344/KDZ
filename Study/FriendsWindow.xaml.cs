@@ -79,5 +79,10 @@ namespace Study
             DialogResult = false;
             return;
         }
+
+        private void FriendsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

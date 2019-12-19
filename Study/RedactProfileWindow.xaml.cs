@@ -111,5 +111,10 @@ namespace Study
             var choosewin = new ChooseAvatar(User);
             choosewin.Show();
         }
+
+        private void AddCanHelpItem(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

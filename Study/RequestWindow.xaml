@@ -17,11 +17,11 @@
             <RowDefinition Height="25*"></RowDefinition>
             <RowDefinition Height="36*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Background="Indigo" Margin="40,20,40,20" Grid.Row="3" Foreground="White" FontSize="20" Click="Cancel_Click" Grid.Column="1">Back to Menu</Button>
-        <Button Background="Indigo" Margin="36,25,44,65" Grid.Column="0" Grid.Row="2" Foreground="White" FontSize="20" Click="ShowPerson_Click" Grid.RowSpan="2">Show Person</Button>
-        <Button Background="Indigo" Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Click="deleteRequestClick" Height="25" Width="90" Grid.Column="1" Margin="63,25,68.333,0">Delete request</Button>
-        <Button Background="Indigo" Grid.Row="3" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RequestFriend_Click" Height="25" Width="126" Margin="52,34,44,13">Accept requests</Button>
-        <TextBlock FontSize="50" Grid.ColumnSpan="2"  FontWeight="ExtraBlack" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Height="66" Margin="68,12" Width="306">Your requests</TextBlock>
+        <Button Background="Indigo" Margin="75,19.8,9.6,20.2" Grid.Row="3" Foreground="White" FontSize="20" Click="Cancel_Click">Back to Menu</Button>
+        <Button Background="Indigo" Margin="10.4,18.8,70.2,20.2" Grid.Column="1" Grid.Row="3" Foreground="White" FontSize="20" Click="ShowPerson_Click">Show Person</Button>
+        <Button Background="Indigo" Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Click="deleteRequestClick" Height="25" Width="126" Margin="25.4,25.2,70.2,0.2" Grid.Column="1">Delete request</Button>
+        <Button Background="Indigo" Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RequestFriend_Click" Height="25" Width="126" Margin="75,25.2,20.6,0.2">Accept request</Button>
+        <TextBlock FontSize="50" Grid.ColumnSpan="2"  FontWeight="ExtraBlack" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Height="66" Margin="52,10,42.2,14.4" Width="349">Your requests</TextBlock>
         <ListBox Grid.ColumnSpan="2" Grid.Row="1" Margin="75,0,75,0" DisplayMemberPath="Name" x:Name="RequestBox"/>
     </Grid>
 </Window>

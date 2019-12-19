@@ -82,5 +82,10 @@ namespace Study
                
             }
         }
+
+        private void SaveChanges(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -46,7 +46,7 @@ namespace Study
         {
             MessageBox.Show("Are you sure?", "Choose avatar", MessageBoxButton.YesNoCancel);
             user2.AvatarAdress = avNames[number - 1];
-            var myprofile = new MyProfileWindow(user2);
+            var myprofile = new RedactProfileWindow(user2);
             myprofile.Show();
         }
 

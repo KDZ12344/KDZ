@@ -27,6 +27,8 @@ namespace Study.Core
         public List<Interest> CanHelpWithSubjects { get; set; }
         
         public List<User> Friends { get; set; }
+        public string Bio { get; set; }
+        public string Major { get; set; }
 
         public User()
         {
