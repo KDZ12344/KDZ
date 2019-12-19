@@ -110,6 +110,7 @@
     <Page Include="MyProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="RedactProfileWindow.xaml">
       <SubType>Designer</SubType>
@@ -131,6 +132,7 @@
   <ItemGroup>
     <Compile Include="MyProfileWindow.xaml.cs">
       <DependentUpon>MyProfileWindow.xaml</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -158,16 +160,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="avatar.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fr1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="fr3.jpg" />
-    <Resource Include="fr2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="avatarICON.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -179,17 +171,35 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Avatars\Avatar2.png" />
-    <Resource Include="Avatars\Avatar1.png" />
-    <Resource Include="Avatars\Avatar3.png" />
-    <Resource Include="Avatars\Avatar4.png" />
-    <Resource Include="Avatars\Avatar6.png" />
-    <Resource Include="Avatars\Avatar7.png" />
+    <Resource Include="Avatars\Avatar2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Avatars\Avatar1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Avatars\Avatar3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Avatars\Avatar4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Avatars\Avatar6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Avatars\Avatar7.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Avatars\Avatar5.png" />
-    <Resource Include="Avatars\Avatar8.png" />
-    <Resource Include="Avatars\Avatar9.png" />
+    <Resource Include="Avatars\Avatar5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Avatars\Avatar8.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Avatars\Avatar9.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Study.Core.csproj">

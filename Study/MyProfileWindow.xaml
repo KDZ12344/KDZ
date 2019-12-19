@@ -14,7 +14,9 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Button Background="Indigo" Margin="289,50.8,53,39.8" Grid.Row="2" Foreground="White" FontSize="10" Click="Button_Click">Редактировать</Button>
-        <Image x:Name="AvatarImage" Margin="28,37,249,83.6" Grid.RowSpan="2"></Image>
+        <Image x:Name="AvatarImage" Margin="28,37,249,83.6" Grid.RowSpan="2" >
+            
+        </Image>
         <TextBlock Foreground="White" Margin="226,11,173,88.8" RenderTransformOrigin="0.422,-0.354">Имя:</TextBlock>
         <TextBlock Foreground="White" Margin="271,11,2,88.8" x:Name ="NameTextBlock"></TextBlock>
         <TextBlock Foreground="White" Margin="226,50,173,49.8"><Run Text="VK:"/></TextBlock>
@@ -36,20 +38,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
-        <TextBlock Foreground="White" Margin="28,72.2,313,27.6" Grid.Row="1"><Run Text="Friends:"/></TextBlock>
-        <Image Source="fr1.jpg" Margin="0,98.4,367,67.8" Grid.Row="1" RenderTransformOrigin="4.076,0.738" Grid.RowSpan="2"/>
-        <Image Source="Fr3.jpg" Margin="126,98.4,240,67.8" Grid.Row="1" RenderTransformOrigin="4.076,0.738" Grid.RowSpan="2"/>
-        <Image Source="Fr2.jpg" Margin="78,99.4,301,69.8" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="1.108"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-0.454"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
         <TextBlock Foreground="White" Margin="225,29,173,70.8" RenderTransformOrigin="0.422,-0.354" Text="Логин:"/>
         <TextBlock Foreground="White" Margin="273,32,-1,67.8" x:Name ="LoginTextBlock"/>
         <TextBlock Foreground="White" Margin="226,71,171,28.8"><Run Text="TG:"/></TextBlock>

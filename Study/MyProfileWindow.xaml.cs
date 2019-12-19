@@ -15,7 +15,6 @@ using System.Data.SqlClient;
 using Study.Core;
 using System.IO;
 using System.Resources;
-using StudentGrades.Classes;
 
 namespace Study
 {
@@ -26,13 +25,19 @@ namespace Study
     {
         public User User { get; set; }
         Repository rep = Factory.Instance.GetRepository();
+
         public MyProfileWindow(User user)
         {
+            
             InitializeComponent();
             User = user;
-            var uriSource = new Uri(@"/Study;component/"+ user.AvatarAdress, UriKind.Relative);
-            AvatarImage.Source = new BitmapImage(uriSource);
-            
+            int f = 0;
+            AvatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
+            f = 1;
+
+            //var uriSource = new Uri(@"/Study;component/"+ user.AvatarAdress, UriKind.Relative);
+            //AvatarImage.Source = new BitmapImage(uriSource);
+
             NameTextBlock.Text =User.Name;
             VKTextBlock.Text = User.VKID;
             TGTextBlock.Text = User.TelegramID;

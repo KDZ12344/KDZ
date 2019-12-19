@@ -32,6 +32,7 @@ namespace Study
         private void UpdateWindow()
         {
             FriendsBox.ItemsSource = User.Friends;
+            HelloBox.Text = "Hello, " + User.Name;
         }
 
 

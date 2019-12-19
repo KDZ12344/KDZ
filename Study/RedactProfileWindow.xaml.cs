@@ -97,9 +97,6 @@ namespace Study
 
         }
 
-        private void NameTextBlock_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
