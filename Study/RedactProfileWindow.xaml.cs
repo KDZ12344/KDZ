@@ -1,8 +1,10 @@
 ﻿using Study.Core;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Study
 {
@@ -17,22 +19,35 @@ namespace Study
         {
             InitializeComponent();
             User = user;
-            if (user.AvatarAdress != null)
-            {
-                avatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
-            }
+            
             LoginTextBox.Text = User.Login;
             NameTextBox.Text = User.Name;
             VKTextBox.Text = User.VKID;
             TGTextBox.Text = User.TelegramID;
             BirthDateTextBox.Text = User.BirthDate.ToString();
             ListNeedHelpWith.ItemsSource = User.NeedSubjects;
-            // repository.GetNeededSubjectsForUser(user);
+            if (User.AvatarAdress != "System.Byte[]")
+            {
+               
+                Uri openUri = new Uri(User.AvatarAdress);
+                //var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+                //var imagePath = Path.Combine("C:\"" + toSave);
+                
+                avatarImage.Source = new BitmapImage(openUri);
+                //    MemoryStream memorystream = new MemoryStream();
+                //    memorystream.Write(User.AvatarAdress, 0, (int)User.AvatarAdress.Length);
+
+                //    BitmapImage imgsource = new BitmapImage();
+                //    imgsource.BeginInit();
+                //    imgsource.StreamSource = memorystream;
+                //    imgsource.EndInit();
+                //    avatarImage.Source = imgsource; // реальный Image
+            }
+            
             ListCanHelpWith.ItemsSource = User.CanHelpWithSubjects;
-            //repository.GetCanHelpWithSubjectsForUser(user);
+
 
         }
-
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
             if ((string.IsNullOrWhiteSpace(NameTextBox.Text)))
