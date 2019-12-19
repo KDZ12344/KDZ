@@ -25,7 +25,7 @@ namespace Study
         private void UpdateWindow()
         {
 
-            if (User.AvatarAdress != null)
+            if (User.AvatarAdress != "System.Byte[]")
             {
                 avatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
             }
@@ -35,9 +35,7 @@ namespace Study
             TGTextBox.Text = User.TelegramID;
             BirthDateTextBox.Text = User.BirthDate.ToString();
             ListNeedHelpWith.ItemsSource = User.NeedSubjects;
-            // repository.GetNeededSubjectsForUser(user);
-            ListCanHelpWith.ItemsSource = User.CanHelpWithSubjects;
-            //repository.GetCanHelpWithSubjectsForUser(user);
+            ListCanHelpWith.ItemsSource = User.CanHelpWithSubjects;      
         }
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
@@ -63,7 +61,8 @@ namespace Study
                 User.VKID = VKTextBox.Text;
                 User.TelegramID = TGTextBox.Text;
                 User.BirthDate = DateTime.Parse(BirthDateTextBox.Text);
-                repository.ChangeUserProfile(User);
+                repository.Users[User.UserId] = User;
+                //repository.UpdateDatabase(User);
             }
 
         }
@@ -76,9 +75,11 @@ namespace Study
                 return;
             }
             User.NeedSubjects.Remove(selectedCanSubject);
-            repository.ChangeUserProfile(User);
-            repository.UpdateDatabase(User);
-            UpdateWindow();
+            this.Close();
+            var red_win = new RedactProfileWindow(User);
+            red_win.Show();
+            //repository.UpdateDatabase(User);    doesnt work
+            //UpdateWindow();
         }
 
         private void DeleteNeedHelpItem(object sender, RoutedEventArgs e)
@@ -90,9 +91,11 @@ namespace Study
                 return;
             }
             User.NeedSubjects.Remove(selectedNeedSubject);
-            repository.ChangeUserProfile(User);
-            repository.UpdateDatabase(User);
-            UpdateWindow();
+            this.Close();
+            var red_win = new RedactProfileWindow(User);
+            red_win.Show();
+            //repository.UpdateDatabase(User);
+            //UpdateWindow();
         }
 
         //private void ImageChange_Button(object sender, RoutedEventArgs e)
@@ -115,18 +118,16 @@ namespace Study
         private void AddNeedHelpItem(object sender, RoutedEventArgs e)
         {
             var lenaStalin = new СhooseNewInterestWindow(User, 3);
-            if (lenaStalin.ShowDialog() == true)
-            {
-                UpdateWindow();
-            }
+            lenaStalin.Show();
+            this.Close();
+            
         }
 
 
        
         private void ChangePicClick(object sender, RoutedEventArgs e)
         {
-            //var choosewin = new ChooseAvatar(User);
-            //choosewin.Show();
+            
             OpenFileDialog open = new OpenFileDialog();
             if (open.ShowDialog() == true)
             {
@@ -145,10 +146,13 @@ namespace Study
         private void AddCanHelpItem(object sender, RoutedEventArgs e)
         {
             var anyaTrozkiy = new СhooseNewInterestWindow(User, 4);
-            if (anyaTrozkiy.ShowDialog() == true)
-            {
-                UpdateWindow();
-            }
+            anyaTrozkiy.Show();
+            this.Close();
+        }
+
+        private void NameTextBlock_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
         }
     }
 }
