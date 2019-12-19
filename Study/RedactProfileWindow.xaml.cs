@@ -5,7 +5,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Study
 {
@@ -20,34 +19,25 @@ namespace Study
         {
             InitializeComponent();
             User = user;
-            
+            UpdateWindow();
+        }
+
+        private void UpdateWindow()
+        {
+
+            if (User.AvatarAdress != null)
+            {
+                avatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
+            }
             LoginTextBox.Text = User.Login;
             NameTextBox.Text = User.Name;
             VKTextBox.Text = User.VKID;
             TGTextBox.Text = User.TelegramID;
-            BirthDateTextBox.Text = User.BirthDate.Date.ToString();
+            BirthDateTextBox.Text = User.BirthDate.ToString();
             ListNeedHelpWith.ItemsSource = User.NeedSubjects;
-            if (User.AvatarAdress != "System.Byte[]")
-            {
-               
-                Uri openUri = new Uri(User.AvatarAdress);
-                //var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
-                //var imagePath = Path.Combine("C:\"" + toSave);
-                
-                avatarImage.Source = new BitmapImage(openUri);
-                //    MemoryStream memorystream = new MemoryStream();
-                //    memorystream.Write(User.AvatarAdress, 0, (int)User.AvatarAdress.Length);
-
-                //    BitmapImage imgsource = new BitmapImage();
-                //    imgsource.BeginInit();
-                //    imgsource.StreamSource = memorystream;
-                //    imgsource.EndInit();
-                //    avatarImage.Source = imgsource; // реальный Image
-            }
-            
+            // repository.GetNeededSubjectsForUser(user);
             ListCanHelpWith.ItemsSource = User.CanHelpWithSubjects;
-
-
+            //repository.GetCanHelpWithSubjectsForUser(user);
         }
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
@@ -92,6 +82,8 @@ namespace Study
             }
             User.NeedSubjects.Remove(selectedCanSubject);
             repository.ChangeUserProfile(User);
+            repository.UpdateDatabase(User);
+            UpdateWindow();
         }
 
         private void DeleteNeedHelpItem(object sender, RoutedEventArgs e)
@@ -104,6 +96,8 @@ namespace Study
             }
             User.NeedSubjects.Remove(selectedNeedSubject);
             repository.ChangeUserProfile(User);
+            repository.UpdateDatabase(User);
+            UpdateWindow();
         }
 
         private void ImageChange_Button(object sender, RoutedEventArgs e)
@@ -113,7 +107,7 @@ namespace Study
             OpenFileDialog open = new OpenFileDialog();
             if (open.ShowDialog() == true)
             {
-                user2 = new User();
+                var user2 = new User();
                 Uri openUri = new Uri(open.FileName);
                 var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
                 var imagePath = Path.Combine("C:\"" + toSave);
@@ -125,13 +119,13 @@ namespace Study
 
         private void AddNeedHelpItem(object sender, RoutedEventArgs e)
         {
-
+            var lenaStalin = new СhooseNewInterestWindow(User, 3);
+            if (lenaStalin.ShowDialog() == true)
+            {
+                UpdateWindow();
+            }
         }
 
-        private void NameTextBlock_TextChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
 
        
         private void ChangePicClick(object sender, RoutedEventArgs e)
@@ -155,7 +149,11 @@ namespace Study
 
         private void AddCanHelpItem(object sender, RoutedEventArgs e)
         {
-
+            var anyaTrozkiy = new СhooseNewInterestWindow(User, 4);
+            if (anyaTrozkiy.ShowDialog() == true)
+            {
+                UpdateWindow();
+            }
         }
     }
 }
