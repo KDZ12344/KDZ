@@ -18,10 +18,10 @@ namespace Study
             InitializeComponent();
             User = user;
             if (user.AvatarAdress != null)
-            {//}
+            {
                 avatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
             }
-                LoginTextBox.Text = User.Login;
+            LoginTextBox.Text = User.Login;
             NameTextBox.Text = User.Name;
             VKTextBox.Text = User.VKID;
             TGTextBox.Text = User.TelegramID;
