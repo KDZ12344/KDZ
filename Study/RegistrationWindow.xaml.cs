@@ -22,10 +22,12 @@ namespace Study
     public partial class RegistrationWindow : Window
     {
         public User user1 { get; set; }
+        public User user2 { get; set; }
         Repository rep = Factory.Instance.GetRepository();
         public RegistrationWindow(User user0)
         {
             InitializeComponent();
+            user1 = new User();
             user1 = user0;
         }
 
@@ -39,10 +41,10 @@ namespace Study
             {
                 k = 0;
             }           
-            if (LoginTextBox.Text.Length > 6 && NameTextBox.Text.Length > 0 && k == 0)
+            if (LoginTextBox.Text.Length > 6 && k == 0)
             {
-                
-                user1 = rep.Registration(NameTextBox.Text, LoginTextBox.Text, PasswordBox.Password, DateTime.Parse(BirthDateTextBox.Text), VKTextBox.Text, TGTextBox.Text);
+                k = 1;
+                user1 = rep.Registration(NameTextBox.Text, LoginTextBox.Text, PasswordBox.Password, DateTime.Parse(BirthDateTextBox.Text), VKTextBox.Text, TGTextBox.Text, "none");
                 var chooseAvatar = new ChooseAvatar(user1);
                 chooseAvatar.Show();
                 
@@ -61,24 +63,30 @@ namespace Study
 
         private void Upload_Click(object sender, RoutedEventArgs e)
         {
+            
             //avatarImage.Source = rep.ImageUploading(user1);
             OpenFileDialog open = new OpenFileDialog();
             if (open.ShowDialog() == true)
             {
+                user2 = new User();
                 Uri openUri = new Uri(open.FileName);
                 //var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
                 //var imagePath = Path.Combine("C:\"" + toSave);
-                user1.AvatarAdress = open.FileName;
+                user2.AvatarAdress = open.FileName;
                 avatarImage.Source = new BitmapImage(openUri);
                
             }
         }
-
+        int k = 0;
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
-            var userMenu = new UserMenu(user1);
-            userMenu.Show();
-            this.Close();
+            
+                rep.SavingToDatabase(user1.Login, user1.TelegramID, user1.VKID, user1.Name, user1.Password, user1.BirthDate, user1.DateAdded.Value, user2.AvatarAdress);
+                var userMenu = new UserMenu(user1);
+                userMenu.Show();
+                this.Close();
+            
+            
         }
     }
 }
