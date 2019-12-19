@@ -25,7 +25,7 @@ namespace Study
             NameTextBox.Text = User.Name;
             VKTextBox.Text = User.VKID;
             TGTextBox.Text = User.TelegramID;
-            BirthDateTextBox.Text = User.BirthDate.ToString();
+            BirthDateTextBox.Text = User.BirthDate.Date.ToString();
             ListNeedHelpWith.ItemsSource = User.NeedSubjects;
             if (User.AvatarAdress != "System.Byte[]")
             {

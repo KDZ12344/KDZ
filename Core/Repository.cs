@@ -191,7 +191,8 @@ namespace Study.Core
                 BirthDate = birthDate,
                 DateAdded = DateTime.Now,
                 VKID = vk,
-                TelegramID = telegram
+                TelegramID = telegram,
+                AvatarAdress = avatar
                            
             };
             users.Add(user);
