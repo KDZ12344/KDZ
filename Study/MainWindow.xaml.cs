@@ -30,7 +30,7 @@ namespace Study
         private void Button_Click(object sender, RoutedEventArgs e)
         {            
             user = repository.Authorization(LoginTextBox.Text, PasswordTextBox.Password);
-            
+            this.Hide();
             var choice = new UserMenu(user);
             choice.Show();
             
@@ -40,7 +40,8 @@ namespace Study
         {
             var reg = new RegistrationWindow(user);
             reg.Show();
-            
+            this.Hide();
+
         }
     }
 }

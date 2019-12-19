@@ -103,9 +103,13 @@ namespace Study.Core
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
                 string query = "insert into Users values("+user.Login+","+user.AvatarAdress+","+user.TelegramID+","+
-                user.VKID+","+user.Name+","+user.Password+","+user.BirthDate+","+user.DateAdded+","+user.UserId+");";
+                user.VKID+","+user.Name+","+user.Password+","+user.BirthDate+","+user.DateAdded+","+user.UserId+","+user.Bio+","+user.Major");";
                 SqlCommand cmd = new SqlCommand(query, connection);
-                connection.Open(); 
+                connection.Open();
+                cmd.ExecuteNonQuery();
+
+                // + add to /remove from Interests 
+
             }
         }
 

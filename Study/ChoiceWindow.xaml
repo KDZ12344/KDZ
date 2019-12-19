@@ -24,7 +24,7 @@
             </Image.RenderTransform>
         </Image>
         <TextBlock Foreground="White" Margin="260,9.4,121.2,92.4" Grid.Row="2" x:Name="AgeTextBlock">age</TextBlock>
-        <TextBlock Foreground="Wheat" Margin="159,9.4,188.2,92.4" Grid.Row="2" x:Name="LoginTextBlock">login</TextBlock>
+        <TextBlock Foreground="Wheat" Margin="159,9.4,228.2,92.4" Grid.Row="2" x:Name="LoginTextBlock">login</TextBlock>
         <TextBlock Foreground="Wheat" Margin="10,10.4,340.2,87.4" Grid.Row="2"><Run Text="Can help with:"/></TextBlock>
         <ListBox Foreground="Blue" x:Name="CanHelpWithListBox" Margin="0,33.4,0.2,10.4" Grid.Row="2" SelectionChanged="CanHelpWithListBox_SelectionChanged_1">
             <ListBox.ItemTemplate>

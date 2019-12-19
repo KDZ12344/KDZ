@@ -33,8 +33,17 @@ namespace Study
                 comboBoxInterests.ItemsSource = User.NeedSubjects;
             else if (flag == 2) // 2 - delete CanHelp subject, 4 - add new canHelpsubject
                 comboBoxInterests.ItemsSource = User.CanHelpWithSubjects;
-            else
-                comboBoxInterests.ItemsSource = repository.Interests;
+            else 
+            {
+                Interest[] interests = repository.Interests.ToArray();
+                Interest[] canhelpsubj = User.CanHelpWithSubjects.ToArray();
+                Interest[] needsubj = User.NeedSubjects.ToArray();
+                var new_list = interests.Except(canhelpsubj);
+                new_list = new_list.Except(needsubj);              
+                comboBoxInterests.ItemsSource = new_list;
+            }
+           
+                
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
@@ -57,14 +66,19 @@ namespace Study
             else if (Flag == 4)
                 User.CanHelpWithSubjects.Add(subject);
 
-            repository.Users[User.UserId] = User;
-            repository.UpdateDatabase(User);
-            DialogResult = true;
+            
+          
+            
+            var new_red = new RedactProfileWindow(User);
+            new_red.Show();
+            this.Close();
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
+            var new_red = new RedactProfileWindow(User);
+            new_red.Show();
+            this.Close();
         }
 
         private void comboBoxCourses_SelectionChanged(object sender, SelectionChangedEventArgs e)
