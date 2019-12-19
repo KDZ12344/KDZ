@@ -63,11 +63,6 @@ namespace Study
                 User.VKID = VKTextBox.Text;
                 User.TelegramID = TGTextBox.Text;
                 User.BirthDate = DateTime.Parse(BirthDateTextBox.Text);
-                if (MessageBox.Show("Do you want to change avatar picture?", "Confirm changes", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
-                    var chooseAvatar = new ChooseAvatar(User);
-                    chooseAvatar.Show();
-                }
                 repository.ChangeUserProfile(User);
             }
 
@@ -100,22 +95,22 @@ namespace Study
             UpdateWindow();
         }
 
-        private void ImageChange_Button(object sender, RoutedEventArgs e)
-        {
-            //avatarImage.Source = repository.ImageUploading(User);
-            //avatarImage.Source = rep.ImageUploading(user1);
-            OpenFileDialog open = new OpenFileDialog();
-            if (open.ShowDialog() == true)
-            {
-                var user2 = new User();
-                Uri openUri = new Uri(open.FileName);
-                var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
-                var imagePath = Path.Combine("C:\"" + toSave);
-                user2.AvatarAdress = open.FileName;
-                avatarImage.Source = new BitmapImage(openUri);
+        //private void ImageChange_Button(object sender, RoutedEventArgs e)
+        //{
+        //    //avatarImage.Source = repository.ImageUploading(User);
+        //    //avatarImage.Source = rep.ImageUploading(user1);
+        //    OpenFileDialog open = new OpenFileDialog();
+        //    if (open.ShowDialog() == true)
+        //    {
+        //        var user2 = new User();
+        //        Uri openUri = new Uri(open.FileName);
+        //        var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+        //        var imagePath = Path.Combine("C:\"" + toSave);
+        //        user2.AvatarAdress = open.FileName;
+        //        avatarImage.Source = new BitmapImage(openUri);
 
-            }
-        }
+        //    }
+        //}
 
         private void AddNeedHelpItem(object sender, RoutedEventArgs e)
         {
@@ -137,7 +132,7 @@ namespace Study
             {
                 Uri openUri = new Uri(open.FileName);
                 var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
-                var imagePath = Path.Combine("C:\'" + toSave);
+                var imagePath = Path.Combine("C:\\" + toSave);
                 User.AvatarAdress = imagePath;
                 avatarImage.Source = new BitmapImage(openUri);
             }

@@ -72,7 +72,7 @@ namespace Study
                 user2 = new User();
                 Uri openUri = new Uri(open.FileName);
                 var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
-                var imagePath = Path.Combine("C:\"" + toSave);
+                var imagePath = Path.Combine("C:\\" + toSave);
                 user2.AvatarAdress = open.FileName;
                 avatarImage.Source = new BitmapImage(openUri);
                
