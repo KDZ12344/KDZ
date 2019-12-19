@@ -94,7 +94,19 @@ namespace Study
 
         private void ImageChange_Button(object sender, RoutedEventArgs e)
         {
-            avatarImage.Source = repository.ImageUploading(User);
+            //avatarImage.Source = repository.ImageUploading(User);
+            //avatarImage.Source = rep.ImageUploading(user1);
+            OpenFileDialog open = new OpenFileDialog();
+            if (open.ShowDialog() == true)
+            {
+                user2 = new User();
+                Uri openUri = new Uri(open.FileName);
+                var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+                var imagePath = Path.Combine("C:\"" + toSave);
+                user2.AvatarAdress = open.FileName;
+                avatarImage.Source = new BitmapImage(openUri);
+
+            }
         }
 
         private void AddNeedHelpItem(object sender, RoutedEventArgs e)
