@@ -32,6 +32,10 @@ namespace Study.Core
             GetSubjects();
             GetInterests();
             GetUsers();
+            Users = users;
+            Interests = interests;
+            Subjects = subjects;
+            Requests = requests;
         }
 
         public void GetUsers() 
@@ -56,7 +60,8 @@ namespace Study.Core
                         BirthDate = DateTime.Parse(reader.GetValue(6).ToString()),
                         DateAdded = DateTime.Parse(reader.GetValue(7).ToString()),
                         VKID = reader.GetValue(3).ToString().Trim(),
-                        TelegramID = reader.GetValue(2).ToString().Trim()
+                        TelegramID = reader.GetValue(2).ToString().Trim(),
+                        AvatarAdress = reader.GetValue(1).ToString()
                     };
                     user00 = user;
                     Id = user.UserId;
@@ -149,7 +154,7 @@ namespace Study.Core
                 }
             }
         }
-        public void SavingToDatabase(string login, string telegram, string vk, string name, string password, DateTime birthDate, DateTime dateAdded)
+        public void SavingToDatabase(string login, string telegram, string vk, string name, string password, DateTime birthDate, DateTime dateAdded, string avatar)
         {
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
@@ -166,8 +171,8 @@ namespace Study.Core
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.CommandText = "insert into users(login, telegramid, vkid, name, password, birthdate, datewhenadded) values(\'" + login + "\',\'" + telegram + "\',\'" + vk + "\',\'" + name + "\',\'" + password + "\',\'" + birthDate
-                    + "\',\'" + dateAdded + "\');";
+                cmd.CommandText = "insert into users(login, telegramid, vkid, name, password, birthdate, datewhenadded, avatar) values(\'" + login + "\',\'" + telegram + "\',\'" + vk + "\',\'" + name + "\',\'" + password + "\',\'" + birthDate
+                    + "," + dateAdded + ","+avatar+");";
                 cmd.Connection = connection;
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -175,7 +180,7 @@ namespace Study.Core
             }
         }
 
-        public User Registration(string name, string login, string password, DateTime birthDate, string vk, string telegram)
+        public User Registration(string name, string login, string password, DateTime birthDate, string vk, string telegram, string avatar)
         {           
             User user = new User
             {
@@ -190,7 +195,7 @@ namespace Study.Core
                            
             };
             users.Add(user);
-            SavingToDatabase(login, telegram, vk, name, password, birthDate, DateTime.Now);
+            SavingToDatabase(login, telegram, vk, name, password, birthDate, DateTime.Now, avatar);
             return user;
 
         }
