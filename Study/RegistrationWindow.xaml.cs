@@ -29,11 +29,6 @@ namespace Study
             user1 = user0;
         }
 
-        private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -63,10 +58,6 @@ namespace Study
             }
             
         }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
 
         private void Upload_Click(object sender, RoutedEventArgs e)
         {
@@ -85,7 +76,9 @@ namespace Study
 
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
-
+            var userMenu = new UserMenu(user1);
+            userMenu.Show();
+            this.Close();
         }
     }
 }
