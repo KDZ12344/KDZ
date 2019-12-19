@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 using Study.Core;
 
 namespace Study
@@ -69,7 +70,17 @@ namespace Study
 
         private void Upload_Click(object sender, RoutedEventArgs e)
         {
-            avatarImage.Source = rep.ImageUploading(user1);
+            //avatarImage.Source = rep.ImageUploading(user1);
+            OpenFileDialog open = new OpenFileDialog();
+            if (open.ShowDialog() == true)
+            {
+                Uri openUri = new Uri(open.FileName);
+                //var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+                //var imagePath = Path.Combine("C:\"" + toSave);
+                user1.AvatarAdress = open.FileName;
+                avatarImage.Source = new BitmapImage(openUri);
+               
+            }
         }
     }
 }
