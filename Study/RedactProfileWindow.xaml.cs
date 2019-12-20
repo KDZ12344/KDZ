@@ -29,7 +29,6 @@ namespace Study
             if (User.AvatarAdress.Trim() != "none" && User.AvatarAdress.Trim() != "")
             {
                 avatarImage.Source = new BitmapImage(new Uri(User.AvatarAdress));
-                //avatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
             }
             LoginTextBox.Text = User.Login;
             NameTextBox.Text = User.Name;

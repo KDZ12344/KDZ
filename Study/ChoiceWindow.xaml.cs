@@ -93,8 +93,10 @@ namespace Study
             //LoginTextBlock.Text = item.Login;
             //AgeTextBlock.Text = (Math.Round((DateTime.Now - item.BirthDate).TotalDays / 365)).ToString() + " years";
             CanHelpWithListBox.ItemsSource = item.CanHelpWithSubjects;
-            var uriSource = new Uri(@"/Study;component/" + item.AvatarAdress, UriKind.Relative);
-            avatarImage.Source = new BitmapImage(uriSource);
+            if (item.AvatarAdress.Trim() != "none" && item.AvatarAdress.Trim() != "")
+            {
+                avatarImage.Source = new BitmapImage(new Uri(item.AvatarAdress));
+            }
             curBuddy = item;
         }
 
@@ -117,10 +119,6 @@ namespace Study
             
         }
 
-        private void CanHelpWithListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 
    
