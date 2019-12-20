@@ -83,7 +83,9 @@ namespace Study.Core
                         DateAdded = DateTime.Parse(reader.GetValue(7).ToString()),
                         VKID = reader.GetValue(3).ToString().Trim(),
                         TelegramID = reader.GetValue(2).ToString().Trim(),
-                        AvatarAdress = reader.GetValue(1).ToString()
+                        AvatarAdress = reader.GetValue(1).ToString(), 
+                        Bio = reader.GetValue(9).ToString().Trim(),
+                        Major = reader.GetValue(10).ToString().Trim()
                     };
                     user00 = user;
                     Id = user.UserId;
@@ -180,7 +182,7 @@ namespace Study.Core
                 }
             }
         }
-        public void SavingToDatabase(string login, string telegram, string vk, string name, string password, DateTime birthDate, DateTime dateAdded, string avatar)
+        public void SavingToDatabase(string login, string telegram, string vk, string name, string password, DateTime birthDate, DateTime dateAdded, string avatar, string bio, string major)
         {
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
@@ -195,18 +197,22 @@ namespace Study.Core
             }
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.CommandText = "insert into users(login, telegramid, vkid, name, password, birthdate, datewhenadded, avatar) values(\'" + login + "\',\'" + telegram + "\',\'" + vk + "\',\'" + name + "\',\'" + password + "\',\'" + birthDate
-                    + "," + dateAdded + ","+avatar+");";
-                cmd.Connection = connection;
+
+                string tt = birthDate.ToShortDateString().Replace('.', '-');
+                string query = "insert into users(login, telegramid, vkid, name, password, birthdate, datewhenadded, avatar, bio, major) values(\'" + login + "\',\'" + telegram + "\',\'" + vk + "\',\'" + name + "\',\'" + password + "\',\'" + birthDate + "\',\'" +
+                     dateAdded + "\',\'" + avatar + "\',\'" + bio + "\',\'" + major + "');";
+                //string query = "insert into users(login, telegramid, vkid, name, password, birthdate, datewhenadded, avatar, bio, major, userid) values('"+ login +"','" + telegram + "','" + vk + "','" + name + "','" + password + "','"
+                //    + birthDate.ToShortDateString().Replace('.', '-') +
+                //     "," + dateAdded.ToShortDateString().Replace('.', '-') + ",'"+avatar+"','" + bio + "','" + major+"')";
                 connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                
                 cmd.ExecuteNonQuery();
-                connection.Close();
+               
             }
         }
 
-        public User Registration(string name, string login, string password, DateTime birthDate, string vk, string telegram, string avatar)
+        public User Registration(string name, string login, string password, DateTime birthDate, string vk, string telegram, string avatar, string bio, string major)
         {           
             User user = new User
             {
@@ -218,11 +224,13 @@ namespace Study.Core
                 DateAdded = DateTime.Now,
                 VKID = vk,
                 TelegramID = telegram,
-                AvatarAdress = avatar
+                AvatarAdress = avatar, 
+                Bio = bio, 
+                Major = major
                            
             };
             users.Add(user);
-            SavingToDatabase(login, telegram, vk, name, password, birthDate, DateTime.Now, avatar);
+            //SavingToDatabase(login, telegram, vk, name, password, birthDate, DateTime.Now, avatar, bio, major);
             return user;
 
         }
@@ -353,24 +361,24 @@ namespace Study.Core
 
         }
 
-        public BitmapImage ImageUploading(User user)
-        {
-            OpenFileDialog open = new OpenFileDialog();
-            if (open.ShowDialog() == true)
-            {
-                Uri openUri = new Uri(open.FileName);
-                var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
-                var imagePath = Path.Combine("C:\"" + toSave);
-                user.AvatarAdress = open.FileName;
-                BitmapImage image = new BitmapImage(openUri);
-                return image;
-            }
-            else
-            {
-                MessageBox.Show("Please, choose an image.");
-                return null;
-            }
-        }
+        //public BitmapImage ImageUploading(User user)
+        //{
+        //    OpenFileDialog open = new OpenFileDialog();
+        //    if (open.ShowDialog() == true)
+        //    {
+        //        Uri openUri = new Uri(open.FileName);
+        //        var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
+        //        var imagePath = Path.Combine("C:\" + toSave);
+        //        user.AvatarAdress = open.FileName;
+        //        BitmapImage image = new BitmapImage(openUri);
+        //        return image;
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Please, choose an image.");
+        //        return null;
+        //    }
+        //}
         //public bool ChangeUserProfile(User user)
         //{ // ??????? ????? ?????? ????? ? ???????????
         //    var user1 = users.FirstOrDefault(useritem => useritem.UserId == user.UserId);

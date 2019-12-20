@@ -47,7 +47,7 @@ namespace Study
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var reg = new RegistrationWindow(user);
+            var reg = new RegistrationWindow();
             
                 reg.Show();
                 this.Hide();

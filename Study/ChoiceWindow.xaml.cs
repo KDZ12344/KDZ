@@ -67,7 +67,8 @@ namespace Study
             else
 
             {
-                MessageBox.Show("That's all!", "Want to see buddies once again?", MessageBoxButton.YesNo);
+                MessageBox.Show("That's all!");
+                this.Close();
             }
             k += 1;            
         }

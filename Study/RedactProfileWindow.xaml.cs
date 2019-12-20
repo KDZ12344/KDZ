@@ -27,7 +27,8 @@ namespace Study
 
             if (User.AvatarAdress != "System.Byte[]")
             {
-                avatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
+                avatarImage.Source = new BitmapImage(new Uri(User.AvatarAdress, UriKind.Relative));
+                //avatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
             }
             LoginTextBox.Text = User.Login;
             NameTextBox.Text = User.Name;
