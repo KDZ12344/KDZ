@@ -292,21 +292,28 @@ namespace Study.Core
         {
             
             suitablebuddies = new List<User>();
+
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
 
                 string listsubjectIds = "(";
+                string listfriends = "(";
                 if (user.NeedSubjects.Count() > 0)
                 {
                     foreach (var item in user.NeedSubjects)
                     {
                         listsubjectIds = listsubjectIds + "SubSubjectId=" + item.InterestId + " or ";
                     }
-
+                    foreach (var friend in user.Friends)
+                    {
+                        listfriends = listfriends + "Users.UserId!=" + friend.UserId + " and ";
+                    }
+                    listfriends = listfriends + ")";
+                    listfriends = listfriends.Replace(" and )", ")");
                     listsubjectIds = listsubjectIds + ")";
                     listsubjectIds = listsubjectIds.Replace(" or )", ")");
 
-                    string query = "SELECT Users.UserId, COUNT(*) as NumOfGoodSubjects FROM Interests join Users on Users.UserId = Interests.UserId WHERE Users.UserId != " + user.UserId + " and Relation_Type = 1 and " + listsubjectIds + " group by Users.UserId order by NumOfGoodSubjects desc";
+                    string query = "SELECT Users.UserId, COUNT(*) as NumOfGoodSubjects FROM Interests join Users on Users.UserId = Interests.UserId WHERE Users.UserId != " + user.UserId + "and "+listfriends+ " and Relation_Type = 1 and " + listsubjectIds + " group by Users.UserId order by NumOfGoodSubjects desc";
                     SqlCommand command = new SqlCommand(query, connection);
                     connection.Open();
 
@@ -318,7 +325,6 @@ namespace Study.Core
                             if (buddy.UserId == int.Parse(reader.GetValue(0).ToString()))
 
                             {
-                                //buddy.CanHelpWithSubjects = GetCanHelpWithSubjectsForUser(user);
                                 suitablebuddies.Add(buddy);
                             }
                         }

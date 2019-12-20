@@ -37,7 +37,7 @@ namespace Study
             VKTextBlock.Text = User.VKID;
             TGTextBlock.Text = User.TelegramID;
             LoginTextBlock.Text = User.Login;
-            BirthDateTextBlock.Text = User.BirthDate.ToString();
+            BirthDateTextBlock.Text = User.BirthDate.ToShortDateString();
             MajorTextBlock.Text = User.Major;
             BioTextBlock.Text = User.Bio;
 
@@ -46,7 +46,9 @@ namespace Study
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            return; // chek whether it works
+            var friendWin = new FriendProfileWindow(User);
+            friendWin.Show();
+            this.Close();
         }
 
         private void ListCanHelpWith_SelectionChanged(object sender, SelectionChangedEventArgs e)

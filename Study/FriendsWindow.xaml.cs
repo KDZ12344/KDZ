@@ -38,9 +38,9 @@ namespace Study
                 MessageBox.Show("Select a friend");
                 return;
             }
-            var cf = new FriendProfileWindow(User);
-            //if (cf.ShowDialog() == true)
-               // UpdateWindow();
+            var cf = new FriendProfileWindow(FriendsBox.SelectedItem as User);
+            cf.Show();
+            this.Close();
 
         }
 
