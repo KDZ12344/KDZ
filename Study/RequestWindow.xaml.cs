@@ -22,43 +22,71 @@ namespace Study
     {
         public Repository repository = Factory.Instance.GetRepository();
         public User User { get; set; }
-        public List<Request> userRequests = new List<Request>() { };
+        public List<Request> userIncomingRequests = new List<Request>();
+        public List<Request> userOutcomingRequests = new List<Request>();
+
         public RequestWindow(User user)
         {
             InitializeComponent();
             User = user;
             UpdateWindow();
+            GetIncomingRequests();
+            GetOutcomingRequests();
+        }
+
+        private void GetIncomingRequests()
+        {
+            foreach (var request in repository.Requests)
+            {
+                if (request.Receiver.UserId == User.UserId)
+                {
+                    userIncomingRequests.Add(request);
+                }
+            }
+        }
+
+        private void GetOutcomingRequests()
+        {
+            foreach (var request in repository.Requests)
+            {
+                if (request.Sender.UserId == User.UserId)
+                {
+                    userOutcomingRequests.Add(request);
+                }
+            }
         }
 
         private void UpdateWindow()
-        {
-            userRequests = repository.Requests.FindAll(requset => requset.Receiver == User);
-            if (userRequests.Count == 0 || userRequests[0] == null)
-                userRequests.Add(new Request { Sender = new User { Name = "YouHaveNoRequests", Login = "0000", Password = "0000", UserId = 0 } });
-            RequestBox.ItemsSource = userRequests; // it could not work if we dont add constructor of User class ???
+        { 
+            //userRequests = repository.Requests.FindAll(requset => requset.Receiver == User);
+           // if (userIncomingRequests.Count == 0 || userRequests[0] == null)
+            //    userRequests.Add(new Request { Sender = new User { Name = "YouHaveNoRequests", Login = "0000", Password = "0000", UserId = 0 } });
+            IncomingTabItem.Content = userIncomingRequests;
+            OutcomingTabItem.Content = userOutcomingRequests;
+            // it could not work if we dont add constructor of User class ???
         }
         private void ShowPerson_Click(object sender, RoutedEventArgs e)
         {
-            var anyaItem = RequestBox.SelectedItem as User;
-            if (anyaItem == null)
+            var reqUser = TabRequests.SelectedItem as User;
+            if (reqUser == null)
             {
                 MessageBox.Show("Choose a request");
                 return;
             }
-            var anya = new FriendProfileWindow(anyaItem);
+            var anya = new FriendProfileWindow(reqUser);
             anya.ShowDialog();
         }
-        private void DeleteRequest(User anyaItem)
-        {
-            if (anyaItem == null)
-            {
-                MessageBox.Show("Choose a request");
-                return;
-            }
-            userRequests.Remove(userRequests.First(item => item.Receiver == anyaItem));
-            UpdateWindow();
-            return;
-        }
+        //private void DeleteRequest(User anyaItem)
+        //{
+        //    if (anyaItem == null)
+        //    {
+        //        MessageBox.Show("Choose a request");
+        //        return;
+        //    }
+        //    Tab.Remove(userRequests.First(item => item.Receiver == anyaItem));
+        //    UpdateWindow();
+        //    return;
+        //}
         private void deleteRequestClick(object sender, RoutedEventArgs e)
         {
             var anyaItem = RequestBox.SelectedItem as User;

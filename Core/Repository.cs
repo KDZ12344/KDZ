@@ -265,22 +265,27 @@ namespace Study.Core
                 }
             }
         }
+   
         public void FriendRequest(User sender, User receiver)
         {
+            
             var request = new Request
             {
                 Sender = sender,
                 Receiver = receiver        
             };
-            requests.Add(request);
-            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            if (!requests.Contains(request))
             {
-                string queryString = "insert into Requests values(" + sender.UserId + "," + receiver.UserId + ")";
-                SqlCommand command = new SqlCommand(queryString, connection);
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
+                requests.Add(request);
+                using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+                {
+                    string queryString = "insert into Requests values(" + sender.UserId + "," + receiver.UserId + ")";
+                    SqlCommand command = new SqlCommand(queryString, connection);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }  
         }
                 
         

@@ -90,6 +90,15 @@ namespace Study
             repos.FriendRequest(meUser, curBuddy);
             MessageBox.Show("Your request has been sent!");
             Buddies.Remove(curBuddy);
+            if (Buddies.Count() > 0)
+            {
+                UserControl1(Buddies[0]);
+            }
+            else
+            {
+                this.Close();
+            }
+            
         }
 
         private void CanHelpWithListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
