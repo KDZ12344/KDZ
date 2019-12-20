@@ -25,7 +25,7 @@ namespace Study
         private void UpdateWindow()
         {
 
-            if (User.AvatarAdress != "System.Byte[]")
+            if (User.AvatarAdress.Trim() != "")
             {
                 avatarImage.Source = new BitmapImage(new Uri(User.AvatarAdress, UriKind.Relative));
                 //avatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;
@@ -36,7 +36,10 @@ namespace Study
             TGTextBox.Text = User.TelegramID;
             BirthDateTextBox.Text = User.BirthDate.ToString();
             ListNeedHelpWith.ItemsSource = User.NeedSubjects;
-            ListCanHelpWith.ItemsSource = User.CanHelpWithSubjects;      
+            ListCanHelpWith.ItemsSource = User.CanHelpWithSubjects;
+            BioTextBox.Text = User.Bio;
+
+            MajorTextBox.Text = User.Major;
         }
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
@@ -67,8 +70,11 @@ namespace Study
                 User.VKID = VKTextBox.Text;
                 User.TelegramID = TGTextBox.Text;
                 User.BirthDate = DateTime.Parse(BirthDateTextBox.Text);
+                User.Bio = BioTextBox.Text;
+                User.Major = MajorTextBox.Text;
+                
                 repository.Users[User.UserId] = User;
-                //repository.UpdateDatabase(User);
+                repository.UpdateDatabase(User);
             }
 
         }
@@ -84,8 +90,7 @@ namespace Study
             this.Close();
             var red_win = new RedactProfileWindow(User);
             red_win.Show();
-            //repository.UpdateDatabase(User);    doesnt work
-            //UpdateWindow();
+            repository.UpdateDatabase(User);    
         }
 
         private void DeleteNeedHelpItem(object sender, RoutedEventArgs e)
@@ -100,7 +105,7 @@ namespace Study
             this.Close();
             var red_win = new RedactProfileWindow(User);
             red_win.Show();
-            //repository.UpdateDatabase(User);
+            repository.UpdateDatabase(User);
             //UpdateWindow();
         }
 

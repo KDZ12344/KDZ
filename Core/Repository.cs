@@ -126,8 +126,8 @@ namespace Study.Core
         {
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
-                string query = "insert into Users values("+user.Login+","+user.AvatarAdress+","+user.TelegramID+","+
-                user.VKID+","+user.Name+","+user.Password+","+user.BirthDate+","+user.DateAdded+","+user.UserId+","+user.Bio+","+user.Major+");";
+                string query = "update Users set Login =\'" + user.Login + "', " + "Avatar=\'" + user.AvatarAdress + "', " + " TelegramID=\'" + user.TelegramID + "', " + " VKID=\'" + user.VKID + "', " + " Name=\'" + user.Name + "', " +
+                   "Password=\'" + user.Password + "', " + " BirthDate=" + user.BirthDate.ToShortDateString().Replace(".", "-") + ", " + " Bio=\'" + user.Bio + "', " + " Major=\'" + user.Major + "' where UserID=" + user.UserId;
                 SqlCommand cmd = new SqlCommand(query, connection);
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -230,7 +230,7 @@ namespace Study.Core
                            
             };
             users.Add(user);
-            //SavingToDatabase(login, telegram, vk, name, password, birthDate, DateTime.Now, avatar, bio, major);
+            
             return user;
 
         }
@@ -379,24 +379,7 @@ namespace Study.Core
         //        return null;
         //    }
         //}
-        //public bool ChangeUserProfile(User user)
-        //{ // ??????? ????? ?????? ????? ? ???????????
-        //    var user1 = users.FirstOrDefault(useritem => useritem.UserId == user.UserId);
-        //    if (user1 != null)
-        //    {
-        //        var index = users.IndexOf(user1);
-        //        users[index] = user;
-        //    }
-        //    else
-        //        MessageBox.Show("Данный юзер не найден");
-        //    var flag = false;
-        //    // ????????:
-        //    // ????? ? ???? ?????? ????? ? user.Id
-        //    // ???????? ??? ???? ?????????? ?????, ?? ??????? id
-        //    MessageBox.Show("нужно дополнить метод UserChangedProfile в классе repository");
-        //    flag = true;
-        //    return flag;
-        //}
+        
 
         private Exception NotImplementedException()
         {

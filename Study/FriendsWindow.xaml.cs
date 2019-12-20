@@ -60,8 +60,10 @@ namespace Study
             var friend = FriendsBox.SelectedItem as User;
             User.Friends.Remove(friend);
             repository.Users[User.UserId] = User;
-            repository.UpdateDatabase(User);
-            FriendsBox.ItemsSource = User.Friends;
+            //repository.UpdateDatabase(User);
+            this.Close();
+            var frWin = new FriendsWindow(User);
+            frWin.Show();
             
         }
 
