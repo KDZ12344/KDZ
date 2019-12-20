@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using Study.Core;
 using System;
+using System.Data.SqlClient;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
@@ -76,6 +77,7 @@ namespace Study
                 var indexU = repository.Users.IndexOf(User);
                 repository.Users[indexU] = User;
                 repository.UpdateDatabase(User);
+                
             }
 
         }
@@ -88,10 +90,22 @@ namespace Study
                 return;
             }
             User.NeedSubjects.Remove(selectedCanSubject);
-            this.Close();
+            
             var red_win = new RedactProfileWindow(User);
             red_win.Show();
-            repository.UpdateDatabase(User);    
+            repository.UpdateDatabase(User);
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
+                string query = "delete from Interests where SubSubjectId =\'" + selectedCanSubject.InterestId + "'and " + "UserId=\'" + User.UserId+"'";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+
+                // + add to /remove from Interests 
+
+            }
+            
+            this.Close();
         }
 
         private void DeleteNeedHelpItem(object sender, RoutedEventArgs e)
