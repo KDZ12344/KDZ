@@ -122,6 +122,19 @@ namespace Study.Core
             }
         }
 
+        public void RemoveInterestFromDb(Interest interest, User user)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
+                string query = "delete from Interests where SubSubjectId =\'" + interest.InterestId + "'and " + "UserId=\'" + user.UserId + "'";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+
+                // + add to /remove from Interests 
+
+            }
+        }
         public void UpdateDatabase(User user)
         {
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
