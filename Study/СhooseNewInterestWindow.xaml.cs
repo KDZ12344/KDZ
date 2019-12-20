@@ -69,6 +69,7 @@ namespace Study
                 User.CanHelpWithSubjects.Remove(subject);
                 repository.Users[IndexUser].CanHelpWithSubjects.Remove(subject);
                 repository.UpdateDatabase(User);
+
             }
 
 
