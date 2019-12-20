@@ -20,19 +20,34 @@
         <Button Background="Indigo" Margin="75,19.8,9.6,20.2" Grid.Row="3" Foreground="White" FontSize="20" Click="Cancel_Click">Back to Menu</Button>
         <Button Background="Indigo" Margin="10.4,18.8,70.2,20.2" Grid.Column="1" Grid.Row="3" Foreground="White" FontSize="20" Click="ShowPerson_Click">Show Person</Button>
         <Button Background="Indigo" Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Click="deleteRequestClick" Height="25" Width="126" Margin="25.4,25.2,70.2,0.2" Grid.Column="1">Delete request</Button>
-        <Button Background="Indigo" Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RequestFriend_Click" Height="25" Width="126" Margin="75,25.2,20.6,0.2">Accept request</Button>
+        <Button Background="Indigo" Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="RequestFriend_Click" Height="25" Width="126" Margin="75,0,20.6,0.2">Accept request</Button>
         <TextBlock FontSize="50" Grid.ColumnSpan="2"  FontWeight="ExtraBlack" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Height="66" Margin="52,10,42.2,14.4" Width="349">Your requests</TextBlock>
-        
+
         <TabControl Grid.ColumnSpan="2" Margin="52,90,70.2,0.8" Grid.RowSpan="2" x:Name="TabRequests">
-            <TabItem Background="LightSteelBlue" Header="Incoming" x:Name="IncomingTabItem">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Sender.Login}"/>
-                </StackPanel>
+
+            <TabItem Background="LightSteelBlue" Header="Incoming" x:Name="IncomingTabItem" >
+                <TabItem.Content>
+                    <ListBox x:Name="IncomingListBox">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Sender.Login}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TabItem.Content>
             </TabItem>
+
             <TabItem Background="LightSteelBlue" Header="Outcoming" x:Name="OutcomingTabItem">
-                <StackPanel Orientation="Horizontal" >
-                    <TextBlock Text="{Binding Sender.Login}"/>
-                </StackPanel>
+
+                <TabItem.Content>
+                    <ListBox x:Name="OutcomingListBox">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Receiver.Login}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TabItem.Content>
             </TabItem>
         </TabControl>
     </Grid>

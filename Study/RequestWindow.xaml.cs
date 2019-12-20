@@ -57,24 +57,31 @@ namespace Study
         }
 
         private void UpdateWindow()
-        { 
-            //userRequests = repository.Requests.FindAll(requset => requset.Receiver == User);
-           // if (userIncomingRequests.Count == 0 || userRequests[0] == null)
-            //    userRequests.Add(new Request { Sender = new User { Name = "YouHaveNoRequests", Login = "0000", Password = "0000", UserId = 0 } });
-            IncomingTabItem.Content = userIncomingRequests;
-            OutcomingTabItem.Content = userOutcomingRequests;
-            // it could not work if we dont add constructor of User class ???
+        {            
+            IncomingListBox.ItemsSource = userIncomingRequests;
+            OutcomingListBox.ItemsSource = userOutcomingRequests;
         }
         private void ShowPerson_Click(object sender, RoutedEventArgs e)
         {
-            var reqUser = TabRequests.SelectedItem as User;
-            if (reqUser == null)
+            if (OutcomingTabItem.IsSelected == true)
             {
-                MessageBox.Show("Choose a request");
-                return;
+                var reqUser = OutcomingListBox.SelectedItem as Request;
+                User us0 = repository.GetUserById(reqUser.Receiver.UserId);
+                var anya = new FriendProfileWindow(us0);
+                anya.ShowDialog();
+                this.Close();
             }
-            var anya = new FriendProfileWindow(reqUser);
-            anya.ShowDialog();
+            if (IncomingTabItem.IsSelected == true)
+            {
+                var reqUser = IncomingListBox.SelectedItem as Request;
+                User us0 = repository.GetUserById(reqUser.Sender.UserId);
+                var anya = new FriendProfileWindow(us0);
+                anya.ShowDialog();
+                this.Close();
+            }
+
+
+
         }
         //private void DeleteRequest(User anyaItem)
         //{
@@ -87,13 +94,13 @@ namespace Study
         //    UpdateWindow();
         //    return;
         //}
-        private void deleteRequestClick(object sender, RoutedEventArgs e)
-        {
-            var anyaItem = RequestBox.SelectedItem as User;
-            DeleteRequest(anyaItem);
+        //private void deleteRequestClick(object sender, RoutedEventArgs e)
+        //{
+        //    var anyaItem = RequestBox.SelectedItem as User;
+        //    DeleteRequest(anyaItem);
 
 
-        }
+        //}
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
@@ -103,20 +110,46 @@ namespace Study
 
         private void RequestFriend_Click(object sender, RoutedEventArgs e)
         {
-            
-            User request = RequestBox.SelectedItem as User;
-            User.Friends.Add(request);
-            foreach (var item in repository.Requests)
+            User us = new User();
+            Request req0 = IncomingListBox.SelectedItem as Request;
+            if (OutcomingListBox.SelectedItem != null && OutcomingTabItem.IsSelected==true)
             {
-                //if (item.Receiver == User && item.Sender == request)
-                //{
-                //    item.Status = false;
-                //}
+                MessageBox.Show("You should wait until this user accept your request.");
             }
-            //repository.Users[User.UserId] = User;
-            //repository.UpdateDatabase(User);
-            DeleteRequest(request);
-            DialogResult = true;
+            else
+            {
+                us = repository.GetUserById(req0.Sender.UserId);
+                User.Friends.Add(us);
+                repository.Requests.Remove(IncomingListBox.SelectedItem as Request);
+                userIncomingRequests.Remove(IncomingListBox.SelectedItem as Request);
+                this.Close();
+                var reqWin = new RequestWindow(User);
+                reqWin.Show();
+            }
+            
         }
+
+        private void deleteRequestClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //private void RequestFriend_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //    User request = RequestBox.SelectedItem as User;
+        //    User.Friends.Add(request);
+        //    foreach (var item in repository.Requests)
+        //    {
+        //        //if (item.Receiver == User && item.Sender == request)
+        //        //{
+        //        //    item.Status = false;
+        //        //}
+        //    }
+        //repository.Users[User.UserId] = User;
+        //repository.UpdateDatabase(User);
+        //    DeleteRequest(request);
+        //    DialogResult = true;
+        //}
     }
 }

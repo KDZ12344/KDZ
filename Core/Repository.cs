@@ -53,7 +53,7 @@ namespace Study.Core
                     Request req = new Request
                     {
                         Sender = GetUserById(int.Parse(reader.GetValue(0).ToString())),
-                        Receiver = GetUserById(int.Parse(reader.GetValue(0).ToString()))
+                        Receiver = GetUserById(int.Parse(reader.GetValue(1).ToString()))
                     };
                     requests.Add(req);
                 }
