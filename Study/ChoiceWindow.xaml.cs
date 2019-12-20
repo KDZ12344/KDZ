@@ -101,6 +101,7 @@ namespace Study
             }
             else
             {
+                MessageBox.Show("There are no suitable users for you. Please, change your interests or wait.");
                 this.Close();
             }
             
