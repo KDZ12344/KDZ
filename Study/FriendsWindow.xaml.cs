@@ -1,6 +1,7 @@
 ﻿using Study.Core;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,12 +60,23 @@ namespace Study
             }
             var friend = FriendsBox.SelectedItem as User;
             User.Friends.Remove(friend);
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
+                string query = "delete from Friend where 'Sender'='" + User.UserId + "' and 'Receiver'='" + friend.UserId + "'";// + " and 'Receiver' =" + User.UserId + " or 'Receiver' =" + friend.UserId;
+                SqlCommand cmd = new SqlCommand(query, connection);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+
+                // + add to /remove from Interests 
+
+            }
             repository.Users[User.UserId] = User;
-            //repository.UpdateDatabase(User);
+            repository.UpdateDatabase(User);
             this.Close();
             var frWin = new FriendsWindow(User);
             frWin.Show();
             
+
         }
 
         private void RequestFriend_Click(object sender, RoutedEventArgs e)
@@ -75,8 +87,9 @@ namespace Study
 
         private void ShowFriends_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
-            return;
+            this.Close();
+            var menu = new UserMenu(User);
+            menu.Show();
         }
 
         private void FriendsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

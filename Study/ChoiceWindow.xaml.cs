@@ -32,7 +32,7 @@ namespace Study
         {
             meUser = me;
             List<User> buddies = repos.GetSuitableBuddies(me);
-            Buddies = buddies;
+            Buddies = buddies; 
             GetBuddies();
             
             if (buddies.Count() > 0)
@@ -41,7 +41,7 @@ namespace Study
                 curBuddy = buddies[0];
                 InitializeComponent();
                 i = buddies.Count();
-
+                Buddies = buddies;
                 UserControl1(curBuddy);
                 
                 
@@ -67,20 +67,21 @@ namespace Study
             myProfile.Show();
         }
 
-        int k = 1;
+        int k = 0;
         private void Button_Next_Click(object sender, RoutedEventArgs e)
         {
             if (k < i)
             {
                 UserControl1(Buddies[k]);
+                k += 1;
             }
             else
-
             {
                 k = 0;
-                UserControl1(Buddies[k]);
+                MessageBox.Show("That's all!");
+                this.Close();
             }
-            k += 1;
+            
         }
 
         private void UserControl1(User item)

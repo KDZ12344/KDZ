@@ -63,7 +63,7 @@ namespace Study
         }
         private void ShowPerson_Click(object sender, RoutedEventArgs e)
         {
-            if (OutcomingTabItem.IsSelected == true)
+            if (OutcomingTabItem.IsSelected == true && OutcomingListBox.SelectedItem != null)
             {
                 var reqUser = OutcomingListBox.SelectedItem as Request;
                 User us0 = repository.GetUserById(reqUser.Receiver.UserId);
@@ -71,7 +71,7 @@ namespace Study
                 anya.ShowDialog();
                 this.Close();
             }
-            if (IncomingTabItem.IsSelected == true)
+            if (IncomingTabItem.IsSelected == true && IncomingListBox.SelectedItem != null)
             {
                 var reqUser = IncomingListBox.SelectedItem as Request;
                 User us0 = repository.GetUserById(reqUser.Sender.UserId);

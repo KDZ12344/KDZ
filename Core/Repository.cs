@@ -348,10 +348,17 @@ namespace Study.Core
                     }
                     listfriends = listfriends + ")";
                     listfriends = listfriends.Replace(" and )", ")");
+                    if (listfriends == "()")
+                    {
+                        listfriends = "";
+                    }
                     listsubjectIds = listsubjectIds + ")";
                     listsubjectIds = listsubjectIds.Replace(" or )", ")");
-
-                    string query = "SELECT Users.UserId, COUNT(*) as NumOfGoodSubjects FROM Interests join Users on Users.UserId = Interests.UserId WHERE Users.UserId != " + user.UserId + "and "+listfriends+ " and Relation_Type = 1 and " + listsubjectIds + " group by Users.UserId order by NumOfGoodSubjects desc";
+                    if (listsubjectIds == "()")
+                    {
+                        listsubjectIds = "";
+                    }
+                    string query = "SELECT Users.UserId, COUNT(*) as NumOfGoodSubjects FROM Interests join Users on Users.UserId = Interests.UserId WHERE Users.UserId != " + user.UserId + " and "+listfriends+ " and Relation_Type = 1 and " + listsubjectIds + " group by Users.UserId order by NumOfGoodSubjects desc";
                     SqlCommand command = new SqlCommand(query, connection);
                     connection.Open();
 
