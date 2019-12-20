@@ -42,7 +42,10 @@ namespace Study
         private void ShowChoice_Click(object sender, RoutedEventArgs e)
         {
             var s2 = new ChoiceWindow(User);
-            s2.ShowDialog();
+            if (s2.ShowDialog() == false)
+            {
+                return;
+            }
         }
 
         private void ShowFriends_Click(object sender, RoutedEventArgs e)

@@ -17,7 +17,9 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderThickness="30" BorderBrush="LightSteelBlue" Grid.RowSpan="4" Grid.ColumnSpan="2"></Border>
+        <Border BorderThickness="30" BorderBrush="LightSteelBlue" Grid.RowSpan="4" Grid.ColumnSpan="2">
+            <TextBlock x:Name="NumberOfFoundUsers" Foreground="White" Margin="231,6,10.333,399.667"><Run /></TextBlock>
+        </Border>
         <Image Width="149" Height="159" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="avatarImage" RenderTransformOrigin="0.188,0.086" Grid.ColumnSpan="2" Margin="159,-15,134,98"/>
         <ListBox Foreground="Blue" x:Name="CanHelpWithListBox" Width="300" Height="90" Grid.Row="2" SelectionChanged="CanHelpWithListBox_SelectionChanged_1" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
