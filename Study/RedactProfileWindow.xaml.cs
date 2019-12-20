@@ -49,6 +49,11 @@ namespace Study
                 MessageBox.Show("Name's length should be more than 0 symbols.");
                 return;
             }
+            else if (BioTextBox.Text.Length > 100)
+            {
+                MessageBox.Show("There is a limit of a 100 symbols.");
+                return;
+            }
             else if (!DateTime.TryParse(BirthDateTextBox.Text, out DateTime birthdate1))
             {
                 MessageBox.Show("Birthdate should be in format 2000-1-1");

@@ -31,7 +31,7 @@
             <TextBlock Width="170" Height="20" Foreground="White"  Text="Major"/>
             <TextBox Width="170" Height="20" x:Name="MajorTextBox"/>
             <TextBlock Width="170" Height="20" Foreground="White"  Text="Bio"/>
-            <TextBox Width="170" Height="200" x:Name="BioTextBox"/>
+            <TextBox Width="170" Height="200" x:Name="BioTextBox"  TextWrapping="Wrap"/>
         </StackPanel>
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2"  FontSize="50"  FontWeight="ExtraBlack" Foreground="White" Text="Your profile" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Button Background="Indigo" Margin="174,30,10,130" Grid.Row="2" Foreground="White" FontSize="10" Click="AddNeedHelpItem" Grid.Column="1" RenderTransformOrigin="0.429,1.941">Add</Button>

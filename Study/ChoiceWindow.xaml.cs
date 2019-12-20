@@ -27,14 +27,9 @@ namespace Study
         public delegate void MethodContainer();
         int i;
         User curBuddy = new User();
-        private async void Waiting()
-        {           
-            await Task.Delay(200);          
-        }
         public ChoiceWindow(User me)
         {
             meUser = me;
-            Timer timer = new Timer();
             List<User> buddies = repos.GetSuitableBuddies(me);
             Buddies = buddies;
             
@@ -78,9 +73,9 @@ namespace Study
 
         private void UserControl1(User item)
         {
-            NameTextBox.Text = item.Name;
-            MajorTextBox.Text = item.Major;
-            BioTextBox.Text = item.Bio;
+            NameTextBlock.Text = item.Name;
+            MajorTextBlock.Text = item.Major;
+            BioTextBlock.Text = item.Bio;
             //LoginTextBlock.Text = item.Login;
             //AgeTextBlock.Text = (Math.Round((DateTime.Now - item.BirthDate).TotalDays / 365)).ToString() + " years";
             CanHelpWithListBox.ItemsSource = item.CanHelpWithSubjects;
