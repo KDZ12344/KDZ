@@ -30,8 +30,10 @@ namespace Study
         }
         private void UpdateWindow()
         {
-            var uriSource = new Uri(@"/Study;component/" + User.AvatarAdress, UriKind.Relative);
-            avatarImage.Source = new BitmapImage(uriSource);
+            if (User.AvatarAdress.Trim() != "none" && User.AvatarAdress.Trim() != "")
+            {
+                avatarImage.Source = new BitmapImage(new Uri(User.AvatarAdress));
+            }
 
             NameTextBlock.Text = User.Name;
             VKTextBlock.Text = User.VKID;
@@ -50,14 +52,5 @@ namespace Study
             this.Close();
         }
 
-        private void ListCanHelpWith_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ListNeedHelpWith_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
