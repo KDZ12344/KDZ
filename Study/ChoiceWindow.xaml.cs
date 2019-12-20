@@ -33,6 +33,7 @@ namespace Study
             meUser = me;
             List<User> buddies = repos.GetSuitableBuddies(me);
             Buddies = buddies;
+            GetBuddies();
             
             if (buddies.Count() > 0)
             {
@@ -52,6 +53,12 @@ namespace Study
                 DialogResult = false;
                 return;
             }
+        }
+        private void GetBuddies()
+        {
+            Buddies = repos.GetSuitableBuddies(meUser);
+            var leak = repos.Requests.FindAll(req => req.Sender == meUser);
+            Buddies = Buddies.FindAll(body => !leak.Any(leakUser => leakUser.Receiver == body) );
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -95,6 +102,8 @@ namespace Study
             repos.FriendRequest(meUser, curBuddy);
             MessageBox.Show("Your request has been sent!");
             Buddies.Remove(curBuddy);
+            GetBuddies();
+
             if (Buddies.Count() > 0)
             {
                 UserControl1(Buddies[0]);
