@@ -89,6 +89,7 @@ namespace Study
         {
             repos.FriendRequest(meUser, curBuddy);
             MessageBox.Show("Your request has been sent!");
+            Buddies.Remove(curBuddy);
         }
 
         private void CanHelpWithListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
