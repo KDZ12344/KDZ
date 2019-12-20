@@ -72,8 +72,9 @@ namespace Study
                 User.BirthDate = DateTime.Parse(BirthDateTextBox.Text);
                 User.Bio = BioTextBox.Text;
                 User.Major = MajorTextBox.Text;
-                
-                repository.Users[User.UserId] = User;
+
+                var indexU = repository.Users.IndexOf(User);
+                repository.Users[indexU] = User;
                 repository.UpdateDatabase(User);
             }
 
