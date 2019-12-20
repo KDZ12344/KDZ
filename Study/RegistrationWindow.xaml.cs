@@ -45,11 +45,11 @@ namespace Study
             OpenFileDialog open = new OpenFileDialog();
             if (open.ShowDialog() == true)
             {
-                File.Copy(open.FileName, $"user{rep.Users.Count + 21}{Path.GetExtension(open.FileName)}");
-                Uri openUri = new Uri($"user{rep.Users.Count + 21}{Path.GetExtension(open.FileName)}", UriKind.Relative);
-
+                File.Copy(open.FileName, $"user{rep.Users.Count + 1}{Path.GetExtension(open.FileName)}");
+                Uri openUri = new Uri(open.FileName);
                 user2.AvatarAdress = open.FileName;
                 avatarImage.Source = new BitmapImage(openUri);
+
                
             }
         }
