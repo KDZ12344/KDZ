@@ -22,6 +22,12 @@
         <Button Background="Indigo" Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Click="deleteFriend_Click" Height="25" Width="136" Grid.Column="1" Margin="10.4,25.2,75.2,0.2">Delete friend</Button>
         <Button Background="Indigo" Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RequestFriend_Click" Height="25" Width="137" Margin="75,25.2,9.6,0.2">Open friend requests</Button>
         <TextBlock FontSize="50" Grid.ColumnSpan="2"  FontWeight="ExtraBlack" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Height="66" Margin="68,12" Width="306">Your friends</TextBlock>
-        <ListBox Grid.ColumnSpan="2" Grid.Row="1" Margin="75,0,75,0" x:Name="FriendsBox" SelectionChanged="FriendsBox_SelectionChanged"/>
+        <ListBox Grid.ColumnSpan="2" Grid.Row="1" Margin="75,0,75,0" x:Name="FriendsBox" SelectionChanged="FriendsBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Login}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

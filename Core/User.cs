@@ -34,6 +34,7 @@ namespace Study.Core
         {
             List<Interest> canHelpWithSubjects = new List<Interest>();
             List<Interest> needSubjects = new List<Interest>();
+            Friends = new List<User>();
             NeedSubjects = needSubjects;
             CanHelpWithSubjects = canHelpWithSubjects;
         }

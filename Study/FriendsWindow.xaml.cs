@@ -26,12 +26,9 @@ namespace Study
         {
             InitializeComponent();
             User = user;
-            UpdateWindow();
-        }
-        private void UpdateWindow()
-        {
             FriendsBox.ItemsSource = User.Friends;
         }
+        
 
 
         private void ShowFriend_Click(object sender, RoutedEventArgs e)
@@ -42,8 +39,8 @@ namespace Study
                 return;
             }
             var cf = new FriendProfileWindow(User);
-            if (cf.ShowDialog() == true)
-                UpdateWindow();
+            //if (cf.ShowDialog() == true)
+               // UpdateWindow();
 
         }
 
@@ -64,7 +61,7 @@ namespace Study
             User.Friends.Remove(friend);
             repository.Users[User.UserId] = User;
             repository.UpdateDatabase(User);
-            UpdateWindow();
+            //UpdateWindow();
 
         }
 

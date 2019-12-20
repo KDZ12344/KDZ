@@ -75,11 +75,19 @@ namespace Study
 
         private void RequestFriend_Click(object sender, RoutedEventArgs e)
         {
-            var anyaItem = RequestBox.SelectedItem as User;
-            User.Friends.Add(anyaItem);
-            repository.Users[User.UserId] = User;
-            repository.UpdateDatabase(User);
-            DeleteRequest(anyaItem);
+            
+            User request = RequestBox.SelectedItem as User;
+            User.Friends.Add(request);
+            foreach (var item in repository.Requests)
+            {
+                if (item.Receiver == User && item.Sender == request)
+                {
+                    item.Status = false;
+                }
+            }
+            //repository.Users[User.UserId] = User;
+            //repository.UpdateDatabase(User);
+            DeleteRequest(request);
             DialogResult = true;
         }
     }

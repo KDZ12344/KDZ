@@ -78,8 +78,11 @@ namespace Study
 
         private void UserControl1(User item)
         {
-            LoginTextBlock.Text = item.Login;
-            AgeTextBlock.Text = (Math.Round((DateTime.Now - item.BirthDate).TotalDays / 365)).ToString() + " years";
+            NameTextBox.Text = item.Name;
+            MajorTextBox.Text = item.Major;
+            BioTextBox.Text = item.Bio;
+            //LoginTextBlock.Text = item.Login;
+            //AgeTextBlock.Text = (Math.Round((DateTime.Now - item.BirthDate).TotalDays / 365)).ToString() + " years";
             CanHelpWithListBox.ItemsSource = item.CanHelpWithSubjects;
             var uriSource = new Uri(@"/Study;component/" + item.AvatarAdress, UriKind.Relative);
             avatarImage.Source = new BitmapImage(uriSource);
@@ -90,6 +93,11 @@ namespace Study
         {
             repos.FriendRequest(meUser, curBuddy);
             MessageBox.Show("Your request has been sent!");
+        }
+
+        private void CanHelpWithListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 

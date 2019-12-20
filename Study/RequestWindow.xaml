@@ -22,7 +22,13 @@
         <Button Background="Indigo" Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Click="deleteRequestClick" Height="25" Width="126" Margin="25.4,25.2,70.2,0.2" Grid.Column="1">Delete request</Button>
         <Button Background="Indigo" Grid.Row="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RequestFriend_Click" Height="25" Width="126" Margin="75,25.2,20.6,0.2">Accept request</Button>
         <TextBlock FontSize="50" Grid.ColumnSpan="2"  FontWeight="ExtraBlack" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Height="66" Margin="52,10,42.2,14.4" Width="349">Your requests</TextBlock>
-        <ListBox Grid.ColumnSpan="2" Grid.Row="1" Margin="75,0,75,0" DisplayMemberPath="Name" x:Name="RequestBox"/>
+        <ListBox Grid.ColumnSpan="2" Grid.Row="1" Margin="75,0,75,0" x:Name="RequestBox">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Sender.Login}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
 

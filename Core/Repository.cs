@@ -32,6 +32,7 @@ namespace Study.Core
             GetSubjects();
             GetInterests();
             GetUsers();
+            GetFriends();
             Users = users;
             Interests = interests;
             Subjects = subjects;
@@ -205,6 +206,53 @@ namespace Study.Core
 
         }
 
+        public User GetUserById(int Id)
+        {
+            foreach (var item in users)
+            {
+                if (item.UserId == Id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        public void GetFriends()
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
+                string queryString = "SELECT * FROM Friends";
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int SenderId = int.Parse(reader.GetValue(0).ToString());
+                    int ReceiverId = int.Parse(reader.GetValue(1).ToString());
+                    var StatusOO = reader.GetValue(2).ToString(); ;
+                    foreach (var item in users)
+                    {
+                        if (item.UserId == SenderId && !item.Friends.Contains(GetUserById(ReceiverId)))
+                        {
+                            if (StatusOO == "False")
+                            {
+                                item.Friends.Add(GetUserById(ReceiverId));
+                            }                           
+                        }
+                        else if((item.UserId == ReceiverId && !item.Friends.Contains(GetUserById(SenderId))))
+                        {
+                            if (StatusOO == "False")
+                            {
+                                item.Friends.Add(GetUserById(SenderId));
+                            }
+                        }
+                        
+                    }
+
+
+                }
+            }
+        }
         public void FriendRequest(User sender, User receiver)
         {
             var request = new Request
@@ -216,7 +264,7 @@ namespace Study.Core
             requests.Add(request);
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
-                string queryString = "insert into Friends values(" + sender.UserId + "," + receiver.UserId + "," + 1;
+                string queryString = "insert into Friends values(" + sender.UserId + "," + receiver.UserId + ", 1)";
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
                 command.ExecuteNonQuery();
