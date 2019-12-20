@@ -71,7 +71,7 @@ namespace Study
 
             {
                 k = 0;
-                UserControl1(Buddies[i]);
+                UserControl1(Buddies[k]);
             }
             k += 1;
         }
