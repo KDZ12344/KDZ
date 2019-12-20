@@ -25,7 +25,7 @@ namespace Study
         private void UpdateWindow()
         {
 
-            if (User.AvatarAdress.Trim() != "")
+            if (User.AvatarAdress.Trim() != "none" && User.AvatarAdress.Trim() != "")
             {
                 avatarImage.Source = new BitmapImage(new Uri(User.AvatarAdress));
                 //avatarImage.Source = new ImageSourceConverter().ConvertFromString(User.AvatarAdress) as ImageSource;

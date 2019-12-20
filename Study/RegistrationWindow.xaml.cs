@@ -56,8 +56,6 @@ namespace Study
         
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
-            int k = 1;
-            
             if (LoginTextBox.Text.Length > 6 && NameTextBox.Text.Length > 0 && PasswordBox.Password.Length > 0
                 && BioTextBox.Text.Length > 0 && VKTextBox.Text.Length > 0 && TGTextBox.Text.Length > 0)
             {
@@ -68,7 +66,10 @@ namespace Study
                 if (user2 != null)
                 {
                     rep.SavingToDatabase(user1.Login, user1.TelegramID, user1.VKID, user1.Name, user1.Password, user1.BirthDate, user1.DateAdded.Value, user2.AvatarAdress, user1.Bio, user1.Major);
-
+                    user1.AvatarAdress = user2.AvatarAdress;
+                    var userMenu = new UserMenu(user1);
+                    userMenu.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -92,9 +93,7 @@ namespace Study
                 }
             }
 
-            var userMenu = new UserMenu(user1);
-            userMenu.Show();
-            this.Close();
+            
             
             
         }
