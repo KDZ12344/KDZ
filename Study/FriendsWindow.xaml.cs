@@ -61,8 +61,7 @@ namespace Study
             User.Friends.Remove(friend);
             repository.Users[User.UserId] = User;
             repository.UpdateDatabase(User);
-            //UpdateWindow();
-
+            
         }
 
         private void RequestFriend_Click(object sender, RoutedEventArgs e)

@@ -46,8 +46,7 @@ namespace Study
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            var friendWin = new FriendProfileWindow(User);
-            friendWin.Show();
+            
             this.Close();
         }
 

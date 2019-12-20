@@ -33,10 +33,31 @@ namespace Study.Core
             GetInterests();
             GetUsers();
             GetFriends();
+            GetRequests();
             Users = users;
             Interests = interests;
             Subjects = subjects;
             Requests = requests;
+        }
+
+        private void GetRequests()
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {               
+                string queryString = "SELECT * FROM Requests";
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Request req = new Request
+                    {
+                        Sender = GetUserById(int.Parse(reader.GetValue(0).ToString())),
+                        Receiver = GetUserById(int.Parse(reader.GetValue(0).ToString()))
+                    };
+                    requests.Add(req);
+                }
+            }
         }
 
         public void GetUsers() 
@@ -221,7 +242,7 @@ namespace Study.Core
         {
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
-                string queryString = "SELECT * FROM Friends";
+                string queryString = "SELECT * FROM Friend";
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -229,27 +250,18 @@ namespace Study.Core
                 {
                     int SenderId = int.Parse(reader.GetValue(0).ToString());
                     int ReceiverId = int.Parse(reader.GetValue(1).ToString());
-                    var StatusOO = reader.GetValue(2).ToString(); ;
+                    
                     foreach (var item in users)
                     {
-                        if (item.UserId == SenderId && !item.Friends.Contains(GetUserById(ReceiverId)))
-                        {
-                            if (StatusOO == "False")
-                            {
-                                item.Friends.Add(GetUserById(ReceiverId));
-                            }                           
+                        if (item.UserId == ReceiverId)
+                        {  
+                            item.Friends.Add(GetUserById(SenderId));
                         }
-                        else if((item.UserId == ReceiverId && !item.Friends.Contains(GetUserById(SenderId))))
+                        if (item.UserId == SenderId)
                         {
-                            if (StatusOO == "False")
-                            {
-                                item.Friends.Add(GetUserById(SenderId));
-                            }
-                        }
-                        
+                            item.Friends.Add(GetUserById(ReceiverId));
+                        }               
                     }
-
-
                 }
             }
         }
@@ -258,13 +270,12 @@ namespace Study.Core
             var request = new Request
             {
                 Sender = sender,
-                Receiver = receiver,
-                Status = true
+                Receiver = receiver        
             };
             requests.Add(request);
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
-                string queryString = "insert into Friends values(" + sender.UserId + "," + receiver.UserId + ", 1)";
+                string queryString = "insert into Requests values(" + sender.UserId + "," + receiver.UserId + ")";
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -298,6 +309,7 @@ namespace Study.Core
 
                 string listsubjectIds = "(";
                 string listfriends = "(";
+                //string listrequest
                 if (user.NeedSubjects.Count() > 0)
                 {
                     foreach (var item in user.NeedSubjects)

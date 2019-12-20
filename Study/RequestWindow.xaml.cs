@@ -80,10 +80,10 @@ namespace Study
             User.Friends.Add(request);
             foreach (var item in repository.Requests)
             {
-                if (item.Receiver == User && item.Sender == request)
-                {
-                    item.Status = false;
-                }
+                //if (item.Receiver == User && item.Sender == request)
+                //{
+                //    item.Status = false;
+                //}
             }
             //repository.Users[User.UserId] = User;
             //repository.UpdateDatabase(User);
