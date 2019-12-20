@@ -143,10 +143,9 @@ namespace Study
             OpenFileDialog open = new OpenFileDialog();
             if (open.ShowDialog() == true)
             {
+                File.Copy(open.FileName, $"user{repository.Users.Count + 1}{Path.GetExtension(open.FileName)}");
                 Uri openUri = new Uri(open.FileName);
-                var toSave = DateTime.Now.ToString() + Path.GetExtension(open.FileName);
-                var imagePath = Path.Combine("C:\\" + toSave);
-                User.AvatarAdress = imagePath;
+                User.AvatarAdress = open.FileName;
                 avatarImage.Source = new BitmapImage(openUri);
             }
             else
