@@ -276,27 +276,30 @@ namespace Study.Core
    
         public void FriendRequest(User sender, User receiver)
         {
-            
             var request = new Request
             {
                 Sender = sender,
                 Receiver = receiver        
             };
-            if (!requests.Contains(request))
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
-                requests.Add(request);
-                using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+                string query = "SELECT * FROM Requests WHERE Sender=" + sender.UserId + "and Receiver=" + receiver.UserId;
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (!reader.Read())
                 {
+                    requests.Add(request);
                     string queryString = "insert into Requests values(" + sender.UserId + "," + receiver.UserId + ")";
-                    SqlCommand command = new SqlCommand(queryString, connection);
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
+                    SqlCommand command1 = new SqlCommand(queryString, connection);
+                    command1.ExecuteNonQuery();
                 }
-            }  
+                else
+                {
+                    MessageBox.Show("Request had already been sent!");
+                }
+            }
         }
-                
-        
 
         public User Authorization(string logtb, string passtb)
         {
@@ -311,7 +314,17 @@ namespace Study.Core
             return null;
             
         }
-
+        public bool IsInRequests(User sender, User receiver)
+        {
+            foreach (var req in requests)
+            {
+                if (req.Sender == sender && req.Receiver == receiver)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public List<User> GetSuitableBuddies(User user) // выбрать всех людей из базы данных, подходящих по предметам, ранжировать по количеству подходящих предметов
         {
             
@@ -347,10 +360,14 @@ namespace Study.Core
                     {
                         foreach (var buddy in users)
                         {
+                            
                             if (buddy.UserId == int.Parse(reader.GetValue(0).ToString()))
-
                             {
-                                suitablebuddies.Add(buddy);
+                                if (!IsInRequests(user, buddy))
+                                {
+                                    suitablebuddies.Add(buddy);
+                                }
+                                
                             }
                         }
                     }
