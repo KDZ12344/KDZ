@@ -65,6 +65,7 @@ namespace Study
                 UserControl1(Buddies[k]);
             }
             else
+
             {
                 MessageBox.Show("That's all!", "Want to see buddies once again?", MessageBoxButton.YesNo);
             }
