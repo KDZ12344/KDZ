@@ -81,31 +81,12 @@ namespace Study
             }
 
 
-
         }
-        //private void DeleteRequest(User anyaItem)
-        //{
-        //    if (anyaItem == null)
-        //    {
-        //        MessageBox.Show("Choose a request");
-        //        return;
-        //    }
-        //    Tab.Remove(userRequests.First(item => item.Receiver == anyaItem));
-        //    UpdateWindow();
-        //    return;
-        //}
-        //private void deleteRequestClick(object sender, RoutedEventArgs e)
-        //{
-        //    var anyaItem = RequestBox.SelectedItem as User;
-        //    DeleteRequest(anyaItem);
-
-
-        //}
+        
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
-            return;
+            this.Close();
         }
 
         private void RequestFriend_Click(object sender, RoutedEventArgs e)
@@ -121,7 +102,7 @@ namespace Study
                 us = repository.GetUserById(req0.Sender.UserId);
                 User.Friends.Add(us);
                 repository.Requests.Remove(IncomingListBox.SelectedItem as Request);
-                userIncomingRequests.Remove(IncomingListBox.SelectedItem as Request);
+                userIncomingRequests.Remove(IncomingListBox.SelectedItem as Request); // delete from database
                 this.Close();
                 var reqWin = new RequestWindow(User);
                 reqWin.Show();
@@ -131,25 +112,28 @@ namespace Study
 
         private void deleteRequestClick(object sender, RoutedEventArgs e)
         {
+            if (OutcomingTabItem.IsSelected == true)
+            {
+                var reqUser = OutcomingListBox.SelectedItem as Request;
+                userOutcomingRequests.Remove(reqUser);
+                repository.Requests.Remove(reqUser);
+                this.Close();
+                var reqWin = new RequestWindow(User);
+                reqWin.Show();// delete from database
+
+            }
+            if (IncomingTabItem.IsSelected == true)
+            {
+                var reqUser = IncomingListBox.SelectedItem as Request;
+                userIncomingRequests.Remove(reqUser);
+                repository.Requests.Remove(reqUser);
+                this.Close();
+                var reqWin = new RequestWindow(User);
+                reqWin.Show(); // delete from database
+            }
 
         }
 
-        //private void RequestFriend_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //    User request = RequestBox.SelectedItem as User;
-        //    User.Friends.Add(request);
-        //    foreach (var item in repository.Requests)
-        //    {
-        //        //if (item.Receiver == User && item.Sender == request)
-        //        //{
-        //        //    item.Status = false;
-        //        //}
-        //    }
-        //repository.Users[User.UserId] = User;
-        //repository.UpdateDatabase(User);
-        //    DeleteRequest(request);
-        //    DialogResult = true;
-        //}
+        
     }
 }
