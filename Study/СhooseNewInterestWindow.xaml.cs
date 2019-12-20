@@ -21,6 +21,7 @@ namespace Study
     public partial class СhooseNewInterestWindow : Window
     {
         public User User { get; set; }
+        public int IndexUser { get; set; }
 
         public int Flag { get; set; }
         private Repository repository = Factory.Instance.GetRepository();
@@ -28,6 +29,7 @@ namespace Study
         {
             InitializeComponent();
             User = user;
+            IndexUser = repository.Users.IndexOf(User);
             Flag = flag;
             if (flag == 1) // 1 - delete needInterest, 3 - add new needsubject
                 comboBoxInterests.ItemsSource = User.NeedSubjects;
@@ -55,20 +57,36 @@ namespace Study
             }
             var subject = comboBoxInterests.SelectedItem as Interest;
             if (Flag == 1)
+            {
                 User.NeedSubjects.Remove(subject);
+                repository.Users[IndexUser].NeedSubjects.Remove(subject);
+                repository.UpdateDatabase(User);
+            }
 
             else if (Flag == 2)
+            {
                 User.CanHelpWithSubjects.Remove(subject);
+                repository.Users[IndexUser].CanHelpWithSubjects.Remove(subject);
+                repository.UpdateDatabase(User);
+            }
 
 
             else if (Flag == 3)
-                User.NeedSubjects.Add(subject);
-            else if (Flag == 4)
-                User.CanHelpWithSubjects.Add(subject);
+            {
 
-            
-          
-            
+                User.NeedSubjects.Add(subject);
+                repository.Users[IndexUser].NeedSubjects.Add(subject);
+                repository.UpdateDatabase(User);
+            }
+            else if (Flag == 4)
+            {
+                User.CanHelpWithSubjects.Add(subject);
+                repository.Users[IndexUser].CanHelpWithSubjects.Add(subject);
+                repository.UpdateDatabase(User);
+            }
+
+
+
             var new_red = new RedactProfileWindow(User);
             new_red.Show();
             this.Close();
