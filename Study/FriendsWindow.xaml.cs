@@ -61,6 +61,7 @@ namespace Study
             User.Friends.Remove(friend);
             repository.Users[User.UserId] = User;
             repository.UpdateDatabase(User);
+            FriendsBox.ItemsSource = User.Friends;
             
         }
 

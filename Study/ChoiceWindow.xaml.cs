@@ -26,6 +26,7 @@ namespace Study
         Repository repos = Factory.Instance.GetRepository();
         public delegate void MethodContainer();
         int i;
+        public int UserNumber { get; set; }
         User curBuddy = new User();
         public ChoiceWindow(User me)
         {
@@ -35,19 +36,21 @@ namespace Study
             
             if (buddies.Count() > 0)
             {
+                UserNumber = buddies.Count;
+                curBuddy = buddies[0];
                 InitializeComponent();
                 i = buddies.Count();
+
+                UserControl1(curBuddy);
                 
-                UserControl1(buddies[0]);
-                curBuddy = buddies[0];
                 
     // сделать чтобы по нажатию next показывался след. юзер
             }
             else
             {               
                 MessageBox.Show("There are no suitable users for you. Please, change your interests or wait.");
-                var myprof = new RedactProfileWindow(me);
-                myprof.Show();   
+                DialogResult = false;
+                return;
             }
         }
 
@@ -67,14 +70,15 @@ namespace Study
             else
 
             {
-                MessageBox.Show("That's all!");
-                this.Close();
+                k = 0;
+                UserControl1(Buddies[i]);
             }
-            k += 1;            
+            k += 1;
         }
 
         private void UserControl1(User item)
         {
+            NumberOfFoundUsers.Text = $"Number of found users: {UserNumber}";
             NameTextBlock.Text = item.Name;
             MajorTextBlock.Text = item.Major;
             BioTextBlock.Text = item.Bio;
@@ -97,6 +101,7 @@ namespace Study
             }
             else
             {
+                MessageBox.Show("There are no suitable users for you. Please, change your interests or wait.");
                 this.Close();
             }
             
