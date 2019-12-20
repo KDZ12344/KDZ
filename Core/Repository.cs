@@ -135,6 +135,20 @@ namespace Study.Core
 
             }
         }
+
+        public void AddInterestToDb(Interest interest, User user, int Rel)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
+            {
+                string query = "insert into Interests values(=\'" + interest.InterestId +"'," + user.UserId + ","+Rel;
+                SqlCommand cmd = new SqlCommand(query, connection);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+
+                // + add to /remove from Interests 
+
+            }
+        }
         public void UpdateDatabase(User user)
         {
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))

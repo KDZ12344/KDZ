@@ -76,6 +76,7 @@ namespace Study
                 var indexU = repository.Users.IndexOf(User);
                 repository.Users[indexU] = User;
                 repository.UpdateDatabase(User);
+                this.Close();
                 
             }
 
