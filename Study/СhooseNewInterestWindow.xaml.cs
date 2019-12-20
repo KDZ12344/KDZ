@@ -83,14 +83,12 @@ namespace Study
                 
 
                 User.NeedSubjects.Add(subject);
-                repository.Users[IndexUser].NeedSubjects.Add(subject);
                 repository.UpdateDatabase(User);
             }
             else if (Flag == 4)
             {
                 repository.AddInterestToDb(subject, User, 1);
                 User.CanHelpWithSubjects.Add(subject);
-                repository.Users[IndexUser].CanHelpWithSubjects.Add(subject);
                 repository.UpdateDatabase(User);
             }
 

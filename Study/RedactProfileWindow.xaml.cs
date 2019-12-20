@@ -167,5 +167,9 @@ namespace Study
             this.Close();
         }
 
+        private void NameTextBlock_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
     }
 }

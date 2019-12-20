@@ -140,7 +140,7 @@ namespace Study.Core
         {
             using (SqlConnection connection = new SqlConnection("Data Source = (local)\\SQLEXPRESS; Initial Catalog = UsersDatabaseKDZ; Integrated Security = True; Pooling = False"))
             {
-                string query = "insert into Interests values(=\'" + interest.InterestId +"'," + user.UserId + ","+Rel;
+                string query = "insert into Interests values(\'" + interest.InterestId +"'," + user.UserId + ","+Rel+")";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 connection.Open();
                 cmd.ExecuteNonQuery();
