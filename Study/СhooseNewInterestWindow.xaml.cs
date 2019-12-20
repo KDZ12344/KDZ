@@ -43,6 +43,7 @@ namespace Study
                 var new_list = interests.Except(canhelpsubj);
                 new_list = new_list.Except(needsubj);              
                 comboBoxInterests.ItemsSource = new_list;
+                
             }
            
                 
@@ -68,11 +69,18 @@ namespace Study
                 User.CanHelpWithSubjects.Remove(subject);
                 repository.Users[IndexUser].CanHelpWithSubjects.Remove(subject);
                 repository.UpdateDatabase(User);
+
             }
 
 
             else if (Flag == 3)
             {
+                
+                
+                    repository.AddInterestToDb(subject, User, 0);
+
+
+                
 
                 User.NeedSubjects.Add(subject);
                 repository.Users[IndexUser].NeedSubjects.Add(subject);
@@ -80,6 +88,7 @@ namespace Study
             }
             else if (Flag == 4)
             {
+                repository.AddInterestToDb(subject, User, 1);
                 User.CanHelpWithSubjects.Add(subject);
                 repository.Users[IndexUser].CanHelpWithSubjects.Add(subject);
                 repository.UpdateDatabase(User);

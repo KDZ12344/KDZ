@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using Study.Core;
 using System;
+using System.Data.SqlClient;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
@@ -75,6 +76,8 @@ namespace Study
                 var indexU = repository.Users.IndexOf(User);
                 repository.Users[indexU] = User;
                 repository.UpdateDatabase(User);
+                this.Close();
+                
             }
 
         }
@@ -87,10 +90,13 @@ namespace Study
                 return;
             }
             User.NeedSubjects.Remove(selectedCanSubject);
-            this.Close();
+            
             var red_win = new RedactProfileWindow(User);
             red_win.Show();
-            repository.UpdateDatabase(User);    
+            repository.UpdateDatabase(User);
+            repository.RemoveInterestFromDb(selectedCanSubject, User);
+
+            this.Close();
         }
 
         private void DeleteNeedHelpItem(object sender, RoutedEventArgs e)
@@ -106,6 +112,7 @@ namespace Study
             var red_win = new RedactProfileWindow(User);
             red_win.Show();
             repository.UpdateDatabase(User);
+            repository.RemoveInterestFromDb(selectedNeedSubject, User);
             //UpdateWindow();
         }
 
